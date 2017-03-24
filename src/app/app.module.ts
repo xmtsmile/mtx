@@ -7,13 +7,11 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import {appRoutes} from './app.routes';
-import { RepositoryComponent } from './repository/repository.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RepositoryComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
