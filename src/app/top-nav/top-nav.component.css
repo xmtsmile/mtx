@@ -1,0 +1,17 @@
+.nav_menu{
+  background-color:#F3F8FB ;
+}
+a{
+  color:#545454;
+}
+.navbar-nav>li>a{
+  line-height:25px;
+}
+.top-navbar{
+ margin-bottom: 0px;
+}
+.avatarPic{
+  width:30px;
+  height:30px;
+  border-radius: 50%;
+}
