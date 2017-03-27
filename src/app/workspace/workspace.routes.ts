@@ -7,6 +7,10 @@ import { DevelopmentComponent } from '../development/development.component';
 import { OperationsComponent } from '../operations/operations.component';
 import { WorkhomeComponent } from '../workhome/workhome.component';
 import { DeploymentComponent } from '../deployment/deployment.component';
+import { ProjectComponent } from '../project/project.component';
+import { AssignmentComponent } from '../assignment/assignment.component';
+import { CommonInfoComponent } from '../common-info/common-info.component';
+import { SandBoxesComponent } from '../sand-boxes/sand-boxes.component';
 
 export const workspaceRoutes=[
   {
@@ -19,10 +23,10 @@ export const workspaceRoutes=[
       { path: 'development', component: DevelopmentComponent },
       { path: 'operations', component: OperationsComponent },
       { path:'deployment',component: DeploymentComponent},
-      { path:'',component: DeploymentComponent},
-      { path:'',component: DeploymentComponent},
-      { path:'',component: DeploymentComponent},
-
+      { path:'project',component: ProjectComponent},
+      { path:'assignment',component: AssignmentComponent},
+      { path:'CommonInfo',component: CommonInfoComponent},
+      { path:'Sandboxes',component: SandBoxesComponent}
     ]
   }
 ];
