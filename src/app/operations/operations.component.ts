@@ -14,7 +14,6 @@ export class OperationsComponent implements OnInit {
     $(function (){
       var screenHeight=$(window).height()-61;
       $(".phpIframe").css("height",screenHeight+"px");
-      // $(".php").load("../phpmyadmin-mod/index.php")
     })
   }
 

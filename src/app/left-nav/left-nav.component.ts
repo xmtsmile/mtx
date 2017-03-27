@@ -13,7 +13,6 @@ export class LeftNavComponent implements OnInit {
   ngOnInit() {
     $(function (){
       var screenHeight=$(window).height()-61;
-      console.log("screenHeight--",screenHeight);
       $(".scroll-view").css("height",screenHeight+"px");
     })
   }
