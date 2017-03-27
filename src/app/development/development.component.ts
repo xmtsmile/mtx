@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+declare var $:any;
 
 @Component({
   selector: 'app-development',
@@ -10,6 +11,9 @@ export class DevelopmentComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    $(function(){
+     
+     })
   }
 
 }
