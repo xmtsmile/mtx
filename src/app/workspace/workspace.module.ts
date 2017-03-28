@@ -17,6 +17,7 @@ import { ProjectComponent } from '../project/project.component';
 import { AssignmentComponent } from '../assignment/assignment.component';
 import { CommonInfoComponent } from '../common-info/common-info.component';
 import { SandBoxesComponent } from '../sand-boxes/sand-boxes.component';
+import { UserProfileComponent } from '../user-profile/user-profile.component';
 
 @NgModule({
   imports: [
@@ -36,7 +37,8 @@ import { SandBoxesComponent } from '../sand-boxes/sand-boxes.component';
     ProjectComponent,
     AssignmentComponent,
     CommonInfoComponent,
-    SandBoxesComponent
+    SandBoxesComponent,
+    UserProfileComponent
   ],
   providers: [
 
