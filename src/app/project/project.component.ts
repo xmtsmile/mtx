@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonDatas} from '../../providers/DataHelpers';
+import { GroupDatas,ProjectDatas,DeveloperDatas} from '../../providers/DataHelpers';
 declare var $:any;
 
 @Component({
@@ -8,16 +8,24 @@ declare var $:any;
   styleUrls: ['./project.component.css']
 })
 export class ProjectComponent implements OnInit {
-  commonDatas: any = CommonDatas;
+  groupDatas: any =[]=GroupDatas;
+  projectDatas: any =[];
+  developerDatas: any =[];
   constructor() { }
 
   ngOnInit() {
     $(function (){
       var screenHeight=$(window).height()-61;
       $(".borderRight").css("height",screenHeight+"px");
-
-      console.log("CommonDatas",this.commonDatas.name)
     })
+  }
+
+  groupChild(){
+    this.projectDatas = ProjectDatas;
+  }
+
+  projectChild(){
+     this.developerDatas = DeveloperDatas;
   }
 
 }

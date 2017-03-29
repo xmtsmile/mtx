@@ -1,16 +1,45 @@
 <div class="col-md-4 borderRight">
-  <p class="lead borderBottom">groupList</p>
+  <div class="lead titleClass">groupList
+    <button class="btn btn-primary pull-right newBtn">new</button>
+  </div>
   <ul>
-    <!--<li *ngFor="let grouplist of commonDatas">-->
-      <!--<a href="#">{{grouplist.value}}</a>-->
-    <!--</li>-->
+    <li class="liDisplay" *ngFor="let grouplist of groupDatas">
+      <div (click)="groupChild()">{{grouplist.group}}</div>
+      <div class="btnDisplay">
+      <button class="btn btn-default pull-right  btn-xs newBtn">edit</button>
+      <button class="btn btn-danger pull-right  btn-xs newBtn">delete</button>
+      </div>
+    </li>
+  </ul>
+
+</div>
+
+<div class="col-md-4 borderRight">
+  <div class="lead titleClass">projectList
+    <button class="btn btn-primary pull-right newBtn">new</button>
+  </div>
+  <ul>
+    <li *ngFor="let projectlist of projectDatas">
+      <div (click)="projectChild()">{{projectlist.project}}</div>
+      <div>
+        <button class="btn btn-default pull-right  btn-xs newBtn">edit</button>
+        <button class="btn btn-danger pull-right  btn-xs newBtn">delete</button>
+      </div>
+    </li>
   </ul>
 </div>
 
 <div class="col-md-4 borderRight">
-  <p class="lead borderBottom">projectList</p>
-</div>
-
-<div class="col-md-4 borderRight">
-  <p class="lead borderBottom">developerList</p>
+  <div class="lead titleClass">developerList
+    <button class="btn btn-primary pull-right newBtn">new</button>
+  </div>
+  <ul>
+    <li *ngFor="let developerlist of developerDatas">
+      <div (click)="projectChild()">{{developerlist.developer}}</div>
+      <div>
+        <button class="btn btn-default pull-right btn-xs newBtn">edit</button>
+        <button class="btn btn-danger pull-right  btn-xs newBtn">delete</button>
+      </div>
+    </li>
+  </ul>
 </div>

@@ -1,6 +1,7 @@
 /**
  * Created by Administrator on 2017/3/22.
  */
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { WorkspaceComponent } from './workspace.component';
@@ -21,6 +22,7 @@ import { UserProfileComponent } from '../user-profile/user-profile.component';
 
 @NgModule({
   imports: [
+    CommonModule,
     RouterModule.forChild(workspaceRoutes)
   ],
   exports: [],

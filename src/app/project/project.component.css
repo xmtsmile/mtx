@@ -1,7 +1,21 @@
-.borderBottom{
+.liDisplay{
+  height:30px;
+  line-height: 30px;
+  display:flex;
+  justify-content: space-around;
+}
+.btnDisplay{
+
+}
+.titleClass{
+  height:50px;
+  line-height:50px;
   border-bottom: 2px solid #eee;
 }
 .borderRight{
   height:auto;
   border:1px solid #eee;
+}
+.newBtn{
+  margin-top:6px;
 }
