@@ -19,15 +19,6 @@ export class ProjectComponent implements OnInit {
     $(function (){
       var screenHeight=$(window).height()-61;
       $(".borderRight").css("height",screenHeight+"px");
-      // $(".hoverAction").mouseMove(function (evevt) {
-      //  console.log("mouseMove-------",event)
-      //   this.hoverTag = true;
-      //
-      // },function () {
-      //
-      //   this.hoverTag = false;
-      //
-      // })
     })
   }
 
@@ -39,15 +30,16 @@ export class ProjectComponent implements OnInit {
      this.developerDatas = DeveloperDatas;
   }
 
-  delete(){
+  delete(params){
     $.confirm({
       title: '确认!',
       content: '确认删除该文件!',
       buttons: {
         确认: function () {
+          console.log("params----",params) //取得要删除的project  操作...
           $.alert('删除成功!');
         },
-        删除: function () {
+        取消: function () {
 
         }
       }

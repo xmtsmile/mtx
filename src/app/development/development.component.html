@@ -1,4 +1,38 @@
-<p>
-  development works!
-</p>
-<div></div>
+<div class="col-md-2 borderRight noPadding">
+  <div class="leftTop">
+    <ul class="list-group">
+      <li *ngFor="let revisionlist of revision">
+        <div data-addtab="userMenu1" data-url="../project/project.component.html" class="list-group-item">{{revisionlist.group}}</div>
+      </li>
+    </ul>
+  </div>
+  <div class="leftBottom">
+    <ul class="list-group">
+      <li *ngFor="let revision of revision">
+        <div class="list-group-item">{{revision.group}}</div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="col-md-10 noPadding">
+  <div class="middleTop">
+    <div id="tabs">
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+          <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a>
+        </li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="home">I'm a homepage.</div>
+      </div>
+
+    </div>
+  </div>
+  <div class="middleBottom">
+
+  </div>
+</div>

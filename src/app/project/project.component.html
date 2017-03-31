@@ -1,14 +1,14 @@
 <div class="col-md-4 borderRight">
   <div class="lead titleClass">groupList
-    <button class="btn btn-primary pull-right newBtn">new</button>
+    <button class="btn btn-default pull-right newBtn" data-toggle="modal" data-target="#newGroup">new</button>
   </div>
   <ul>
     <li class="liDisplay" *ngFor="let grouplist of groupDatas">
       <div class="hoverAction" (click)="groupChild()">{{grouplist.group}}</div>
       <!--<div class="{{hoverTag?'btnDisplay':'btnNodisplay'}}">-->
-      <div>
-      <button class="btn btn-default pull-right  btn-xs newBtn"  data-toggle="modal" data-target="#edit">edit</button>
-      <button (click)="delete()" class="btn btn-danger pull-right  btn-xs newBtn">delete</button>
+      <div class="pull-right">
+      <button class="btn btn-default  btn-xs newBtn"  data-toggle="modal" data-target="#edit">edit</button>
+      <button (click)="delete(grouplist)" class="btn btn-default btn-xs newBtn">delete</button>
       </div>
     </li>
   </ul>
@@ -17,14 +17,14 @@
 
 <div class="col-md-4 borderRight">
   <div class="lead titleClass">projectList
-    <button class="btn btn-primary pull-right newBtn">new</button>
+    <button class="btn btn-default pull-right newBtn" data-toggle="modal" data-target="#newProject">new</button>
   </div>
   <ul>
     <li class="liDisplay" *ngFor="let projectlist of projectDatas">
       <div (click)="projectChild()">{{projectlist.project}}</div>
-      <div>
-        <button class="btn btn-default pull-right  btn-xs newBtn">edit</button>
-        <button class="btn btn-danger pull-right  btn-xs newBtn">delete</button>
+      <div class="pull-right">
+        <button class="btn btn-default btn-xs newBtn">edit</button>
+        <button (click)="delete(projectlist)" class="btn btn-default btn-xs newBtn">delete</button>
       </div>
     </li>
   </ul>
@@ -32,14 +32,14 @@
 
 <div class="col-md-4 borderRight">
   <div class="lead titleClass">developerList
-    <button class="btn btn-primary pull-right newBtn">new</button>
+    <button class="btn btn-default pull-right newBtn" data-toggle="modal" data-target="#newDeveloper">new</button>
   </div>
   <ul>
     <li class="liDisplay" *ngFor="let developerlist of developerDatas">
       <div (click)="projectChild()">{{developerlist.developer}}</div>
-      <div>
-        <button class="btn btn-default pull-right btn-xs newBtn">edit</button>
-        <button class="btn btn-danger pull-right  btn-xs newBtn">delete</button>
+      <div class="pull-right">
+        <button class="btn btn-default btn-xs newBtn">edit</button>
+        <button (click)="delete(developerlist)" class="btn btn-default btn-xs newBtn">delete</button>
       </div>
     </li>
   </ul>
@@ -55,18 +55,84 @@
           &times;
         </button>
         <h4 class="modal-title" id="editLabel">
-          groupEdit
+          Edit
         </h4>
       </div>
       <div class="modal-body">
         balabalabalabalabala
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary">保存</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- newGroupModal -->
+<div class="modal fade" id="new" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          &times;
         </button>
-        <button type="button" class="btn btn-primary">
-          保存
+        <h4 class="modal-title" id="newLabel">
+          NewGroup
+        </h4>
+      </div>
+      <div class="modal-body">
+        balabalabalabalabala
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary">保存</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- newProjectModal -->
+<div class="modal fade" id="newProject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          &times;
         </button>
+        <h4 class="modal-title" id="newProjectLabel">
+          NewProjet
+        </h4>
+      </div>
+      <div class="modal-body">
+        balabalabalabalabala
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary">保存</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- newDeveloperModal -->
+<div class="modal fade" id="newDeveloper" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          &times;
+        </button>
+        <h4 class="modal-title" id="newDeveloperLabel">
+          NewDeveloper
+        </h4>
+      </div>
+      <div class="modal-body">
+        balabalabalabalabala
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary">保存</button>
       </div>
     </div>
   </div>

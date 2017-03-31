@@ -1,0 +1,26 @@
+.noPadding{
+  padding:0px;
+}
+
+.borderRight{
+  height:auto;
+  border-right:1px solid #5e5e5e;
+}
+
+.borderRight .leftTop{
+  height:auto;
+  border-bottom:2px solid #5e5e5e;
+  overflow-y: auto;
+}
+
+.borderRight .leftBottom{
+  height:auto;
+  overflow-y: auto;
+}
+.middleTop{
+  height:auto;
+  border-bottom:2px solid #5e5e5e;
+}
+.middleBottom{
+  height:auto;
+}
