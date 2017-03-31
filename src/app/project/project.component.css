@@ -5,7 +5,10 @@
   justify-content: space-around;
 }
 .btnDisplay{
-
+   display:block;
+}
+.btnNodisplay{
+  display:none;
 }
 .titleClass{
   height:50px;
@@ -18,4 +21,5 @@
 }
 .newBtn{
   margin-top:6px;
+  margin-right:5px;
 }

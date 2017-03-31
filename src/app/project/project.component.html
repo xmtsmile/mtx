@@ -4,10 +4,11 @@
   </div>
   <ul>
     <li class="liDisplay" *ngFor="let grouplist of groupDatas">
-      <div (click)="groupChild()">{{grouplist.group}}</div>
-      <div class="btnDisplay">
-      <button class="btn btn-default pull-right  btn-xs newBtn">edit</button>
-      <button class="btn btn-danger pull-right  btn-xs newBtn">delete</button>
+      <div class="hoverAction" (click)="groupChild()">{{grouplist.group}}</div>
+      <!--<div class="{{hoverTag?'btnDisplay':'btnNodisplay'}}">-->
+      <div>
+      <button class="btn btn-default pull-right  btn-xs newBtn"  data-toggle="modal" data-target="#edit">edit</button>
+      <button (click)="delete()" class="btn btn-danger pull-right  btn-xs newBtn">delete</button>
       </div>
     </li>
   </ul>
@@ -19,7 +20,7 @@
     <button class="btn btn-primary pull-right newBtn">new</button>
   </div>
   <ul>
-    <li *ngFor="let projectlist of projectDatas">
+    <li class="liDisplay" *ngFor="let projectlist of projectDatas">
       <div (click)="projectChild()">{{projectlist.project}}</div>
       <div>
         <button class="btn btn-default pull-right  btn-xs newBtn">edit</button>
@@ -34,7 +35,7 @@
     <button class="btn btn-primary pull-right newBtn">new</button>
   </div>
   <ul>
-    <li *ngFor="let developerlist of developerDatas">
+    <li class="liDisplay" *ngFor="let developerlist of developerDatas">
       <div (click)="projectChild()">{{developerlist.developer}}</div>
       <div>
         <button class="btn btn-default pull-right btn-xs newBtn">edit</button>
@@ -42,4 +43,31 @@
       </div>
     </li>
   </ul>
+</div>
+
+
+<!-- groupEditModal -->
+<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          &times;
+        </button>
+        <h4 class="modal-title" id="editLabel">
+          groupEdit
+        </h4>
+      </div>
+      <div class="modal-body">
+        balabalabalabalabala
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+        </button>
+        <button type="button" class="btn btn-primary">
+          保存
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
