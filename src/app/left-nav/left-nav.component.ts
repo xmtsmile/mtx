@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-declare var $:any;
+declare var $: any;
 
 @Component({
   selector: 'app-left-nav',
@@ -12,9 +12,10 @@ export class LeftNavComponent implements OnInit {
 
   ngOnInit() {
     $(function (){
-      var screenHeight=$(window).height()-61;
-      $(".scroll-view").css("height",screenHeight+"px");
-    })
+      const screenHeight = $(window).height() - 61;
+      $('.scroll-view').css('height', screenHeight + 'px');
+      $.sidebarMenu($('.sidebar-menu'));
+    });
   }
 
 
