@@ -20,7 +20,6 @@ export class DevelopmentComponent implements OnInit {
       $('.leftBottom').css('height', screenHeight / 2 + 'px');
       $('.middleTop').css('height', (screenHeight / 4) * 3 + 'px');
       $('.middleBottom').css('height', (screenHeight / 4) * 1 + 'px');
-      $('#tabs').addtabs({iframeHeight: 320});
     });
   }
 }

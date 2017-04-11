@@ -11,7 +11,8 @@
 
 (function($) {
 
-    var settings = {
+
+  var settings = {
         content: '', //直接指定所有页面TABS内容
         close: true, //是否可以关闭
         monitor: 'body', //监视的区域
@@ -33,22 +34,15 @@
     var target;
 
     _click = function(obj) {
-        $.addtabs();
-        console.log("333333333333333",obj);
         var a_obj, a_target;
         if (typeof obj.data('addtab') == 'object') {
             a_obj = obj.data('addtab');
-          console.log("44444444444444",a_obj);
         } else {
             a_obj = obj.data();
-          console.log("5555555555",a_obj);
-          console.log("a_obj_id",a_obj.id);
-          console.log("a_obj_target",a_obj.target);
         }
         if (!a_obj.id && !a_obj.addtab) {
             a_obj.id = Math.random().toString(36).substring(3, 35);
             obj.data('id', a_obj.id);
-          console.log("6666666666");
         }
 
         $.addtabs.add({
@@ -150,7 +144,6 @@
             var tab_id = $(this).parent('ul').attr("aria-controls");
             $('#tab_' + tab_id).nextUntil().each(function() {
                 var id = $(this).attr('id');
-                console.log(id);
                 if (id && id != 'tab_' + tab_id) {
                     $.addtabs.close({
                         "id": $(this).children('a').attr('aria-controls')
@@ -215,30 +208,22 @@
             if (typeof arguments[0] == 'object') {
                 settings = $.extend(settings, arguments[0] || {});
             } else {
-              console.log("1111111111111",settings.target);
                 settings[arguments[0]] = arguments[1];
             }
         }
         if (typeof settings.target == 'object') {
             target = settings.target;
-          console.log("dsadasfsfsafasf",settings.target);
         } else {
           target = $('body').find(settings.target).length > 0 ? $(settings.target).first() : $('body').find('.nav-tabs').first();
-          console.log("xumengting",$(settings.target).first());
         }
     }
 
     $.addtabs.add = function(opts) {
-      console.log("opts--",opts);
-      console.log("opts.id---",opts.id);
-      console.log("opts.target---",opts.target);
         var a_target;
         opts.id = opts.id ? opts.id : Math.random().toString(36).substring(3, 35);
         if (typeof opts.target == 'object') {
-          console.log("opts.target333333333333-------",opts.target)
             a_target = opts.target;
         } else if (typeof opts.target == 'string') {
-          console.log("opts.target-------",opts.target)
             a_target = $('body').find(opts.target);
         } else {
             a_target = target;
@@ -246,7 +231,6 @@
 
         var id = 'tab_' + opts.id;
         var tab_li = a_target;
-        console.log(tab_li);
         var tab_content = tab_li.next('.tab-content');
 
         tab_li.find('li[role = "presentation"].active').removeClass('active');
