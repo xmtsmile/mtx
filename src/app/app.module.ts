@@ -21,7 +21,10 @@ import {appRoutes} from './app.routes';
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [{
+    provide: "windowObject",
+    useValue: window
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
