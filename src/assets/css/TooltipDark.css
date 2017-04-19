@@ -1,0 +1,37 @@
+
+/* jBox theme: TooltipDark */
+
+.jBox-TooltipDark .jBox-container {
+  border-radius: 3px;
+  background: rgb(51, 51, 51);
+  color: #fff;
+  box-shadow: 0 0 6px rgba(0, 0, 0, .4);
+}
+
+/* Pointer */
+
+.jBox-TooltipDark .jBox-pointer:after {
+  background: rgb(51, 51, 51)
+}
+
+/* Close button */
+
+.jBox-TooltipDark .jBox-closeButton {
+  background: rgb(51, 51, 51);
+}
+
+.jBox-TooltipDark.jBox-closeButton-box:before {
+  box-shadow: 0 0 6px rgb(51, 51, 51, 0.4);
+}
+
+.jBox-TooltipDark.jBox-closeButton-box .jBox-closeButton path {
+  fill: #ddd;
+}
+
+.jBox-TooltipDark.jBox-closeButton-box .jBox-closeButton:hover path {
+  fill: #fff;
+}
+
+.jBox-TooltipDark.jBox-closeButton-box .jBox-closeButton:active path {
+  fill: #bbb;
+}
