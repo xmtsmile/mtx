@@ -1958,7 +1958,7 @@ window.MainUi = function () {
 
     webui.repo = "ROOT";
 
-    var body = $("body")[0];
+    var body = $("#git-webui")[0];
     $('<div id="message-box">').appendTo(body);
     var globalContainer = $('<div id="global-container">').appendTo(body)[0];
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-repository',
@@ -7,12 +7,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 })
 export class RepositoryComponent implements OnInit {
 
-  constructor(@Inject("windowObject") private window: Window) { }
-
   ngOnInit() {
-    if (!(<any>window).mainui) {
-      (<any>window).mainui = new (<any>window).MainUi();
-    }
   }
 
 }
