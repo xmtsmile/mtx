@@ -19,6 +19,7 @@
 ********************************************************* */
 #commit-view-header a {
   color: #777777;
+  border-radius: 0;
 }
 
 /* ContextMenu use the name "context-menu-active" so change it */
@@ -29,11 +30,13 @@
 
 #commit-explorer-navigator-view .panel-heading {
   background-color: #d8d8d8;
+  border-radius: 0;
 }
 
 #commit-view-header a:hover,
 #commit-view-header li.active > a {
   background-color: #b3b3b3;
+  border-radius: 0;
 }
 
 .btn.btn-sm.btn-default.diff-ignore-whitespace,
@@ -43,6 +46,7 @@
 .btn.btn-sm.btn-default.diff-explore {
   margin: 0;
   border: 0;
+  border-radius: 0;
 }
 
 #working-copy-view .panel-heading,
@@ -51,17 +55,20 @@
   padding: 0 !important;
   padding-left: 10px !important;
   background-color: #d8d8d8;
+  border-radius: 0;
 }
 
 #working-copy-view button,
 #commit-message-view button,
 #staging-area-view button {
   border: 0;
+  border-radius: 0;
 }
 
 #workspace-diff-view .panel-heading {
   border-bottom: 1px solid transparent;
   background-color: #d8d8d8;
+  border-radius: 0;
 }
 
 a.list-group-item.sidebar-ref.active {
@@ -278,6 +285,7 @@ body {
   background-color: transparent;
   margin: 0;
   border-top-width: 0;
+  border-radius: 0;
 }
 #log-view .log-entry:hover {
   background-color: rgba(86, 86, 86, 0.47);
@@ -669,6 +677,7 @@ body {
   border-left: 0;
   border-right: 0;
   white-space: nowrap;
+  border-radius: 0;
 }
 #workspace-view #workspace-editor #commit-message-view,
 #commit-explorer-view #workspace-editor #commit-message-view,

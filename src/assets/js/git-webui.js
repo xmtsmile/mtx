@@ -1971,7 +1971,3 @@ window.MainUi = function () {
     self.historyView = new webui.HistoryView(self);
     self.workspaceView = new webui.WorkspaceView(self);
 };
-
-// $(document).ready(function () {
-//     window.mainui = new MainUi();
-// });
