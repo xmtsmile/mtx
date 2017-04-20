@@ -16,7 +16,6 @@ import { AdministrationComponent } from '../administration/administration.compon
 import { WorkhomeComponent } from '../workhome/workhome.component';
 import { ProjectComponent } from '../project/project.component';
 import { AssignmentComponent } from '../assignment/assignment.component';
-import { CommonInfoComponent } from '../common-info/common-info.component';
 import { SandBoxesComponent } from '../sand-boxes/sand-boxes.component';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
 
@@ -38,12 +37,12 @@ import { UserProfileComponent } from '../user-profile/user-profile.component';
     WorkhomeComponent,
     ProjectComponent,
     AssignmentComponent,
-    CommonInfoComponent,
     SandBoxesComponent,
     UserProfileComponent
   ],
-  providers: [
-
-  ],
+  providers: [{
+    provide: "windowObject",
+    useValue: window
+  }]
 })
 export class WorkspaceModule { }

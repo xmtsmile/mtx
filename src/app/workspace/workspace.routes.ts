@@ -9,7 +9,6 @@ import { WorkhomeComponent } from '../workhome/workhome.component';
 import { DeploymentComponent } from '../deployment/deployment.component';
 import { ProjectComponent } from '../project/project.component';
 import { AssignmentComponent } from '../assignment/assignment.component';
-import { CommonInfoComponent } from '../common-info/common-info.component';
 import { SandBoxesComponent } from '../sand-boxes/sand-boxes.component';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
 
@@ -20,15 +19,14 @@ export const workspaceRoutes=[
     children: [
       { path: '',component:WorkhomeComponent},
       { path: 'workhome',component:WorkhomeComponent},
-      { path: 'userProfile',component:UserProfileComponent},
+      { path: 'user-profile',component:UserProfileComponent},
       { path: 'repository', component: RepositoryComponent },
       { path: 'development', component: DevelopmentComponent },
       { path: 'operations', component: OperationsComponent },
       { path: 'deployment',component: DeploymentComponent},
       { path: 'project',component: ProjectComponent},
       { path: 'assignment',component: AssignmentComponent},
-      { path: 'CommonInfo',component: CommonInfoComponent},
-      { path: 'Sandboxes',component: SandBoxesComponent}
+      { path: 'sandboxes',component: SandBoxesComponent}
     ]
   }
 ];

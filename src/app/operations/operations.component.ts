@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-declare var $:any;
+declare var $: any;
 
 @Component({
   selector: 'app-operations',
@@ -11,9 +11,9 @@ export class OperationsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    $(function (){
-      var screenHeight=$(window).height()-61;
-      $(".phpIframe").css("height",screenHeight+"px");
+    $(function () {
+      var screenHeight = $(window).height() - 61;
+      $(".phpIframe").css("height", screenHeight + "px");
     })
   }
 
