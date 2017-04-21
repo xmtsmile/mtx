@@ -19,6 +19,10 @@ import { AssignmentComponent } from '../assignment/assignment.component';
 import { SandBoxesComponent } from '../sand-boxes/sand-boxes.component';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
 
+// provider
+import { HttpPost} from '../../providers/httpPost';
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -40,9 +44,9 @@ import { UserProfileComponent } from '../user-profile/user-profile.component';
     SandBoxesComponent,
     UserProfileComponent
   ],
-  providers: [{
-    provide: "windowObject",
-    useValue: window
-  }]
+  providers: [
+    HttpPost,
+    {provide: 'windowObject', useValue: window}
+    ]
 })
 export class WorkspaceModule { }

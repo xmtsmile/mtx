@@ -1,41 +1,48 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule} from '@angular/forms';
-import { User } from '../models/userModel';
 import { Router} from '@angular/router';
-declare var $:any;
+import { HttpPost} from '../../providers/httpPost';
+declare var $: any;
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  public user: User = new User();
-
-  constructor(public router: Router) { }
+  name: any;
+  pass: any;
+  constructor(public router: Router, public httpPost: HttpPost) { }
 
   ngOnInit() {
   }
 
-  login(){
-    var reg = /[\u4e00-\u9fa5]+/;
-    if(!this.user.username) {
+  login () {
+    let message;
+    var that = this;
+    const reg = /[\u4e00-\u9fa5]+/;
+    if (!this.name) {
 
-      let message = "用户名不能为空";
+      message = '用户名不能为空';
       alert(message);
 
-    } else if(!this.user.password){
+    } else if (!this.pass) {
 
-      let message = "请输入密码";
+      message = '请输入密码';
       alert(message);
 
-    } else if(reg.test(this.user.password)){
+    } else if (reg.test(this.pass)) {
 
-      let message = "密码中不能输入中文";
+      message = '密码中不能输入中文';
       alert(message);
 
-    } else{
-
-      this.router.navigateByUrl("workspace");
+    } else {
+      const params = {'name': this.name, 'pass': this.pass};
+      this.httpPost.dataAjax('GET', 'http://localhost:80/user/login', 'x-www-form-urlencoded', params, function(res){
+        if (res.code == '0') {
+          console.log(res.result);
+          sessionStorage.setItem('loginUser', JSON.stringify(res.result));
+          that.router.navigateByUrl('workspace');
+        }
+      });
     }
   }
 

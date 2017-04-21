@@ -9,6 +9,9 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import {appRoutes} from './app.routes';
 
+// provider
+import { HttpPost} from '../providers/httpPost';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,10 +24,10 @@ import {appRoutes} from './app.routes';
     HttpModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [{
-    provide: "windowObject",
-    useValue: window
-  }],
+  providers: [
+    HttpPost,
+    {provide: "windowObject", useValue: window}
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpPost} from '../../providers/httpPost';
+declare var $: any;
 
 @Component({
   selector: 'app-workhome',
@@ -6,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./workhome.component.css']
 })
 export class WorkhomeComponent implements OnInit {
-
-  constructor() { }
+  projectInfo: any = [];
+  constructor(public httpPost: HttpPost) { }
 
   ngOnInit() {
+    $(function (){
+      const screenHeight = $(window).height() - 61;
+      $('.rightTop').css('height', screenHeight / 2 + 'px');
+      $('.rightBottom').css('height', screenHeight / 2 + 'px');
+    });
   }
-
 }

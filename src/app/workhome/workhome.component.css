@@ -1,3 +1,10 @@
 .nopadding{
   padding:0px;
 }
+.rightTop{
+  height:auto;
+  border-bottom:2px solid #eeeeee;
+}
+.rightBottom{
+  height: auto;
+}
