@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router} from '@angular/router';
-import { HttpPost} from '../../providers/httpPost';
+import { FormsModule } from '@angular/forms';
+import { User } from '../models/user.model';
+import { Router } from '@angular/router';
+import { HttpPost } from '../../providers/httpPost';
 declare var $: any;
 @Component({
   selector: 'app-login',
@@ -15,7 +17,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  login () {
+  login() {
     let message;
     var that = this;
     const reg = /[\u4e00-\u9fa5]+/;
@@ -35,8 +37,8 @@ export class LoginComponent implements OnInit {
       alert(message);
 
     } else {
-      const params = {'name': this.name, 'pass': this.pass};
-      this.httpPost.dataAjax('GET', 'http://localhost:80/user/login', 'x-www-form-urlencoded', params, function(res){
+      const params = { 'name': this.name, 'pass': this.pass };
+      this.httpPost.dataAjax('GET', 'http://localhost:80/user/login', 'x-www-form-urlencoded', params, function (res) {
         if (res.code == '0') {
           console.log(res.result);
           sessionStorage.setItem('loginUser', JSON.stringify(res.result));
