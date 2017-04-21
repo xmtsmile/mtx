@@ -1,4 +1,4 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { HttpPost} from '../../providers/httpPost';
 declare var $: any;
 
@@ -10,13 +10,15 @@ declare var $: any;
 export class LeftNavComponent implements OnInit {
   groupList: any = [];
   projectList: any = [];
-  @Input() projectInfo: any = [];
+  projectInfo: any = [];
   constructor(public httpPost: HttpPost) { }
 
   ngOnInit() {
     $(function (){
       const screenHeight = $(window).height() - 61;
       $('.divHeight').css('height', screenHeight + 'px');
+      $('.rightTop').css('height', screenHeight / 2 + 'px');
+      $('.rightBottom').css('height', screenHeight / 2 + 'px');
       $('.leftNavTop').css('height', screenHeight / 2 + 'px');
       $('.leftNavBottom').css('height', screenHeight / 2 + 'px');
     });
@@ -44,7 +46,6 @@ export class LeftNavComponent implements OnInit {
       if (res.code == '0') {
         console.log('aaaaaaaaaaaaaaaaaaaaaaaprojectInfo', res.result);
         that.projectInfo = res.result;
-        sessionStorage.setItem('projectInfo', that.projectInfo);
       }
     });
   }

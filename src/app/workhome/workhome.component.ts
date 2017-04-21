@@ -12,10 +12,14 @@ export class WorkhomeComponent implements OnInit {
   constructor(public httpPost: HttpPost) { }
 
   ngOnInit() {
-    $(function (){
-      const screenHeight = $(window).height() - 61;
-      $('.rightTop').css('height', screenHeight / 2 + 'px');
-      $('.rightBottom').css('height', screenHeight / 2 + 'px');
-    });
+  //   $(function (){
+  //     const screenHeight = $(window).height() - 61;
+  //     $('.rightTop').css('height', screenHeight / 2 + 'px');
+  //     $('.rightBottom').css('height', screenHeight / 2 + 'px');
+  //     setTimeout(function(){
+  //       this.projectInfo = JSON.parse(sessionStorage.getItem('projectInfo'));
+  //       console.log('sadaaaaaaaaaaa', this.projectInfo);
+  //     }, 30000);
+  //   });
   }
 }

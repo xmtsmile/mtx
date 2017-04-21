@@ -1,4 +1,5 @@
-<div class="col-md-5 nopadding divHeight" style="border-right:2px solid #eeeeee;">
+<div class="col-md-12 nopadding">
+<div class="col-md-3 nopadding divHeight" style="border-right:2px solid #eeeeee;">
   <div class="leftNavTop">
     <h4>GroupList</h4>
     <ul class="leftNavList">
@@ -11,4 +12,40 @@
       <li class="leftNavList" *ngFor="let project of projectList" (click)="showProjectInfo(project)" >{{project.projectName}}</li>
     </ul>
   </div>
+</div>
+<div class="col-md-9 nopadding">
+  <div class="col-md-8 nopadding">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">项目详细信息</h3>
+      </div>
+      <div class="panel-body">
+        {{projectInfo.projectId}}
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-4 nopadding" style="border-left: solid #eeeeee 2px; ">
+    <div class="rightTop">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Task</h3>
+        </div>
+        <div class="panel-body">
+          面板内容
+        </div>
+      </div>
+    </div>
+    <div class="rightBottom">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">SandBox</h3>
+        </div>
+        <div class="panel-body">
+          面板内容
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
