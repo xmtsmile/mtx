@@ -19,8 +19,43 @@
       <div class="panel-heading">
         <h3 class="panel-title">项目详细信息</h3>
       </div>
-      <div class="panel-body">
-        {{projectInfo.projectId}}
+      <div class="panel-body" *ngIf='projectInfo != null'>
+        <div class="col-md-6">
+          createTime： {{projectInfo.createTime}}
+        </div>
+        <div class="col-md-6">
+          creatorId： {{projectInfo.creatorId}}
+        </div>
+        <div class="col-md-6">
+          description： {{projectInfo.description}}
+        </div>
+        <div class="col-md-6">
+          gitEmail： {{projectInfo.gitEmail}}
+        </div>
+        <div class="col-md-6">
+          gitKeyPath： {{projectInfo.gitKeyPath}}
+        </div>
+        <div class="col-md-6">
+          gitName： {{projectInfo.gitName}}
+        </div>
+        <div class="col-md-6">
+          gitPass： {{projectInfo.gitPass}}
+        </div>
+        <div class="col-md-6">
+          groupId： {{projectInfo.groupId}}
+        </div>
+        <div class="col-md-6">
+          projectId： {{projectInfo.projectId}}
+        </div>
+        <div class="col-md-6">
+          projectName： {{projectInfo.projectName}}
+        </div>
+        <div class="col-md-6">
+          repositoryUrl： {{projectInfo.repositoryUrl}}
+        </div>
+        <div class="col-md-6">
+          scriptPath： {{projectInfo.scriptPath}}
+        </div>
       </div>
     </div>
 
