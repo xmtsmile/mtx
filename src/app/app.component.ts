@@ -1,14 +1,16 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Router, NavigationEnd, RoutesRecognized } from '@angular/router';
 import { PageCacheService } from './page-cache.service';
+import { TopNavComponent } from './top-nav/top-nav.component';
 
 declare var $: any;
 
 @Component({
   selector: 'app-root',
+  // directives: [TopNavComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [PageCacheService]
+  providers: [PageCacheService, TopNavComponent]
 })
 export class AppComponent implements OnInit {
 
@@ -20,7 +22,8 @@ export class AppComponent implements OnInit {
 
   constructor(private router: Router,
     @Inject("windowObject") window: Window,
-    private pageCacheService: PageCacheService) {
+    private pageCacheService: PageCacheService,
+    private topNavComponent: TopNavComponent) {
 
     router.events.forEach((event) => {
       // NavigationStart -> RoutesRecognized -> NavigationEnd
@@ -47,12 +50,13 @@ export class AppComponent implements OnInit {
             break;
 
           case this.pageCacheKeys[2]:
-            var ops = this.pageCacheService.get(this.pageCacheKeys[2]);
-            if (ops && ops.length > 0) {
-              // FIXME: would be problem here because of when the iframe append to the DOM
-              // it would auto reload with src attribute on it
-              $("#page-operations").empty().append(ops);
-            }
+            this.topNavComponent.fetchPage();
+            // var ops = this.pageCacheService.get(this.pageCacheKeys[2]);
+            // if (ops && ops.length > 0) {
+            //   // FIXME: would be problem here because of when the iframe append to the DOM
+            //   // it would auto reload with src attribute on it
+            //   $("#page-operations").empty().append(ops);
+            // }
             break;
         }
 
@@ -64,7 +68,7 @@ export class AppComponent implements OnInit {
         } else if ((current = $('#page-development')).length > 0) {
           this.pageCacheService.put(this.pageCacheKeys[1], $("#page-development").children());
         } else if ((current = $('#page-operations')).length > 0) {
-          this.pageCacheService.put(this.pageCacheKeys[2], $("#page-operations").children());
+          // this.pageCacheService.put(this.pageCacheKeys[2], $("#page-operations").children());
         }
 
       }
