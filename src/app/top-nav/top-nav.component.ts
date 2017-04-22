@@ -18,7 +18,7 @@ export class TopNavComponent implements OnInit {
 
   constructor(public router: Router, public httpPost: HttpPost) { }
 
-  private phpMyAdminUrl = "http://localhost:88/admin/index.php";
+  private phpMyAdminUrl = "/operations/admin/index.php";
   private form =
     '<form action="' + this.phpMyAdminUrl + '" target="phpmyadmin" method="post">' +
     '<input type="hidden" name="pma_servername" value="__server__">' +
@@ -53,7 +53,7 @@ export class TopNavComponent implements OnInit {
       $('[data-submenu]').submenupicker();
     }, 1000);
     // load data here and in the callback function, call submenupicker() to ensure the submenu worked
-    // this.httpPost.dataAjax('GET', 'http://localhost:80/user/recipe/sandboxes', 'x-www-form-urlencoded', {}, function (res) {
+    // this.httpPost.dataAjax('GET', '/mtx/user/recipe/sandboxes', 'x-www-form-urlencoded', {}, function (res) {
     //   if (res.code == '0') {
     //     // translate the data into this.groups
     //     $('[data-submenu]').submenupicker();
@@ -102,7 +102,7 @@ export class TopNavComponent implements OnInit {
 
   logOut() {
     var that = this;
-    this.httpPost.dataAjax('GET', 'http://localhost:80/user/logout', 'x-www-form-urlencoded', {}, function (res) {
+    this.httpPost.dataAjax('GET', '/mtx/user/logout', 'x-www-form-urlencoded', {}, function (res) {
       if (res.code == '0') {
         that.router.navigateByUrl('login');
       }

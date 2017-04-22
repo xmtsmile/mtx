@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { Router, NavigationEnd, RoutesRecognized } from '@angular/router';
 import { PageCacheService } from './page-cache.service';
 import { TopNavComponent } from './top-nav/top-nav.component';
@@ -10,9 +10,12 @@ declare var $: any;
   // directives: [TopNavComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [PageCacheService, TopNavComponent]
+  providers: [PageCacheService]
 })
 export class AppComponent implements OnInit {
+
+  @ViewChild(TopNavComponent)
+  topNavComponent: TopNavComponent;
 
   private pageCacheKeys: string[] = [
     "/workspace/repository",
@@ -20,10 +23,8 @@ export class AppComponent implements OnInit {
     "/workspace/operations"
   ];
 
-  constructor(private router: Router,
-    @Inject("windowObject") window: Window,
-    private pageCacheService: PageCacheService,
-    private topNavComponent: TopNavComponent) {
+  constructor(private router: Router, @Inject("windowObject") window: Window,
+    private pageCacheService: PageCacheService) {
 
     router.events.forEach((event) => {
       // NavigationStart -> RoutesRecognized -> NavigationEnd

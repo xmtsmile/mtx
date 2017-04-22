@@ -80,7 +80,7 @@ webui.git = function (cmd, arg1, arg2) {
 
     $.ajax({
         type: "POST",
-        url: "http://lt:8000/repository/git/cmd",
+        url: "/repository/git/cmd",
         data: cmd,
         dataType: "text",
         headers: {
@@ -276,7 +276,7 @@ webui.SideBarView = function (mainView) {
                     }, function (data) {
                         data = JSON.parse(data);
                         if (data.code != 0) {
-                            console.error("can not find the developer on the branch");
+                            console.warn("can not find the developer on the branch");
                         } else {
                             tpContent = data.result;
                         }
@@ -391,7 +391,7 @@ webui.SideBarView = function (mainView) {
                             }, function (data) {
                                 data = JSON.parse(data);
                                 if (data.code != 0) {
-                                    console.error("can not find the developer on the branch");
+                                    console.warn("can not find the developer on the branch");
                                 } else {
                                     tpContent = data.result;
                                 }

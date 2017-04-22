@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
 
     } else {
       const params = { 'name': this.name, 'pass': this.pass };
-      this.httpPost.dataAjax('GET', 'http://localhost:80/user/login', 'x-www-form-urlencoded', params, function (res) {
+      this.httpPost.dataAjax('GET', '/mtx/user/login', 'x-www-form-urlencoded', params, function (res) {
         if (res.code == '0') {
           console.log(res.result);
           sessionStorage.setItem('loginUser', JSON.stringify(res.result));
