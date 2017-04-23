@@ -18,47 +18,60 @@ export class TopNavComponent implements OnInit {
 
   constructor(public router: Router, public httpPost: HttpPost) { }
 
-  private phpMyAdminUrl = "http://localhost:88/admin/index.php";
-  private form =
-    '<form action="' + this.phpMyAdminUrl + '" target="phpmyadmin" method="post">' +
+  private phpMyAdminUrl = "/operations/index.php";
+  private loginForm =
+    '<form action="__url__" target="phpmyadmin" method="post">' +
     '<input type="hidden" name="pma_servername" value="__server__">' +
     '<input type="hidden" name="pma_username" value="__username__">' +
     '<input type="hidden" name="pma_password" value="__password__">' +
     '<input type="hidden" name="collation_connection" value="utf8mb4_unicode_ci">' +
     '</form>';
+  private backForm = '<form action="__url__" target="phpmyadmin"></form>';
 
   // mock data
-  private groups: Group[] = [
-    new Group("group_id_1", "group_name_1", [new Sandbox(
-      "001", "group_id_1", "sand_name", "127.0.0.1", "3306", "root", "1234567890"
-    ), new Sandbox(
-      "002", "group_id_1", "sand_name2", "127.0.0.1", "3306", "root", "1234567890"
-    )])
-  ];
+  private groups: Group[] = [];
 
   // current sandbox info
-  private currentGroupId: string;
-  private currentSandboxId: string;
+  currentGroupId: string;
+  currentSandboxId: string;
 
   ngOnInit() {
+    var self = this;
     this.loginUser = JSON.parse(sessionStorage.getItem('loginUser'));
     console.log('loginUser--', this.loginUser)
+
     if (this.loginUser.isAdmin == '0') {
       this.adminTag = false;
     } else {
       this.adminTag = true;
     }
 
-    setTimeout(function () {
-      $('[data-submenu]').submenupicker();
-    }, 1000);
     // load data here and in the callback function, call submenupicker() to ensure the submenu worked
-    // this.httpPost.dataAjax('GET', 'http://localhost:80/user/recipe/sandboxes', 'x-www-form-urlencoded', {}, function (res) {
-    //   if (res.code == '0') {
-    //     // translate the data into this.groups
-    //     $('[data-submenu]').submenupicker();
-    //   }
-    // });
+    this.httpPost.dataAjax('GET', '/mtx/user/recipe/sandboxes', 'x-www-form-urlencoded', {}, function (res) {
+      if (res.code == '0') {
+        // translate the data into this.groups
+        _.each(res.result, function (group) {
+          var tmpGroup = new Group(group.groupId, group.groupName, []);
+          _.each(group.sandboxes, function (sandbox) {
+            tmpGroup.sandboxes.push(new Sandbox(
+              sandbox.sandboxId,
+              sandbox.groupId,
+              sandbox.sandboxName,
+              sandbox.address,
+              sandbox.port,
+              sandbox.username,
+              sandbox.password
+            ))
+          });
+          self.groups.push(tmpGroup);
+        });
+
+        // need a liitle to wait angular to init view
+        setTimeout(function () {
+          $('[data-submenu]').submenupicker();
+        }, 300);
+      }
+    });
   }
 
   /**
@@ -67,42 +80,54 @@ export class TopNavComponent implements OnInit {
    * @param sandboxId
    */
   operate(groupId: string, sandboxId: string) {
-    console.log(this);
     this.currentGroupId = groupId;
     this.currentSandboxId = sandboxId;
     this.router.navigateByUrl("/workspace/operations");
   }
 
-  fetchPage() {
-    console.log(this);
+  fetchPage(prevUrls: any, sid: string) {
+    var self = this;
     if (!this.currentGroupId || !this.currentSandboxId) {
       // if directly enter in /workspace/operations then do nothing
       return;
     }
 
     var group = _.filter(this.groups, function (group) {
-      return group.id == this.currentGroupId;
+      return group.id == self.currentGroupId;
     })[0];
     var sandbox = _.filter(group.sandboxes, function (sandbox) {
-      return sandbox.id == this.currentSandboxId;
+      return sandbox.id == self.currentSandboxId;
     })[0];
 
-    var poststr = this.build(sandbox.address + ":" + sandbox.port, sandbox.username, sandbox.password);
-    var post = $(poststr);
+    var str;
+    var prevUrl;
+    if (!prevUrls || !(prevUrl = prevUrls.get(sid)) || prevUrl.index) {
+      str = this.build(
+        this.phpMyAdminUrl,
+        sandbox.address + ":" + sandbox.port,
+        sandbox.username,
+        sandbox.password
+      );
+    } else {
+      str = this.backForm.replace("__url__", prevUrl.url);
+    }
+
+    var post = $(str);
     $("body").append(post);
     post.submit();
     post.remove();
   }
 
-  private build(server: string, username: string, password: string): string {
-    return this.form.replace("__server__", server)
+  private build(url:string, server: string, username: string, password: string): string {
+    return this.loginForm.replace("__url__", url)
+      .replace("__server__", server)
       .replace("__username__", username)
       .replace("__password__", password);
   }
 
   logOut() {
     var that = this;
-    this.httpPost.dataAjax('GET', 'http://localhost:80/user/logout', 'x-www-form-urlencoded', {}, function (res) {
+    this.httpPost.dataAjax('GET', '/mtx/user/logout', 'x-www-form-urlencoded', {}, function (res) {
       if (res.code == '0') {
         that.router.navigateByUrl('login');
       }

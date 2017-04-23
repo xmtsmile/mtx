@@ -23,7 +23,7 @@ export class LeftNavComponent implements OnInit {
       $('.leftNavBottom').css('height', screenHeight / 2 + 'px');
     });
     var that = this;
-    this.httpPost.dataAjax('POST', 'http://localhost:80/main/groups', 'x-www-form-urlencoded', {}, function(res) {
+    this.httpPost.dataAjax('POST', '/mtx/main/groups', 'x-www-form-urlencoded', {}, function(res) {
       if (res.code == '0') {
         that.groupList = res.result;
       }
@@ -32,7 +32,7 @@ export class LeftNavComponent implements OnInit {
   showProject(group) {
     var that = this;
     const params = {'groupId': group.groupId};
-    this.httpPost.dataAjax('GET', 'http://localhost:80/main/group/project/list', 'x-www-form-urlencoded', params, function(res) {
+    this.httpPost.dataAjax('GET', '/mtx/main/group/project/list', 'x-www-form-urlencoded', params, function(res) {
       if (res.code == '0') {
         that.projectList = res.result;
       }
@@ -42,7 +42,7 @@ export class LeftNavComponent implements OnInit {
     var that = this;
     const params = {'projectId': this.projectList[0].projectId};
     console.log('projectParams--', params);
-    this.httpPost.dataAjax('GET', 'http://localhost:80/main/group/project/info', 'x-www-form-urlencoded', params, function(res){
+    this.httpPost.dataAjax('GET', '/mtx/main/group/project/info', 'x-www-form-urlencoded', params, function(res){
       if (res.code == '0') {
         console.log('aaaaaaaaaaaaaaaaaaaaaaaprojectInfo', res.result);
         that.projectInfo = res.result;
