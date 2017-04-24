@@ -17,7 +17,6 @@ export class HttpPost {
     traditional: true,
     contentType: contentType     // 'application/json;charset=UTF-8'   'x-www-form-urlencoded'
   }).done(function (result) {
-    console.log('postresult', result);
     if (result.code == '0') {
       successfn(result);
     }else {

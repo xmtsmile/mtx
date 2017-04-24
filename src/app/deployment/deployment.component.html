@@ -1,3 +1,79 @@
-<p>
-  deployment works!
-</p>
+<ul id="myTab" class="nav nav-tabs">
+  <li class="active"><a href="#sandBoxes" data-toggle="tab">SandBoxes</a></li>
+  <li (click)="deploymentInfo()"><a href="#deploymentDetails" data-toggle="tab">部署详情</a></li>
+  <li><a href="#deploymentHistory" data-toggle="tab">部署历史</a></li>
+  <li><a href="#packDetail" data-toggle="tab">打包详情</a></li>
+  <li><a href="#packHistory" data-toggle="tab">打包历史</a></li>
+</ul>
+<div id="myTabContent" class="tab-content">
+  <div class="tab-pane fade in active" id="sandBoxes">
+    <!--sandBoxes-->
+    <div class="col-md-8 nopadding">
+      <div class="left-top">
+        <ol class="breadcrumb">
+          <li><a href="#">sandBoxes</a></li>
+          <li class="active"><a href="#">申请新的沙盒资源</a></li>
+        </ol>
+
+      </div>
+      <div class="left-bottom">
+        <ol class="breadcrumb">
+          <li><a href="#">sandBoxes</a></li>
+          <li class="active"><a href="#">释放所拥有的沙盒</a></li>
+        </ol>
+
+      </div>
+    </div>
+    <div class="col-md-4 nopadding divHeight" style="border-left: 2px solid #eeeeee;">
+      <ol class="breadcrumb">
+        <li><a href="#">sandBoxes</a></li>
+        <li class="active"><a href="#">当前项目下的所有沙盒资源</a></li>
+      </ol>
+
+    </div>
+  </div>
+  <div class="tab-pane fade" id="deploymentDetails" style="margin-top:20px;">
+    <!--bushuxiangqing-->
+    <form class="form-horizontal" role="form">
+      <div class="form-group">
+        <label class="col-md-2 control-label">沙盒ID</label>
+        <select class="col-md-3" name="sandboxId" style="height:34px;margin-left: 15px;">
+          <option>fdsfs</option>
+          <option>sdfsf</option>
+          <option>sdfs</option>
+        </select>
+        <label class="col-md-2 control-label">CommitID</label>
+        <div class="col-md-3">
+          <input type="text" name="commitId" class="form-control" placeholder="请输入CommitID"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-2 control-label">部署描述</label>
+        <div class="col-md-5">
+          <textarea class="form-control" name="description" rows="3"></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-4 col-sm-10">
+          <div class="checkbox" style="display: inline-block">
+            <label>
+              <input name="verifySkipped" type="checkbox"> 是否跳过测试
+            </label>
+          </div>
+          <button class="btn btn-default">部署</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="tab-pane fade" id="deploymentHistory">
+    <!--bushulishi-->
+
+  </div>
+  <div class="tab-pane fade" id="packDetail">
+    <!--dabaoxiangqing-->
+
+  </div>
+  <div class="tab-pane fade" id="packHistory">
+    <!--dabaolishi-->
+  </div>
+</div>

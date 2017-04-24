@@ -12,21 +12,21 @@ import { AssignmentComponent } from '../assignment/assignment.component';
 import { SandBoxesComponent } from '../sand-boxes/sand-boxes.component';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
 
-export const workspaceRoutes=[
+export const workspaceRoutes = [
   {
-    path:'',
-    component:WorkspaceComponent,
+    path: '',
+    component: WorkspaceComponent,
     children: [
-      { path: '',component:WorkhomeComponent},
-      { path: 'workhome',component:WorkhomeComponent},
-      { path: 'user-profile',component:UserProfileComponent},
+      { path: '', component: WorkhomeComponent},
+      { path: 'workhome', component: WorkhomeComponent},
+      { path: 'userProfile', component: UserProfileComponent},
       { path: 'repository', component: RepositoryComponent },
       { path: 'development', component: DevelopmentComponent },
       { path: 'operations', component: OperationsComponent },
-      { path: 'deployment',component: DeploymentComponent},
-      { path: 'project',component: ProjectComponent},
-      { path: 'assignment',component: AssignmentComponent},
-      { path: 'sandboxes',component: SandBoxesComponent}
+      { path: 'deployment', component: DeploymentComponent},
+      { path: 'project', component: ProjectComponent},
+      { path: 'assignment', component: AssignmentComponent},
+      { path: 'sandboxes', component: SandBoxesComponent}
     ]
   }
 ];

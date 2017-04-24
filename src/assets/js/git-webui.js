@@ -84,7 +84,7 @@ webui.git = function (cmd, arg1, arg2) {
         data: cmd,
         dataType: "text",
         headers: {
-            "X-User-Repo": "updown"
+            "X-User-Repo": "op-demos"
         }
     }).done(function (data, status, xhr) {
         if (xhr.status == 200) {
