@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { GroupDatas, ProjectDatas, DeveloperDatas} from '../../providers/DataHelpers';
 declare var $: any;
 
 @Component({
@@ -8,11 +7,6 @@ declare var $: any;
   styleUrls: ['./project.component.css']
 })
 export class ProjectComponent implements OnInit {
-  groupDatas: any = [] = GroupDatas;
-  projectDatas: any = [];
-  developerDatas: any = [];
-  // hoverTag :boolean = false;
-
   constructor() { }
 
   ngOnInit() {
@@ -21,15 +15,7 @@ export class ProjectComponent implements OnInit {
       $('.borderRight').css('height', screenHeight + 'px');
     });
   }
-
-  groupChild(){
-    this.projectDatas = ProjectDatas;
-  }
-
-  projectChild(){
-     this.developerDatas = DeveloperDatas;
-  }
-  delete(params){
+  delete(params) {
     $.confirm({
       title: '确认!',
       content: '确认删除该文件!',

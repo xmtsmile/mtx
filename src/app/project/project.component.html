@@ -2,13 +2,12 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title" style="display: inline-block;margin-right:20px;">groupList</h3>
-        <i class="fa fa-gavel" data-toggle="modal" data-target="#newGroup" aria-hidden="true"></i>
+      <i class="fa fa-gavel" data-toggle="modal" data-target="#newGroup" aria-hidden="true"></i>
     </div>
     <div class="panel-body">
       <ul>
         <li class="liDisplay" *ngFor="let grouplist of groupDatas">
           <div class="hoverAction" (click)="groupChild()">{{grouplist.group}}</div>
-          <!--<div class="{{hoverTag?'btnDisplay':'btnNodisplay'}}">-->
           <div class="pull-right">
             <button class="btn btn-default  btn-xs newBtn"  data-toggle="modal" data-target="#edit">edit</button>
             <button (click)="delete(grouplist)" class="btn btn-default btn-xs newBtn">delete</button>
@@ -20,33 +19,43 @@
 </div>
 
 <div class="col-md-4 borderRight noPadding">
-  <div class="lead titleClass">projectList
-    <button class="btn btn-default pull-right newBtn" data-toggle="modal" data-target="#newProject">new</button>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title" style="display: inline-block;margin-right:20px;">projectList</h3>
+      <i class="fa fa-gavel" data-toggle="modal" data-target="#newProject" aria-hidden="true"></i>
+    </div>
+    <div class="panel-body">
+      <ul>
+        <li class="liDisplay" *ngFor="let projectlist of projectDatas">
+          <div (click)="projectChild()">{{projectlist.project}}</div>
+          <div class="pull-right">
+            <button class="btn btn-default btn-xs newBtn">edit</button>
+            <button (click)="delete(projectlist)" class="btn btn-default btn-xs newBtn">delete</button>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
-  <ul>
-    <li class="liDisplay" *ngFor="let projectlist of projectDatas">
-      <div (click)="projectChild()">{{projectlist.project}}</div>
-      <div class="pull-right">
-        <button class="btn btn-default btn-xs newBtn">edit</button>
-        <button (click)="delete(projectlist)" class="btn btn-default btn-xs newBtn">delete</button>
-      </div>
-    </li>
-  </ul>
 </div>
 
 <div class="col-md-4 borderRight noPadding">
-  <div class="lead titleClass">developerList
-    <button class="btn btn-default pull-right newBtn" data-toggle="modal" data-target="#newDeveloper">new</button>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title" style="display: inline-block;margin-right:20px;">developerList</h3>
+      <i class="fa fa-gavel" data-toggle="modal" data-target="#newDeveloper" aria-hidden="true"></i>
+    </div>
+    <div class="panel-body">
+      <ul>
+        <li class="liDisplay" *ngFor="let developerlist of developerDatas">
+          <div (click)="projectChild()">{{developerlist.developer}}</div>
+          <div class="pull-right">
+            <button class="btn btn-default btn-xs newBtn">edit</button>
+            <button (click)="delete(developerlist)" class="btn btn-default btn-xs newBtn">delete</button>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
-  <ul>
-    <li class="liDisplay" *ngFor="let developerlist of developerDatas">
-      <div (click)="projectChild()">{{developerlist.developer}}</div>
-      <div class="pull-right">
-        <button class="btn btn-default btn-xs newBtn">edit</button>
-        <button (click)="delete(developerlist)" class="btn btn-default btn-xs newBtn">delete</button>
-      </div>
-    </li>
-  </ul>
 </div>
 
 <!-- newGroupModal -->
