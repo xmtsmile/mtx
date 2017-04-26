@@ -1,21 +1,25 @@
-<div class="col-md-4 borderRight">
-  <div class="lead titleClass">groupList
-    <button class="btn btn-default pull-right newBtn" data-toggle="modal" data-target="#newGroup">new</button>
+<div class="col-md-4 borderRight noPadding">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title" style="display: inline-block;margin-right:20px;">groupList</h3>
+        <i class="fa fa-gavel" data-toggle="modal" data-target="#newGroup" aria-hidden="true"></i>
+    </div>
+    <div class="panel-body">
+      <ul>
+        <li class="liDisplay" *ngFor="let grouplist of groupDatas">
+          <div class="hoverAction" (click)="groupChild()">{{grouplist.group}}</div>
+          <!--<div class="{{hoverTag?'btnDisplay':'btnNodisplay'}}">-->
+          <div class="pull-right">
+            <button class="btn btn-default  btn-xs newBtn"  data-toggle="modal" data-target="#edit">edit</button>
+            <button (click)="delete(grouplist)" class="btn btn-default btn-xs newBtn">delete</button>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
-  <ul>
-    <li class="liDisplay" *ngFor="let grouplist of groupDatas">
-      <div class="hoverAction" (click)="groupChild()">{{grouplist.group}}</div>
-      <!--<div class="{{hoverTag?'btnDisplay':'btnNodisplay'}}">-->
-      <div class="pull-right">
-      <button class="btn btn-default  btn-xs newBtn"  data-toggle="modal" data-target="#edit">edit</button>
-      <button (click)="delete(grouplist)" class="btn btn-default btn-xs newBtn">delete</button>
-      </div>
-    </li>
-  </ul>
-
 </div>
 
-<div class="col-md-4 borderRight">
+<div class="col-md-4 borderRight noPadding">
   <div class="lead titleClass">projectList
     <button class="btn btn-default pull-right newBtn" data-toggle="modal" data-target="#newProject">new</button>
   </div>
@@ -30,7 +34,7 @@
   </ul>
 </div>
 
-<div class="col-md-4 borderRight">
+<div class="col-md-4 borderRight noPadding">
   <div class="lead titleClass">developerList
     <button class="btn btn-default pull-right newBtn" data-toggle="modal" data-target="#newDeveloper">new</button>
   </div>
@@ -45,17 +49,16 @@
   </ul>
 </div>
 
-
-<!-- groupEditModal -->
-<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- newGroupModal -->
+<div class="modal fade" id="newGroup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
           &times;
         </button>
-        <h4 class="modal-title" id="editLabel">
-          Edit
+        <h4 class="modal-title" id="newLabel">
+          NewGroup
         </h4>
       </div>
       <div class="modal-body">
@@ -69,16 +72,16 @@
   </div>
 </div>
 
-<!-- newGroupModal -->
-<div class="modal fade" id="new" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- groupEditModal -->
+<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
           &times;
         </button>
-        <h4 class="modal-title" id="newLabel">
-          NewGroup
+        <h4 class="modal-title" id="editLabel">
+          Edit
         </h4>
       </div>
       <div class="modal-body">

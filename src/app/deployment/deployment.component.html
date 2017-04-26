@@ -1,79 +1,233 @@
 <ul id="myTab" class="nav nav-tabs">
   <li class="active"><a href="#sandBoxes" data-toggle="tab">SandBoxes</a></li>
   <li (click)="deploymentInfo()"><a href="#deploymentDetails" data-toggle="tab">部署详情</a></li>
-  <li><a href="#deploymentHistory" data-toggle="tab">部署历史</a></li>
+  <li (click)="showdeployHistory()"><a href="#deploymentHistory" data-toggle="tab">部署历史</a></li>
   <li><a href="#packDetail" data-toggle="tab">打包详情</a></li>
-  <li><a href="#packHistory" data-toggle="tab">打包历史</a></li>
+  <li (click)="showbundleHistory()"><a href="#packHistory" data-toggle="tab">打包历史</a></li>
 </ul>
 <div id="myTabContent" class="tab-content">
   <div class="tab-pane fade in active" id="sandBoxes">
     <!--sandBoxes-->
-    <div class="col-md-8 nopadding">
+    <div class="col-md-6 nopadding">
       <div class="left-top">
         <ol class="breadcrumb">
           <li><a href="#">sandBoxes</a></li>
           <li class="active"><a href="#">申请新的沙盒资源</a></li>
         </ol>
-
-      </div>
-      <div class="left-bottom">
-        <ol class="breadcrumb">
-          <li><a href="#">sandBoxes</a></li>
-          <li class="active"><a href="#">释放所拥有的沙盒</a></li>
-        </ol>
-
+        <form id="applysandBox" class="form-horizontal" role="form">
+          <div class="form-group">
+            <label class="col-md-2 control-label">沙盒名称</label>
+            <div class="col-md-3">
+              <select class="col-md-12" style="height:34px;" [(ngModel)]="sandboxId" name="sandboxId">
+                <option *ngFor="let available of availableList" value="{{available.sandboxId}}">
+                  {{available.sandboxName}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <!--<div class="form-group">-->
+            <!--<label class="col-md-2 control-label">沙盒端口</label>-->
+            <!--<div class="col-md-5">-->
+              <!--<input type="text" [(ngModel)]="port" name="port" class="form-control" placeholder="请输入沙盒端口"/>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="form-group">-->
+            <!--<label class="col-md-2 control-label">用户名</label>-->
+            <!--<div class="col-md-5">-->
+              <!--<input type="text" [(ngModel)]="username" name="username" class="form-control" placeholder="请输入用户名"/>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="form-group">-->
+            <!--<label class="col-md-2 control-label">沙盒地址</label>-->
+            <!--<div class="col-md-5">-->
+              <!--<input type="text" [(ngModel)]="address" name="address" class="form-control" placeholder="请输入沙盒地址"/>-->
+            <!--</div>-->
+          <!--</div>-->
+          <div class="form-group">
+            <label class="col-md-2 control-label">沙盒描述</label>
+            <div class="col-md-5">
+              <textarea class="form-control" [(ngModel)]="description" name="description" rows="3"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-10">
+              <button class="btn btn-default" (click)="applySandbox()">申请</button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
-    <div class="col-md-4 nopadding divHeight" style="border-left: 2px solid #eeeeee;">
+    <div class="col-md-6 nopadding divHeight" style="border-left: 2px solid #eeeeee;">
       <ol class="breadcrumb">
         <li><a href="#">sandBoxes</a></li>
         <li class="active"><a href="#">当前项目下的所有沙盒资源</a></li>
       </ol>
-
+      <ul>
+        <li *ngFor="let available of sandboxList">
+          <ul>
+            <div class="panel-group" id="accordion">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title" style="display: inline-block; margin-right:20px;">
+                    <a data-toggle="collapse" data-parent="#accordion"
+                       href="#{{available.sandboxName}}" style="text-decoration: none;">
+                      sandboxName:{{available.sandboxName}}
+                    </a>
+                  </h4>
+                  <i class="fa fa-trash" aria-hidden="true" (click)="deletesandBox(available)"></i>
+                </div>
+                <div id="{{available.sandboxName}}" class="panel-collapse collapse in">
+                  <div class="panel-body">
+                    <li>
+                      <div class="col-md-6">username:{{available.username}}</div>
+                      <div class="col-md-6">password:{{available.password}}</div>
+                    </li>
+                    <li>
+                      <div class="col-md-6">occupied:{{available.occupied}}</div>
+                      <div class="col-md-6">occupiedReason:{{available.occupiedReason}}</div>
+                    </li>
+                    <li>
+                      <div class="col-md-6">developerId:{{available.developerId}}</div>
+                      <div class="col-md-6">description:{{available.description}}</div>
+                    </li>
+                    <li>
+                      <div class="col-md-6">available:{{available.available}}</div>
+                      <div class="col-md-6">address:{{available.address}}</div>
+                    </li>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ul>
+        </li>
+      </ul>
     </div>
   </div>
   <div class="tab-pane fade" id="deploymentDetails" style="margin-top:20px;">
     <!--bushuxiangqing-->
     <form class="form-horizontal" role="form">
       <div class="form-group">
-        <label class="col-md-2 control-label">沙盒ID</label>
-        <select class="col-md-3" name="sandboxId" style="height:34px;margin-left: 15px;">
-          <option>fdsfs</option>
-          <option>sdfsf</option>
-          <option>sdfs</option>
+        <label class="col-md-2 control-label">沙盒名称</label>
+        <select class="col-md-3" [(ngModel)]="sandboxId" name="sandboxId"  style="height:34px;margin-left: 15px;">
+          <option *ngFor="let available of availableList" value="{{available.sandboxId}}">
+            {{available.sandboxName}}
+          </option>
         </select>
-        <label class="col-md-2 control-label">CommitID</label>
-        <div class="col-md-3">
-          <input type="text" name="commitId" class="form-control" placeholder="请输入CommitID"/>
-        </div>
+        <!--<label class="col-md-2 control-label">CommitID</label>-->
+        <!--<div class="col-md-3">-->
+          <!--<input type="text"  [(ngModel)]="commitId" name="commitId" class="form-control" placeholder="请输入CommitID"/>-->
+        <!--</div>-->
       </div>
       <div class="form-group">
         <label class="col-md-2 control-label">部署描述</label>
         <div class="col-md-5">
-          <textarea class="form-control" name="description" rows="3"></textarea>
+          <textarea class="form-control"  [(ngModel)]="description" name="description" rows="3"></textarea>
         </div>
       </div>
       <div class="form-group">
         <div class="col-sm-offset-4 col-sm-10">
           <div class="checkbox" style="display: inline-block">
             <label>
-              <input name="verifySkipped" type="checkbox"> 是否跳过测试
+              <input [(ngModel)]="verifySkipped" name="verifySkipped" type="checkbox"> 是否跳过测试
             </label>
           </div>
-          <button class="btn btn-default">部署</button>
+          <button class="btn btn-default" (click)="deploy()">部署</button>
         </div>
       </div>
     </form>
   </div>
-  <div class="tab-pane fade" id="deploymentHistory">
+  <div class="tab-pane fade" id="deploymentHistory" style="margin-top:20px;">
     <!--bushulishi-->
+    <table class="table table-bordered">
+      <caption>部署历史</caption>
+      <thead>
+      <tr>
+        <th>部署ID</th>
+        <th>发起部署用户</th>
+        <th>项目ID</th>
+        <th>Commit的ID</th>
+        <th>沙盒名称</th>
+        <th>部署描述</th>
+        <th>部署状态</th>
+        <th>部署结果描述</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let deployHistory of deployHistoryList">
+        <td>{{deployHistory.deployId}}</td>
+        <td>{{deployHistory.deployerName}}</td>
+        <td>{{deployHistory.projectId}}</td>
+        <td>{{deployHistory.commitId}}</td>
+        <td>{{deployHistory.sandboxName}}</td>
+        <td>{{deployHistory.description}}</td>
+        <td>{{deployHistory.status}}</td>
+        <td>{{deployHistory.statusMsg}}</td>
+      </tr>
+      </tbody>
+    </table>
 
   </div>
-  <div class="tab-pane fade" id="packDetail">
+  <div class="tab-pane fade" id="packDetail" style="margin-top:20px;">
     <!--dabaoxiangqing-->
-
+    <form class="form-horizontal" role="form" id="bundleForm">
+      <div class="form-group">
+        <label class="col-md-2 control-label">打包类型</label>
+        <div class="col-md-3">
+        <select class="col-md-12" style="height:34px;" [ngModel]="bundleType" (ngModelChange)="showTagFunction($event)" name="bundleType">
+          <option value="0">全量打包</option>
+          <option value="1">增量打包</option>
+        </select>
+        </div>
+        <div [hidden]='showTag'>
+        <label class="col-md-2 control-label">基础包ID</label>
+        <div class="col-md-3">
+          <input type="text"  [(ngModel)]="formerBundleId" name="formerBundleId" class="form-control" placeholder="请输入基础包ID"/>
+        </div>
+      </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-2 control-label">打包描述</label>
+        <div class="col-md-5">
+          <textarea class="form-control" [(ngModel)]="description" name="description" rows="3"></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-4 col-sm-10">
+          <button class="btn btn-default" (click)="bundle()">打包</button>
+        </div>
+      </div>
+    </form>
   </div>
-  <div class="tab-pane fade" id="packHistory">
+  <div class="tab-pane fade" id="packHistory" style="margin-top:20px;">
     <!--dabaolishi-->
+    <table class="table table-bordered">
+      <caption>打包历史</caption>
+      <thead>
+      <tr>
+        <th>打包ID</th>
+        <th>打包发起用户</th>
+        <th>基础包ID</th>
+        <th>项目ID</th>
+        <th>Commit的ID</th>
+        <th>打包描述</th>
+        <th>包路径</th>
+        <th>打包状态</th>
+        <th>打包结果描述</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let bundleHistory of bundleHistoryList">
+        <td>{{bundleHistory.bundleId}}</td>
+        <td>{{bundleHistory.bundlerName}}</td>
+        <td>{{bundleHistory.formerBundleId}}</td>
+        <td>{{bundleHistory.projectId}}</td>
+        <td>{{bundleHistory.commitId}}</td>
+        <td>{{bundleHistory.description}}</td>
+        <td>{{bundleHistory.bundlePath}}</td>
+        <td>{{bundleHistory.status}}</td>
+        <td>{{bundleHistory.statusMsg}}</td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 </div>

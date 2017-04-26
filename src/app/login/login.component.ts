@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { User } from '../models/user.model';
 import { Router } from '@angular/router';
 import { HttpPost } from '../../providers/httpPost';
 declare var $: any;

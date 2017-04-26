@@ -18,6 +18,7 @@ import { ProjectComponent } from '../project/project.component';
 import { AssignmentComponent } from '../assignment/assignment.component';
 import { SandBoxesComponent } from '../sand-boxes/sand-boxes.component';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
+import { FormsModule} from '@angular/forms';
 
 // provider
 import { HttpPost} from '../../providers/httpPost';
@@ -26,6 +27,7 @@ import { HttpPost} from '../../providers/httpPost';
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     RouterModule.forChild(workspaceRoutes)
   ],
   exports: [],
