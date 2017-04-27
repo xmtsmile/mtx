@@ -6,7 +6,7 @@
     </div>
     <div class="panel-body">
       <ul>
-        <li class="col-md-12" *ngFor="let sandBoxsGroup of sandBoxsGroupList" style="line-height: 15px;">
+        <li class="col-md-12"  style="height:25px;" *ngFor="let sandBoxsGroup of sandBoxsGroupList" style="line-height: 15px;">
           <div class="col-md-5" (click)="showsandBoxList(sandBoxsGroup)">{{sandBoxsGroup.groupName}}</div>
           <div class="col-md-7" *ngIf="sandBoxsGroup.groupName=='default'?false:true">
             <i class="fa fa-lg fa-pencil-square-o" style="margin-right:10px;"
@@ -39,8 +39,8 @@
                       sandboxName:{{sandBox.sandboxName}}
                     </a>
                   </h4>
-                  <i class="fa fa-lg fa-pencil-square-o" style="margin-right:10px;" aria-hidden="true"></i>
-                  <i class="fa fa-lg fa-external-link" style="margin-right:10px;" aria-hidden="true"></i>
+                  <i class="fa fa-lg fa-pencil-square-o" style="margin-right:10px;" aria-hidden="true"  (click)="editsandBox(sandBox)"></i>
+                  <i class="fa fa-lg fa-external-link" style="margin-right:10px;" aria-hidden="true" (click)="movesandBox(sandBox)"></i>
                   <i class="fa fa-trash fa-lg"  aria-hidden="true" (click)="deletesandBox(sandBox)"></i>
                 </div>
                 <div id="{{sandBox.sandboxId}}" class="panel-collapse collapse in">
@@ -202,6 +202,115 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
         <button type="button" (click)="newSandBoxes()" class="btn btn-primary">创建</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--editSandBoxes-->
+<div class="modal fade" id="editSandBoxes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          &times;
+        </button>
+        <h4 class="modal-title" id="newLabel3">
+          EditSandBoxes
+        </h4>
+      </div>
+      <div class="modal-body" id="editForm3">
+        <form id="" class="form-horizontal" role="form">
+          <div class="form-group">
+            <label class="col-md-2 control-label">沙盒所在组</label>
+            <div class="col-md-3">
+              <select class="col-md-12" style="height:34px;" [(ngModel)]="groupId" name="groupId">
+                <option *ngFor="let sandBoxsGroup of sandBoxsGroupList" value="{{sandBoxsGroup.groupId}}">
+                  {{sandBoxsGroup.groupName}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-2 control-label">沙盒名称</label>
+            <div class="col-md-5">
+              <input type="text" [(ngModel)]="sandboxName" name="sandboxName" class="form-control" placeholder="请输入沙盒名称"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-2 control-label">沙盒端口</label>
+            <div class="col-md-5">
+              <input type="text" [(ngModel)]="port" name="port" class="form-control" placeholder="请输入沙盒端口"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-2 control-label">沙盒地址</label>
+            <div class="col-md-5">
+              <input type="text" [(ngModel)]="address" name="address" class="form-control" placeholder="请输入沙盒地址"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-2 control-label">用户名</label>
+            <div class="col-md-5">
+              <input type="text" [(ngModel)]="username" name="username" class="form-control" placeholder="请输入用户名"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-2 control-label">密码</label>
+            <div class="col-md-5">
+              <input type="password" [(ngModel)]="password" name="password" class="form-control" placeholder="请输入密码"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-2 control-label">沙盒描述</label>
+            <div class="col-md-5">
+              <textarea class="form-control" [(ngModel)]="description" name="description" rows="3"></textarea>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" (click)="saveSandBoxes()" class="btn btn-primary">保存</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--moveSandBoxes-->
+<div class="modal fade" id="moveSandBoxes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          &times;
+        </button>
+        <h4 class="modal-title" id="newLabel4">
+          EditSandBoxes
+        </h4>
+      </div>
+      <div class="modal-body" id="editForm4">
+        <form id="" class="form-horizontal" role="form">
+          <div class="form-group">
+            <label class="col-md-2 control-label">沙盒所在组</label>
+            <div class="col-md-3">
+              <select class="col-md-12" style="height:34px;" [(ngModel)]="groupId" name="groupId">
+                <option *ngFor="let sandBoxsGroup of sandBoxsGroupList" value="{{sandBoxsGroup.groupId}}">
+                  {{sandBoxsGroup.groupName}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group" [hidden]='showTag'>
+            <label class="col-md-2 control-label">沙盒Id</label>
+            <div class="col-md-5">
+              <input type="text" [(ngModel)]="sandboxId" name="sandboxId" class="form-control"/>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" (click)="saveMove()" class="btn btn-primary">保存</button>
       </div>
     </div>
   </div>

@@ -1,3 +1,197 @@
-<p>
-  assignment works!
-</p>
+<div class="col-md-3 borderRight noPadding">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title" style="display: inline-block;margin-right:20px;">有任务的项目组</h3>
+    </div>
+    <div class="panel-body">
+      <ul>
+        <li class="col-md-12"  style="height:25px;" *ngFor="let taskGroup of taskGroupList" style="line-height: 15px;">
+          <div class="col-md-5" (click)="showTaskProject(taskGroup)">{{taskGroup.groupName}}</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="col-md-3 borderRight noPadding">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title" style="display: inline-block;margin-right:20px;">指定项目组下的项目</h3>
+    </div>
+    <div class="panel-body">
+      <ul>
+        <li class="col-md-12" *ngFor="let taskProject of taskProjectList" style="line-height: 15px;">
+          <div class="col-md-5" (click)="showTask(taskProject)">{{taskProject.projectName}}</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-6 borderRight noPadding">
+  <div class="rightTop">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title" style="display: inline-block;margin-right:20px;">指定项目下的未分配任务</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+          <li *ngFor="let unassignedtask of unassignedtaskList">
+            <ul>
+              <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title" style="display: inline-block; margin-right:20px;">
+                      <a data-toggle="collapse" data-parent="#accordion"
+                         href="#{{unassignedtask.taskId}}" style="text-decoration: none;">
+                        taskId:{{unassignedtask.taskId}}
+                      </a>
+                    </h4>
+                    <i style="margin-right:15px;" class="fa fa-lg fa-external-link" aria-hidden="true" (click)="assignTask(unassignedtask)"></i>
+                    <i class="fa fa-lg fa-shield" aria-hidden="true" (click)="ignore(unassignedtask)"></i>
+                  </div>
+                  <div id="{{unassignedtask.taskId}}" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                      <li>
+                        <div class="col-md-6">branchName:{{unassignedtask.branchName}}</div>
+                        <div class="col-md-6">branchMsg:{{unassignedtask.branchMsg}}</div>
+                      </li>
+                      <li>
+                        <div class="col-md-6">branchCommitter:{{unassignedtask.branchCommitter}}</div>
+                        <div class="col-md-6">branchDate:{{unassignedtask.branchDate}}</div>
+                      </li>
+                      <li>
+                        <div class="col-md-6">assignerId:{{unassignedtask.assignerId}}</div>
+                        <div class="col-md-6">assigneeId:{{unassignedtask.assigneeId}}</div>
+                      </li>
+                      <li>
+                        <div class="col-md-6">taskStatus:{{unassignedtask.taskStatus}}</div>
+                        <div class="col-md-6">createTime:{{unassignedtask.createTime}}</div>
+                      </li>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="rightBottom">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title" style="display: inline-block;margin-right:20px;">指定项目下的已分配任务</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+          <li *ngFor="let assignedtask of assignedtaskList">
+            <ul>
+              <div class="panel-group" id="accordion1">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title" style="display: inline-block; margin-right:20px;">
+                      <a data-toggle="collapse" data-parent="#accordion1"
+                         href="#{{assignedtask.taskId}}" style="text-decoration: none;">
+                        taskId:{{assignedtask.taskId}}
+                      </a>
+                    </h4>
+                    <i class="fa fa-lg fa-gavel" aria-hidden="true" (click)="reassignTask(assignedtask)"></i>
+                  </div>
+                  <div id="{{assignedtask.taskId}}" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                      <li>
+                        <div class="col-md-6">branchName:{{assignedtask.branchName}}</div>
+                        <div class="col-md-6">branchMsg:{{assignedtask.branchMsg}}</div>
+                      </li>
+                      <li>
+                        <div class="col-md-6">branchCommitter:{{assignedtask.branchCommitter}}</div>
+                        <div class="col-md-6">branchDate:{{assignedtask.branchDate}}</div>
+                      </li>
+                      <li>
+                        <div class="col-md-6">assignerId:{{assignedtask.assignerId}}</div>
+                        <div class="col-md-6">assigneeId:{{assignedtask.assigneeId}}</div>
+                      </li>
+                      <li>
+                        <div class="col-md-6">taskStatus:{{assignedtask.taskStatus}}</div>
+                        <div class="col-md-6">createTime:{{assignedtask.createTime}}</div>
+                      </li>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--assignTask-->
+<div class="modal fade" id="assignTask" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          &times;
+        </button>
+        <h4 class="modal-title" id="newLabel2">
+          AssignTask
+        </h4>
+      </div>
+      <div class="modal-body" id="editForm2">
+        <form id="" class="form-horizontal" role="form">
+          <div class="form-group">
+            <label class="col-md-3 control-label">被分配任务者</label>
+            <div class="col-md-3">
+              <select class="col-md-12" style="height:34px;" [(ngModel)]="developer" name="developer">
+                <option *ngFor="let developer of developersList" value="{{developer.userId}}">
+                  {{developer.userName}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" (click)="assignTaskByDeveloper()" class="btn btn-primary">分配</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--reassignTask-->
+<div class="modal fade" id="reassignTask" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          &times;
+        </button>
+        <h4 class="modal-title" id="newLabel3">
+          ReassignTask
+        </h4>
+      </div>
+      <div class="modal-body" id="editForm3">
+        <form id="" class="form-horizontal" role="form">
+          <div class="form-group">
+            <label class="col-md-3 control-label">被分配任务者</label>
+            <div class="col-md-3">
+              <select class="col-md-12" style="height:34px;" [(ngModel)]="developer" name="developer">
+                <option *ngFor="let developer of developersList" value="{{developer.userId}}">
+                  {{developer.userName}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" (click)="reassignTaskByDeveloper()" class="btn btn-primary">分配</button>
+      </div>
+    </div>
+  </div>
+</div>

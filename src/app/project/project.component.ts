@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpPost} from '../../providers/httpPost';
 declare var $: any;
 
 @Component({
@@ -7,14 +8,22 @@ declare var $: any;
   styleUrls: ['./project.component.css']
 })
 export class ProjectComponent implements OnInit {
-  constructor() { }
+  groupList: any = [];
+  constructor(public httpPost: HttpPost) { }
 
   ngOnInit() {
+    var that = this;
     $(function (){
       const screenHeight = $(window).height() - 61;
       $('.borderRight').css('height', screenHeight + 'px');
     });
-  }
+    this.httpPost.dataAjax('GET', '/mtx/administration/work/group/list', 'x-www-form-urlencoded', {}, function(res) {
+      if (res.code == '0') {
+        that.groupList = res.result;
+        console.log('/mtx/administration/work/group/list',  that.groupList);
+      }
+    });
+  };
   delete(params) {
     $.confirm({
       title: '确认!',
@@ -26,5 +35,7 @@ export class ProjectComponent implements OnInit {
         alert('the user clicked cancel');
       }
     });
+  };
+  showProject() {
   }
 }

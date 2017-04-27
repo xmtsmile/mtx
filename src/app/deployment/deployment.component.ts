@@ -40,6 +40,7 @@ export class DeploymentComponent implements OnInit {
     });
   }
   applySandbox() {
+    var that = this;
     if (this.sandboxId == null || this.sandboxId == '') {
       alert('请选择沙盒名称！');
     }else if (this.description == null || this.description == '') {
@@ -53,6 +54,7 @@ export class DeploymentComponent implements OnInit {
         JSON.stringify(params), function(res) {
           if (res.code == '0') {
             alert(res.msg);
+            that.sandboxlist();
             $('#applysandBox')[0].reset();
           }
         });
@@ -67,9 +69,11 @@ export class DeploymentComponent implements OnInit {
   };
   deletesandBox(available) {
     var sandId = available.sandboxId;
+    var that = this;
     const params = {'sandboxId': sandId};
     this.httpPost.dataAjax('GET', '/mtx/deployment/sandbox/release', 'x-www-form-urlencoded', params, function(res) {
       if (res.code == '0') {
+        that.sandboxlist();
         console.log('/mtx/deployment/sandbox/release', res);
       }
     });
@@ -113,7 +117,7 @@ export class DeploymentComponent implements OnInit {
         }
       });
   };
-  bundle(){
+  bundle() {
     if (this.showTag == false) {
       var params = {
         'description': this.description
@@ -138,5 +142,15 @@ export class DeploymentComponent implements OnInit {
           $('#bundleForm')[0].reset();
         }
       });
+  };
+  // sandboxlist
+  sandboxlist() {
+    var that = this;
+    that.httpPost.dataAjax('GET', '/mtx/deployment/sandbox/list', 'x-www-form-urlencoded', {}, function(res) {
+      if (res.code == '0') {
+        console.log('mtx/deployment/sandbox/list', res);
+        that.sandboxList = res.result;
+      }
+    });
   }
 }

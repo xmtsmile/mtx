@@ -1,9 +1,3 @@
-.liDisplay{
-  height:30px;
-  line-height: 30px;
-  display:flex;
-  justify-content: space-around;
-}
 .btnDisplay{
    display:block;
 }
@@ -18,10 +12,6 @@
 .borderRight{
   height:auto;
   border:1px solid #eee;
-}
-.newBtn{
-  margin-top:6px;
-  margin-right:5px;
 }
 .noPadding{
   padding:0px;

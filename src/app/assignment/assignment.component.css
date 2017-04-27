@@ -1,0 +1,17 @@
+.noPadding{
+  padding:0px;
+}
+.borderRight{
+  height:auto;
+  border:1px solid #eee;
+}
+.rightTop{
+  height:auto;
+  border-bottom:2px solid #eeeeee;
+}
+.rightBottom{
+  height:auto;
+}
+.iconColor{
+  color:#5cb85c;
+}
