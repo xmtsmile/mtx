@@ -19,7 +19,8 @@ export class WorkspaceComponent implements OnInit {
   private pageCacheKeys: string[] = [
     "/workspace/repository",
     "/workspace/development",
-    "/workspace/operations"
+    "/workspace/operations",
+    "/workspace/workhome"
   ];
 
   constructor(private router: Router, @Inject("windowObject") window: Window,
@@ -46,6 +47,7 @@ export class WorkspaceComponent implements OnInit {
             var devel = this.pageCacheService.get(this.pageCacheKeys[1]);
             if (devel && devel.length > 0) {
               $("#page-development").empty().append(devel);
+              $.addtabs();
             }
             break;
 
@@ -55,6 +57,13 @@ export class WorkspaceComponent implements OnInit {
               this.pageCacheService.get(this.pageCacheKeys[2]),
               this.topNavComponent.currentSandboxId
             );
+            break;
+
+          case this.pageCacheKeys[3]:
+            var whome = this.pageCacheService.get(this.pageCacheKeys[3]);
+            if (whome && whome.length > 0) {
+              $("#page-workhome").empty().append(whome);
+            }
             break;
         }
       } else if (event instanceof RoutesRecognized) {
@@ -80,6 +89,8 @@ export class WorkspaceComponent implements OnInit {
             "index": title == "" || title == "phpMyAdmin",
             "url": href && href != "about:blank" ? href : undefined
           });
+        } else if ((current = $('#page-workhome')).length > 0) {
+          this.pageCacheService.put(this.pageCacheKeys[3], $("#page-workhome").children());
         }
       }
     });
