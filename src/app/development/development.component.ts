@@ -22,6 +22,7 @@ export class DevelopmentComponent implements OnInit {
       $('.middleTop').css('height', (screenHeight / 4) * 3 + 'px');
       $('.middleBottom').css('height', (screenHeight / 4) * 1 + 'px');
       $.addtabs({iframeHeight: 320});
+      var ace = window['ace'];
       const editor = ace.edit('editor');
       editor.setTheme('ace/theme/textmate');
       editor.getSession().setMode('ace/mode/sql');

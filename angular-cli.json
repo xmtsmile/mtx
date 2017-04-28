@@ -21,7 +21,8 @@
         "styles.css"
       ],
       "scripts": [
-        "assets/js/bootstrap.addtabs.js"
+        "assets/js/bootstrap.addtabs.js",
+        "assets/js/ace/ace.js"
       ],
       "environments": {
         "source": "environments/environment.ts",
