@@ -20,6 +20,8 @@ export class SandBoxesComponent implements OnInit{
   password: any;
   description: any;
   showTag: boolean = true;
+  detailTag: boolean = true;
+  detailIndex: any;
   constructor(public httpPost: HttpPost) { }
 
   ngOnInit() {
@@ -208,7 +210,16 @@ export class SandBoxesComponent implements OnInit{
         alert('修改分组成功！');
       }
     });
-  }
+  };
+  showDetail(i) {
+    console.log('index----' , i);
+    this.detailIndex = i;
+     // if (this.detailTag == true) {
+     //      this.detailTag = false;
+     // }else {
+     //   this.detailTag = true;
+     // }
+  };
   // post or get request
   sandboxgroup() {
     var that = this;

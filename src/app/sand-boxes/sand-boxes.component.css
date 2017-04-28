@@ -5,3 +5,18 @@
   height:auto;
   border:1px solid #eee;
 }
+.display{
+  display:block;
+}
+.displayNo{
+  display:none;
+}
+.table{
+  margin-bottom:0px;
+}
+.noPadTop{
+  padding:0px;
+}
+.noTopBorder td{
+  border-right: 1px solid #ddd;
+}

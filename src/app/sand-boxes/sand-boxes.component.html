@@ -1,4 +1,4 @@
-<div class="col-md-5 borderRight noPadding">
+<div class="col-md-2 borderRight noPadding">
   <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title" style="display: inline-block;margin-right:20px;">sandBoxes分组列表</h3>
@@ -20,60 +20,135 @@
   </div>
 </div>
 
-<div class="col-md-7 borderRight noPadding">
+<div class="col-md-10 borderRight noPadding">
   <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title" style="display: inline-block;margin-right:20px;">指定组下的沙盒列表</h3>
       <i class="fa fa-gavel" data-toggle="modal" data-target="#newSandBoxes" aria-hidden="true"></i>
     </div>
-    <div class="panel-body">
-      <ul>
-        <li *ngFor="let sandBox of sandBoxList">
-          <ul>
-            <div class="panel-group" id="accordion">
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h4 class="panel-title" style="display: inline-block; margin-right:20px;">
-                    <a data-toggle="collapse" data-parent="#accordion"
-                       href="#{{sandBox.sandboxId}}" style="text-decoration: none;">
-                      sandboxName:{{sandBox.sandboxName}}
-                    </a>
-                  </h4>
-                  <i class="fa fa-lg fa-pencil-square-o" style="margin-right:10px;" aria-hidden="true"  (click)="editsandBox(sandBox)"></i>
-                  <i class="fa fa-lg fa-external-link" style="margin-right:10px;" aria-hidden="true" (click)="movesandBox(sandBox)"></i>
-                  <i class="fa fa-trash fa-lg"  aria-hidden="true" (click)="deletesandBox(sandBox)"></i>
-                </div>
-                <div id="{{sandBox.sandboxId}}" class="panel-collapse collapse in">
-                  <div class="panel-body">
-                    <li>
-                      <div class="col-md-6">username:{{sandBox.username}}</div>
-                      <div class="col-md-6">password:{{sandBox.password}}</div>
-                    </li>
-                    <li>
-                      <div class="col-md-6">port:{{sandBox.port}}</div>
-                      <div class="col-md-6">developerId:{{sandBox.developerId}}</div>
-                    </li>
-                    <li>
-                      <div class="col-md-6">occupied:{{sandBox.occupied}}</div>
-                      <div class="col-md-6">occupiedReason:{{sandBox.occupiedReason}}</div>
-                    </li>
-                    <li>
-                      <div class="col-md-6">available:{{sandBox.available}}</div>
-                      <div class="col-md-6">description:{{sandBox.description}}</div>
-                    </li>
-                    <li>
-                      <div class="col-md-6">address:{{sandBox.address}}</div>
-                    </li>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </ul>
-        </li>
-      </ul>
-    </div>
+    <!--<div class="panel-body">-->
+      <!--<ul>-->
+        <!--<li *ngFor="let sandBox of sandBoxList">-->
+          <!--<ul>-->
+            <!--<div class="panel-group" id="accordion">-->
+              <!--<div class="panel panel-default">-->
+                <!--<div class="panel-heading">-->
+                  <!--<h4 class="panel-title" style="display: inline-block; margin-right:20px;">-->
+                    <!--<a data-toggle="collapse" data-parent="#accordion"-->
+                       <!--href="#{{sandBox.sandboxId}}" style="text-decoration: none;">-->
+                      <!--sandboxName:{{sandBox.sandboxName}}-->
+                    <!--</a>-->
+                  <!--</h4>-->
+                  <!--<i class="fa fa-lg fa-pencil-square-o" style="margin-right:10px;" aria-hidden="true"  (click)="editsandBox(sandBox)"></i>-->
+                  <!--<i class="fa fa-lg fa-external-link" style="margin-right:10px;" aria-hidden="true" (click)="movesandBox(sandBox)"></i>-->
+                  <!--<i class="fa fa-trash fa-lg"  aria-hidden="true" (click)="deletesandBox(sandBox)"></i>-->
+                <!--</div>-->
+                <!--<div id="{{sandBox.sandboxId}}" class="panel-collapse collapse in">-->
+                  <!--<div class="panel-body">-->
+                    <!--<li>-->
+                      <!--<div class="col-md-6">username:{{sandBox.username}}</div>-->
+                      <!--<div class="col-md-6">password:{{sandBox.password}}</div>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                      <!--<div class="col-md-6">port:{{sandBox.port}}</div>-->
+                      <!--<div class="col-md-6">developerId:{{sandBox.developerId}}</div>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                      <!--<div class="col-md-6">occupied:{{sandBox.occupied}}</div>-->
+                      <!--<div class="col-md-6">occupiedReason:{{sandBox.occupiedReason}}</div>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                      <!--<div class="col-md-6">available:{{sandBox.available}}</div>-->
+                      <!--<div class="col-md-6">description:{{sandBox.description}}</div>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                      <!--<div class="col-md-6">address:{{sandBox.address}}</div>-->
+                    <!--</li>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</ul>-->
+        <!--</li>-->
+      <!--</ul>-->
+    <!--</div>-->
+  <!--</div>-->
   </div>
-</div>
+
+  <div>
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th class="col-md-2">sandboxName</th>
+        <th class="col-md-1">username</th>
+        <th class="col-md-2">password</th>
+        <th class="col-md-2">port</th>
+        <th class="col-md-2">developerId</th>
+        <th class="col-md-1">occupied</th>
+        <th class="col-md-2">操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let sandBox of sandBoxList; let i= index" (click)="sandBox.a = !sandBox.a">
+        <td colspan="7" class="noPadTop" >
+          <table class="table noTopBorder">
+            <tr>
+              <td class="col-md-2">{{sandBox.sandboxName}}</td>
+              <td class="col-md-1">{{sandBox.username}}</td>
+              <td class="col-md-2">{{sandBox.password}}</td>
+              <td class="col-md-2">{{sandBox.port}}</td>
+              <td class="col-md-2">{{sandBox.developerId}}</td>
+              <td class="col-md-1">{{sandBox.occupied}}</td>
+              <td class="col-md-2">
+              <i class="fa fa-lg fa-pencil-square-o" style="margin-right:10px;" aria-hidden="true"  (click)="editsandBox(sandBox)"></i>
+              <i class="fa fa-lg fa-external-link" style="margin-right:10px;" aria-hidden="true" (click)="movesandBox(sandBox)"></i>
+              <i class="fa fa-trash fa-lg"  aria-hidden="true" (click)="deletesandBox(sandBox)"></i>
+              </td>
+            </tr>
+            <tr [hidden]="!sandBox.a">
+              <td colspan="7">
+                <ul>
+                <li>
+                <div class="col-md-6">occupiedReason:{{sandBox.occupiedReason}}</div>
+                <div class="col-md-6">available:{{sandBox.available}}</div>
+                </li>
+                <li>
+                <div class="col-md-6">description:{{sandBox.description}}</div>
+                <div class="col-md-6">address:{{sandBox.address}}</div>
+                </li>
+                </ul>
+              </td>
+            </tr>
+          </table>
+        </td>
+        <!--<td class="col-md-2" >{{sandBox.sandboxName}}</td>-->
+        <!--<td class="col-md-2">{{sandBox.username}}</td>-->
+        <!--<td class="col-md-2">{{sandBox.password}}</td>-->
+        <!--<td class="col-md-1">{{sandBox.port}}</td>-->
+        <!--<td class="col-md-2">{{sandBox.developerId}}</td>-->
+        <!--<td class="col-md-1">{{sandBox.occupied}}</td>-->
+        <!--<td class="col-md-2">-->
+          <!--<i class="fa fa-lg fa-pencil-square-o" style="margin-right:10px;" aria-hidden="true"  (click)="editsandBox(sandBox)"></i>-->
+          <!--<i class="fa fa-lg fa-external-link" style="margin-right:10px;" aria-hidden="true" (click)="movesandBox(sandBox)"></i>-->
+          <!--<i class="fa fa-trash fa-lg"  aria-hidden="true" (click)="deletesandBox(sandBox)"></i>-->
+        <!--</td>-->
+        <!--<div class="col-md-12 {{detailTag?'display':'displayNo'}}">-->
+          <!--<ul>-->
+            <!--<li>-->
+              <!--<div class="col-md-6">occupiedReason:{{sandBox.occupiedReason}}</div>-->
+              <!--<div class="col-md-6">available:{{sandBox.available}}</div>-->
+            <!--</li>-->
+            <!--<li>-->
+              <!--<div class="col-md-6">description:{{sandBox.description}}</div>-->
+              <!--<div class="col-md-6">address:{{sandBox.address}}</div>-->
+            <!--</li>-->
+          <!--</ul>-->
+        <!--</div>-->
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
 
 <!--newGroup-->
 <div class="modal fade" id="newGroup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
