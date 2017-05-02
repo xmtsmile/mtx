@@ -1,4 +1,4 @@
-<div class="col-md-3 borderRight noPadding">
+<div class="col-md-2 borderRight noPadding">
   <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title" style="display: inline-block;margin-right:20px;">有任务的项目组</h3>
@@ -12,7 +12,7 @@
     </div>
   </div>
 </div>
-<div class="col-md-3 borderRight noPadding">
+<div class="col-md-2 borderRight noPadding">
   <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title" style="display: inline-block;margin-right:20px;">指定项目组下的项目</h3>
@@ -27,54 +27,57 @@
   </div>
 </div>
 
-<div class="col-md-6 borderRight noPadding">
+<div class="col-md-8 borderRight noPadding">
   <div class="rightTop">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title" style="display: inline-block;margin-right:20px;">指定项目下的未分配任务</h3>
       </div>
-      <div class="panel-body">
-        <ul>
-          <li *ngFor="let unassignedtask of unassignedtaskList">
-            <ul>
-              <div class="panel-group" id="accordion">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h4 class="panel-title" style="display: inline-block; margin-right:20px;">
-                      <a data-toggle="collapse" data-parent="#accordion"
-                         href="#{{unassignedtask.taskId}}" style="text-decoration: none;">
-                        taskId:{{unassignedtask.taskId}}
-                      </a>
-                    </h4>
-                    <i style="margin-right:15px;" class="fa fa-lg fa-external-link" aria-hidden="true" (click)="assignTask(unassignedtask)"></i>
-                    <i class="fa fa-lg fa-shield" aria-hidden="true" (click)="ignore(unassignedtask)"></i>
-                  </div>
-                  <div id="{{unassignedtask.taskId}}" class="panel-collapse collapse in">
-                    <div class="panel-body">
-                      <li>
-                        <div class="col-md-6">branchName:{{unassignedtask.branchName}}</div>
-                        <div class="col-md-6">branchMsg:{{unassignedtask.branchMsg}}</div>
-                      </li>
-                      <li>
-                        <div class="col-md-6">branchCommitter:{{unassignedtask.branchCommitter}}</div>
-                        <div class="col-md-6">branchDate:{{unassignedtask.branchDate}}</div>
-                      </li>
-                      <li>
-                        <div class="col-md-6">assignerId:{{unassignedtask.assignerId}}</div>
-                        <div class="col-md-6">assigneeId:{{unassignedtask.assigneeId}}</div>
-                      </li>
-                      <li>
-                        <div class="col-md-6">taskStatus:{{unassignedtask.taskStatus}}</div>
-                        <div class="col-md-6">createTime:{{unassignedtask.createTime}}</div>
-                      </li>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </ul>
-          </li>
-        </ul>
-      </div>
+    </div>
+    <div>
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th class="col-md-1">taskId</th>
+          <th class="col-md-1">assignerId</th>
+          <th class="col-md-1">assigneeId</th>
+          <th class="col-md-2">branchName</th>
+          <th class="col-md-2">branchCommitter</th>
+          <th class="col-md-2">taskStatus</th>
+          <th class="col-md-2">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let unassignedtask of unassignedtaskList" (click)="unassignedtask.a = !unassignedtask.a">
+          <td colspan="8" class="noPadding" >
+            <table class="table noTopBorder">
+              <tr>
+                <td class="col-md-1">{{unassignedtask.taskId}}</td>
+                <td class="col-md-1">{{unassignedtask.assignerId}}</td>
+                <td class="col-md-1">{{unassignedtask.assigneeId}}</td>
+                <td class="col-md-2">{{unassignedtask.branchName}}</td>
+                <td class="col-md-2">{{unassignedtask.branchCommitter}}</td>
+                <td class="col-md-2">{{unassignedtask.taskStatus}}</td>
+                <td class="col-md-2">
+                  <i style="margin-right:15px;" class="fa fa-lg fa-external-link" aria-hidden="true" (click)="assignTask(unassignedtask)"></i>
+                  <i class="fa fa-lg fa-shield" aria-hidden="true" (click)="ignore(unassignedtask)"></i>
+                </td>
+              </tr>
+              <tr [hidden]="!unassignedtask.a">
+                <td colspan="7">
+                  <ul>
+                    <li>
+                      <div class="col-md-12">branchMsg:{{unassignedtask.branchMsg}}</div>
+                      <div class="col-md-12">branchDate:{{unassignedtask.branchDate}}</div>
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div>
   <div class="rightBottom">
@@ -82,47 +85,50 @@
       <div class="panel-heading">
         <h3 class="panel-title" style="display: inline-block;margin-right:20px;">指定项目下的已分配任务</h3>
       </div>
-      <div class="panel-body">
-        <ul>
-          <li *ngFor="let assignedtask of assignedtaskList">
-            <ul>
-              <div class="panel-group" id="accordion1">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h4 class="panel-title" style="display: inline-block; margin-right:20px;">
-                      <a data-toggle="collapse" data-parent="#accordion1"
-                         href="#{{assignedtask.taskId}}" style="text-decoration: none;">
-                        taskId:{{assignedtask.taskId}}
-                      </a>
-                    </h4>
-                    <i class="fa fa-lg fa-gavel" aria-hidden="true" (click)="reassignTask(assignedtask)"></i>
-                  </div>
-                  <div id="{{assignedtask.taskId}}" class="panel-collapse collapse in">
-                    <div class="panel-body">
-                      <li>
-                        <div class="col-md-6">branchName:{{assignedtask.branchName}}</div>
-                        <div class="col-md-6">branchMsg:{{assignedtask.branchMsg}}</div>
-                      </li>
-                      <li>
-                        <div class="col-md-6">branchCommitter:{{assignedtask.branchCommitter}}</div>
-                        <div class="col-md-6">branchDate:{{assignedtask.branchDate}}</div>
-                      </li>
-                      <li>
-                        <div class="col-md-6">assignerId:{{assignedtask.assignerId}}</div>
-                        <div class="col-md-6">assigneeId:{{assignedtask.assigneeId}}</div>
-                      </li>
-                      <li>
-                        <div class="col-md-6">taskStatus:{{assignedtask.taskStatus}}</div>
-                        <div class="col-md-6">createTime:{{assignedtask.createTime}}</div>
-                      </li>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </ul>
-          </li>
-        </ul>
-      </div>
+    </div>
+    <div>
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th class="col-md-1">taskId</th>
+          <th class="col-md-1">assignerId</th>
+          <th class="col-md-1">assigneeId</th>
+          <th class="col-md-2">branchName</th>
+          <th class="col-md-2">branchCommitter</th>
+          <th class="col-md-2">taskStatus</th>
+          <th class="col-md-2">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let assignedtask of assignedtaskList" (click)="assignedtask.a = !assignedtask.a">
+          <td colspan="8" class="noPadding" >
+            <table class="table noTopBorder">
+              <tr>
+                <td class="col-md-1">{{assignedtask.taskId}}</td>
+                <td class="col-md-1">{{assignedtask.assignerId}}</td>
+                <td class="col-md-1">{{assignedtask.assigneeId}}</td>
+                <td class="col-md-2">{{assignedtask.branchName}}</td>
+                <td class="col-md-2">{{assignedtask.branchCommitter}}</td>
+                <td class="col-md-2">{{assignedtask.taskStatus}}</td>
+                <td class="col-md-2">
+                  <i class="fa fa-lg fa-gavel" aria-hidden="true" (click)="reassignTask(assignedtask)"></i>
+                </td>
+              </tr>
+              <tr [hidden]="!assignedtask.a">
+                <td colspan="7">
+                  <ul>
+                    <li>
+                      <div class="col-md-12">branchMsg:{{assignedtask.branchMsg}}</div>
+                      <div class="col-md-12">branchDate:{{assignedtask.branchDate}}</div>
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

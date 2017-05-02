@@ -8,7 +8,7 @@
 <div id="myTabContent" class="tab-content">
   <div class="tab-pane fade in active" id="sandBoxes">
     <!--sandBoxes-->
-    <div class="col-md-6 nopadding">
+    <div class="col-md-3 nopadding">
       <div class="left-top">
         <ol class="breadcrumb">
           <li><a href="#">sandBoxes</a></li>
@@ -16,8 +16,8 @@
         </ol>
         <form id="applysandBox" class="form-horizontal" role="form">
           <div class="form-group">
-            <label class="col-md-2 control-label">沙盒名称</label>
-            <div class="col-md-3">
+            <label class="col-md-3 control-label">沙盒名称</label>
+            <div class="col-md-7">
               <select class="col-md-12" style="height:34px;" [(ngModel)]="sandboxId" name="sandboxId">
                 <option *ngFor="let available of availableList" value="{{available.sandboxId}}">
                   {{available.sandboxName}}
@@ -26,8 +26,8 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-2 control-label">沙盒描述</label>
-            <div class="col-md-5">
+            <label class="col-md-3 control-label">沙盒描述</label>
+            <div class="col-md-7">
               <textarea class="form-control" [(ngModel)]="description" name="description" rows="3"></textarea>
             </div>
           </div>
@@ -39,50 +39,55 @@
         </form>
       </div>
     </div>
-    <div class="col-md-6 nopadding divHeight" style="border-left: 2px solid #eeeeee;">
+    <div class="col-md-9 nopadding divHeight" style="border-left: 2px solid #eeeeee;">
       <ol class="breadcrumb">
         <li><a href="#">sandBoxes</a></li>
         <li class="active"><a href="#">当前项目下的所有沙盒资源</a></li>
       </ol>
-      <ul>
-        <li *ngFor="let available of sandboxList">
-          <ul>
-            <div class="panel-group" id="accordion">
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h4 class="panel-title" style="display: inline-block; margin-right:20px;">
-                    <a data-toggle="collapse" data-parent="#accordion"
-                       href="#{{available.sandboxName}}" style="text-decoration: none;">
-                      sandboxName:{{available.sandboxName}}
-                    </a>
-                  </h4>
-                  <i class="fa fa-trash" aria-hidden="true" (click)="deletesandBox(available)"></i>
-                </div>
-                <div id="{{available.sandboxName}}" class="panel-collapse collapse in">
-                  <div class="panel-body">
-                    <li>
-                      <div class="col-md-6">username:{{available.username}}</div>
-                      <div class="col-md-6">password:{{available.password}}</div>
-                    </li>
-                    <li>
-                      <div class="col-md-6">occupied:{{available.occupied}}</div>
-                      <div class="col-md-6">occupiedReason:{{available.occupiedReason}}</div>
-                    </li>
-                    <li>
-                      <div class="col-md-6">developerId:{{available.developerId}}</div>
-                      <div class="col-md-6">description:{{available.description}}</div>
-                    </li>
-                    <li>
-                      <div class="col-md-6">available:{{available.available}}</div>
-                      <div class="col-md-6">address:{{available.address}}</div>
-                    </li>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </ul>
-        </li>
-      </ul>
+      <div>
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th class="col-md-2">sandboxName</th>
+            <th class="col-md-1">username</th>
+            <th class="col-md-2">password</th>
+            <th class="col-md-2">occupied</th>
+            <th class="col-md-2">developerId</th>
+            <th class="col-md-1">available</th>
+            <th class="col-md-1">操作</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let available of sandboxList" (click)="available.a = !available.a">
+            <td colspan="8" class="nopadding" >
+              <table class="table noTopBorder">
+                <tr>
+                  <td class="col-md-2">{{available.sandboxName}}</td>
+                  <td class="col-md-1">{{available.username}}</td>
+                  <td class="col-md-2">{{available.password}}</td>
+                  <td class="col-md-2">{{available.occupied}}</td>
+                  <td class="col-md-2">{{available.developerId}}</td>
+                  <td class="col-md-1">{{available.available}}</td>
+                  <td class="col-md-1">
+                    <i class="fa fa-lg fa-trash" aria-hidden="true" (click)="deletesandBox(available)"></i>
+                  </td>
+                </tr>
+                <tr [hidden]="!available.a">
+                  <td colspan="7">
+                    <ul>
+                      <li>
+                        <div class="col-md-12">occupiedReason:{{available.occupiedReason}}</div>
+                        <div class="col-md-12">description:{{available.description}}</div>
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
   <div class="tab-pane fade" id="deploymentDetails" style="margin-top:20px;">

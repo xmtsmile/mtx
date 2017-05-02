@@ -1,5 +1,5 @@
 <div class="col-md-12 nopadding">
-<div class="col-md-3 nopadding divHeight" style="border-right:2px solid #eeeeee;">
+<div class="col-md-1 nopadding divHeight" style="border-right:2px solid #eeeeee;">
   <div class="leftNavTop">
     <h4>GroupList</h4>
     <ul class="leftNavList">
@@ -18,103 +18,81 @@
     </ul>
   </div>
 </div>
-<div class="col-md-9 nopadding">
-  <div class="col-md-8 nopadding">
+<div class="col-md-11 nopadding">
+  <div class="col-md-2 nopadding">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">项目详细信息</h3>
       </div>
       <div class="panel-body" *ngIf='projectinfoTag'>
-        <div class="col-md-6">
-          createTime： {{projectInfo.createTime}}
-        </div>
-        <div class="col-md-6">
-          creatorId： {{projectInfo.creatorId}}
-        </div>
-        <div class="col-md-6">
-          description： {{projectInfo.description}}
-        </div>
-        <div class="col-md-6">
-          gitEmail： {{projectInfo.gitEmail}}
-        </div>
-        <div class="col-md-6">
-          gitKeyPath： {{projectInfo.gitKeyPath}}
-        </div>
-        <div class="col-md-6">
-          gitName： {{projectInfo.gitName}}
-        </div>
-        <div class="col-md-6">
-          gitPass： {{projectInfo.gitPass}}
-        </div>
-        <div class="col-md-6">
-          groupId： {{projectInfo.groupId}}
-        </div>
-        <div class="col-md-6">
-          projectId： {{projectInfo.projectId}}
-        </div>
-        <div class="col-md-6">
-          projectName： {{projectInfo.projectName}}
-        </div>
-        <div class="col-md-6">
-          repositoryUrl： {{projectInfo.repositoryUrl}}
-        </div>
-        <div class="col-md-6">
-          scriptPath： {{projectInfo.scriptPath}}
+        <div class="col-md-12 nopadding">
+          <p>projectName： {{projectInfo.projectName}}</p>
+          <p>creatorId： {{projectInfo.creatorId}}</p>
+          <p>gitName： {{projectInfo.gitName}}</p>
+          <p>gitPass： {{projectInfo.gitPass}}</p>
+          <p>gitEmail： {{projectInfo.gitEmail}}</p>
+          <p>gitKeyPath： {{projectInfo.gitKeyPath}}</p>
+          <p>scriptPath： {{projectInfo.scriptPath}}</p>
+          <p>repositoryUrl： {{projectInfo.repositoryUrl}}</p>
+          <p>description： {{projectInfo.description}}</p>
         </div>
       </div>
     </div>
-
   </div>
-  <div class="col-md-4 nopadding" style="border-left: solid #eeeeee 2px; ">
+  <div class="col-md-10 nopadding" style="border-left: solid #eeeeee 2px; ">
     <div class="rightTop">
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">Task</h3>
         </div>
-        <div class="panel-body">
-          <ul>
-            <li *ngFor="let task of taskList">
-              <ul>
-                <div class="panel-group" id="accordion" style="margin-bottom: 10px;">
-                  <div class="panel panel-default">
-                    <div class="panel-heading">
-                      <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion"
-                           href="#{{task.taskId}}" style="text-decoration: none;">
-                            taskId:{{task.taskId}}
-                        </a>
-                      </h4>
-                    </div>
-                    <div id="{{task.taskId}}" class="panel-collapse collapse in">
-                      <div class="panel-body">
-                        <li>
-                          <div class="col-md-6">projectId:{{task.projectId}}</div>
-                          <div class="col-md-6">taskStatus:{{task.taskStatus}}</div>
-                        </li>
-                        <li>
-                          <div class="col-md-6">assignerId:{{task.assignerId}}</div>
-                          <div class="col-md-6">assigneeId:{{task.assigneeId}}</div>
-                        </li>
-                        <li>
-                          <div class="col-md-6">branchCommitter:{{task.branchCommitter}}</div>
-                          <div class="col-md-6">branchDate:{{task.branchDate}}</div>
-                        </li>
-                        <li>
-                          <div class="col-md-6">branchName:{{task.branchName}}</div>
-                          <div class="col-md-6">branchMsg:{{task.branchMsg}}</div>
-                        </li>
-                        <li>
-                          <div class="col-md-6">createTime:{{task.createTime}}</div>
-                          <div class="col-md-6"></div>
-                        </li>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </ul>
-            </li>
-          </ul>
-        </div>
+      </div>
+      <div>
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th class="col-md-1">taskId</th>
+            <th class="col-md-2">assignerId</th>
+            <th class="col-md-2">assigneeId</th>
+            <th class="col-md-2">branchName</th>
+            <th class="col-md-2">branchCommitter</th>
+            <th class="col-md-1">taskStatus</th>
+            <th class="col-md-1">操作</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let task of taskList" (click)="task.a = !task.a">
+            <td colspan="8" class="nopadding" >
+              <table class="table noTopBorder">
+                <tr>
+                  <td class="col-md-1">{{task.taskId}}</td>
+                  <td class="col-md-2">{{task.assignerId}}</td>
+                  <td class="col-md-2">{{task.assigneeId}}</td>
+                  <td class="col-md-2">{{task.branchName}}</td>
+                  <td class="col-md-2">{{task.branchCommitter}}</td>
+                  <td class="col-md-1">{{task.taskStatus}}</td>
+                  <td class="col-md-1">
+                    <i class="fa fa-lg fa fa-gavel" aria-hidden="true" (click)="sureAccept(task)"></i>
+                  </td>
+                </tr>
+                <tr [hidden]="!task.a">
+                  <td colspan="7">
+                    <ul>
+                      <li>
+                        <div class="col-md-6">projectId:{{task.projectId}}</div>
+                        <div class="col-md-6">branchDate:{{task.branchDate}}</div>
+                      </li>
+                      <li>
+                        <div class="col-md-6">branchMsg:{{task.branchMsg}}</div>
+                        <div class="col-md-6">createTime:{{task.createTime}}</div>
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          </tbody>
+        </table>
       </div>
     </div>
     <div class="rightBottom">
@@ -122,54 +100,50 @@
         <div class="panel-heading">
           <h3 class="panel-title">SandBox</h3>
         </div>
-        <div class="panel-body">
-          <ul>
-            <li *ngFor="let sandboxes of sandboxesList">
-              <ul>
-                <div class="panel-group" id="accordion1" style="margin-bottom: 10px;">
-                  <div class="panel panel-default">
-                    <div class="panel-heading">
-                      <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion1"
-                           href="#{{sandboxes.sandboxName}}" style="text-decoration: none;">
-                          sandboxId:{{sandboxes.sandboxId}}
-                        </a>
-                      </h4>
-                    </div>
-                    <div id="{{sandboxes.sandboxName}}" class="panel-collapse collapse in">
-                      <div class="panel-body">
-                        <li>
-                          <div class="col-md-6">projectId:{{sandboxes.projectId}}</div>
-                          <div class="col-md-6">groupId:{{sandboxes.groupId}}</div>
-                        </li>
-                        <li>
-                          <div class="col-md-6">sandboxName:{{sandboxes.sandboxName}}</div>
-                          <div class="col-md-6">username:{{sandboxes.username}}</div>
-                        </li>
-                        <li>
-                          <div class="col-md-6">port:{{sandboxes.port}}</div>
-                          <div class="col-md-6">password:{{sandboxes.password}}</div>
-                        </li>
-                        <li>
-                          <div class="col-md-6">occupied:{{sandboxes.occupied}}</div>
-                          <div class="col-md-6">occupiedReason:{{sandboxes.occupiedReason}}</div>
-                        </li>
-                        <li>
-                          <div class="col-md-6">description:{{sandboxes.description}}</div>
-                          <div class="col-md-6">developerId:{{sandboxes.developerId}}</div>
-                        </li>
-                        <li>
-                          <div class="col-md-6">address:{{sandboxes.address}}</div>
-                          <div class="col-md-6">available:{{sandboxes.available}}</div>
-                        </li>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </ul>
-            </li>
-          </ul>
-        </div>
+      </div>
+      <div>
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th class="col-md-1">sandboxName</th>
+            <th class="col-md-2">username</th>
+            <th class="col-md-2">port</th>
+            <th class="col-md-2">password</th>
+            <th class="col-md-2">developerId</th>
+            <th class="col-md-1">occupied</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let sandboxes of sandboxesList" (click)="sandboxes.a = !sandboxes.a">
+            <td colspan="8" class="nopadding" >
+              <table class="table noTopBorder">
+                <tr>
+                  <td class="col-md-1">{{sandboxes.sandboxName}}</td>
+                  <td class="col-md-2">{{sandboxes.username}}</td>
+                  <td class="col-md-2">{{sandboxes.port}}</td>
+                  <td class="col-md-2">{{sandboxes.password}}</td>
+                  <td class="col-md-2">{{sandboxes.developerId}}</td>
+                  <td class="col-md-1">{{sandboxes.occupied}}</td>
+                </tr>
+                <tr [hidden]="!sandboxes.a">
+                  <td colspan="7">
+                    <ul>
+                      <li>
+                        <div class="col-md-6">address:{{sandboxes.address}}</div>
+                        <div class="col-md-6">available:{{sandboxes.available}}</div>
+                      </li>
+                      <li>
+                        <div class="col-md-12">occupiedReason:{{sandboxes.occupiedReason}}</div>
+                        <div class="col-md-12">description:{{sandboxes.description}}</div>
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

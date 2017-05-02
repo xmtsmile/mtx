@@ -4,3 +4,10 @@
 .left-top{
   height:auto;
 }
+.table{
+  margin-bottom:0px;
+}
+.noTopBorder td{
+  border-right: 1px solid #ddd;
+}
+

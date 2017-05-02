@@ -36,7 +36,6 @@ export class LeftNavComponent implements OnInit {
     // TaskInfo
     this.httpPost.dataAjax('GET', '/mtx/main/tasks', 'x-www-form-urlencoded', {}, function(res){
       if (res.code == '0') {
-        console.log('aaaaaaaaaaaaaaaaaaaaaaataskInfo', res.result);
         that.taskList = res.result;
       }
     });
@@ -75,5 +74,24 @@ export class LeftNavComponent implements OnInit {
       }
     });
   };
+  sureAccept(task) {
+    var taskId = task.taskId;
+    var params = {
+      'taskId': taskId
+    };
+    var that = this;
+    console.log('params---', params);
+    this.httpPost.dataAjax('GET', '/mtx/main/group/project/task/accept', 'x-www-form-urlencoded', params, function(res){
+      if (res.code == '0') {
+        alert('接受任务成功！');
+        that.httpPost.dataAjax('GET', '/mtx/main/tasks', 'x-www-form-urlencoded', {}, function(res){
+          if (res.code == '0') {
+            console.log('aaaaaaaaaaaaaaaaaaaaaaataskInfo', res.result);
+            that.taskList = res.result;
+          }
+        });
+      }
+    });
+  }
 }
 
