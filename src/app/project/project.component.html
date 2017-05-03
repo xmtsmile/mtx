@@ -29,10 +29,10 @@
     <div class="panel-body">
       <ul>
         <li class="col-md-12" style="height:25px;" *ngFor="let project of projectList">
-          <div class="col-md-4">{{project.projectName}}</div>
+          <div class="col-md-4" (click)="showDeveloper(project)">{{project.projectName}}</div>
           <div class="col-md-8">
             <i class="fa fa-lg fa-pencil-square-o" style="margin-right:10px;" aria-hidden="true" (click)="editProject(project)"></i>
-            <i class="fa fa-lg fa-external-link" style="margin-right:10px;" aria-hidden="true"></i>
+            <i class="fa fa-lg fa-external-link" style="margin-right:10px;" aria-hidden="true" (click)="moveProject(project)"></i>
             <i class="fa fa-trash fa-lg"  aria-hidden="true" (click)="deleteProject(project)"></i>
           </div>
         </li>
@@ -47,16 +47,43 @@
       <h3 class="panel-title" style="display: inline-block;margin-right:20px;">developerList</h3>
       <i class="fa fa-gavel" data-toggle="modal" data-target="#newDeveloper" aria-hidden="true"></i>
     </div>
-    <div class="panel-body">
-      <!--<ul>-->
-        <!--<li class="liDisplay" *ngFor="let developerlist of developerDatas">-->
-          <!--<div (click)="projectChild()">{{developerlist.developer}}</div>-->
-          <!--<div class="pull-right">-->
-            <!--<button class="btn btn-default btn-xs newBtn">edit</button>-->
-            <!--<button (click)="delete(developerlist)" class="btn btn-default btn-xs newBtn">delete</button>-->
-          <!--</div>-->
-        <!--</li>-->
-      <!--</ul>-->
+  </div>
+  <div class="col-md-12 rightTop" style="border-bottom: 2px solid #ededed;">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title" style="display: inline-block;margin-right:20px;">指定项目下的开发人员</h3>
+      </div>
+      <!--<div class="panel-body">-->
+        <!--<ul>-->
+          <!--<li class="col-md-12" style="height:25px;" *ngFor="let developer of developerAll">-->
+            <!--<div class="col-md-4">{{developer.userName}}</div>-->
+            <!--<div class="col-md-8">-->
+              <!--<i class="fa fa-lg fa-pencil-square-o" style="margin-right:10px;" aria-hidden="true"></i>-->
+              <!--<i class="fa fa-lg fa-external-link" style="margin-right:10px;" aria-hidden="true"></i>-->
+              <!--<i class="fa fa-trash fa-lg"  aria-hidden="true"></i>-->
+            <!--</div>-->
+          <!--</li>-->
+        <!--</ul>-->
+      <!--</div>-->
+    </div>
+  </div>
+  <div class="col-md-12 rightBottom">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title" style="display: inline-block;margin-right:20px;">显示所有用户/管理员</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+          <li class="col-md-12" style="height:25px;" *ngFor="let developer of developerAll">
+            <div class="col-md-4">{{developer.userName}}</div>
+            <div class="col-md-8">
+              <i class="fa fa-lg fa-pencil-square-o" style="margin-right:10px;" aria-hidden="true"></i>
+              <i class="fa fa-lg fa-external-link" style="margin-right:10px;" aria-hidden="true"></i>
+              <i class="fa fa-trash fa-lg"  aria-hidden="true"></i>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
@@ -136,7 +163,7 @@
         </h4>
       </div>
       <div class="modal-body">
-        <form id="" class="form-horizontal" role="form">
+        <form class="form-horizontal" role="form">
           <div class="form-group">
             <label class="col-md-3 control-label">项目所在组</label>
             <div class="col-md-6">
@@ -221,7 +248,7 @@
         </h4>
       </div>
       <div class="modal-body">
-        <form id="" class="form-horizontal" role="form">
+        <form class="form-horizontal" role="form">
           <div class="form-group">
             <label class="col-md-3 control-label">项目所在组</label>
             <div class="col-md-6">
@@ -236,6 +263,12 @@
             <label class="col-md-3 control-label">项目名称</label>
             <div class="col-md-6">
               <input type="text"  [(ngModel)]="projectName" name="projectName" class="form-control" placeholder="请输入项目的名称"/>
+            </div>
+          </div>
+          <div class="form-group" [hidden]="true">
+            <label class="col-md-3 control-label">项目Id</label>
+            <div class="col-md-6">
+              <input type="text"  [(ngModel)]="projectId" name="projectId" class="form-control"/>
             </div>
           </div>
           <div class="form-group">
@@ -288,6 +321,46 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
         <button type="button" class="btn btn-primary" (click)="saveProject()">保存</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--moveProject-->
+<div class="modal fade" id="moveProject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          &times;
+        </button>
+        <h4 class="modal-title" id="newLabel4">
+          moveProject
+        </h4>
+      </div>
+      <div class="modal-body" id="editForm4">
+        <form class="form-horizontal" role="form">
+          <div class="form-group">
+            <label class="col-md-2 control-label">项目所在组</label>
+            <div class="col-md-3">
+              <select class="col-md-12" style="height:34px;" [(ngModel)]="groupId" name="groupId">
+                <option *ngFor="let group of groupList" value="{{group.groupId}}">
+                  {{group.groupName}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group" [hidden]='true'>
+            <label class="col-md-2 control-label">项目Id</label>
+            <div class="col-md-5">
+              <input type="text"  [(ngModel)]="projectId" name="projectId" class="form-control"/>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" (click)="saveMove()" class="btn btn-primary">保存</button>
       </div>
     </div>
   </div>

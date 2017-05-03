@@ -10,6 +10,8 @@ declare var $: any;
 export class ProjectComponent implements OnInit {
   groupList: any = [];
   projectList: any = [];
+  projectDeveloper: any = [];
+  developerAll: any = [];
   groupName: any;
   groupId: any;
   projectName: any;
@@ -22,6 +24,7 @@ export class ProjectComponent implements OnInit {
   scriptPath: any;
   description: any;
   groupTag: any;
+  projectId: any;
   constructor(public httpPost: HttpPost) { }
 
   ngOnInit() {
@@ -29,11 +32,19 @@ export class ProjectComponent implements OnInit {
     $(function (){
       const screenHeight = $(window).height() - 61;
       $('.borderRight').css('height', screenHeight + 'px');
+      $('.rightTop').css('height', screenHeight / 2 + 'px');
+      $('.rightBottom').css('height', screenHeight / 2 + 'px');
     });
     this.httpPost.dataAjax('GET', '/mtx/administration/work/group/list', 'x-www-form-urlencoded', {}, function(res) {
       if (res.code == '0') {
         that.groupList = res.result;
         console.log('/mtx/administration/work/group/list',  that.groupList);
+      }
+    });
+    this.httpPost.dataAjax('GET', '/mtx/administration/work/developers', 'x-www-form-urlencoded', {}, function(res) {
+      if (res.code == '0') {
+        console.log('developers', res);
+        that.developerAll = res.result;
       }
     });
   };
@@ -121,6 +132,13 @@ export class ProjectComponent implements OnInit {
     this.httpPost.dataAjax('POST', '/mtx/administration/work/group/project/create', 'application/json;charset=UTF-8', JSON.stringify(params), function(res) {
       if (res.code == '0') {
         console.log('/mtx/administrati/group/project/create', res);
+        var params1 = {'groupId': that.groupTag};
+        var thatt = that;
+        that.httpPost.dataAjax('GET', '/mtx/administration/work/group/project/list', 'x-www-form-urlencoded', params1, function(res1) {
+          if (res1.code == '0') {
+            thatt.projectList = res1.result;
+          }
+        });
         $('#newProject').modal('hide');
         alert('创建成功！');
       }
@@ -133,7 +151,13 @@ export class ProjectComponent implements OnInit {
     this.httpPost.dataAjax('GET', '/mtx/administration/work/group/project/info', 'x-www-form-urlencoded', params, function(res) {
       if (res.code == '0') {
         console.log('/mtx/administration/work/group/project/info', res);
+        if (res.result.gitPass == ''|| res.result.gitPass == null) {
+          that.passKey = '1';
+        } else {
+          that.passKey = '0';
+        }
         that.groupId = res.result.groupId;
+        that.projectId = res.result.projectId;
         that.projectName = res.result.projectName;
         that.repositoryUrl = res.result.repositoryUrl;
         that.gitName = res.result.gitName;
@@ -150,6 +174,7 @@ export class ProjectComponent implements OnInit {
     var that = this;
     var params = {
       'groupId': this.groupId,
+      'projectId': this.projectId,
       'projectName': this.projectName,
       'repositoryUrl': this.repositoryUrl,
       'gitName': this.gitName,
@@ -161,19 +186,15 @@ export class ProjectComponent implements OnInit {
     };
     this.httpPost.dataAjax('POST', '/mtx/administration/work/group/project/update', 'application/json;charset=UTF-8', JSON.stringify(params), function(res) {
       if (res.code == '0') {
-        that.sandboxGroupList();
+        var params1 = {'groupId': that.groupTag};
+        var thatt = that;
+        that.httpPost.dataAjax('GET', '/mtx/administration/work/group/project/list', 'x-www-form-urlencoded', params1, function(res1) {
+          if (res.code == '0') {
+            thatt.projectList = res1.result;
+          }
+        });
         $('#editProject').modal('hide');
         alert('修改成功！');
-      }
-    });
-  };
-  // refresh
-  sandboxGroupList() {
-    var that = this;
-    this.httpPost.dataAjax('GET', '/mtx/administration/work/group/list', 'x-www-form-urlencoded', {}, function(res) {
-      if (res.code == '0') {
-        that.groupList = res.result;
-        console.log('/mtx/administration/work/group/list',  that.groupList);
       }
     });
   };
@@ -188,12 +209,76 @@ export class ProjectComponent implements OnInit {
         var params = {'projectId': projectId};
         thatt.httpPost.dataAjax('GET', '/mtx/administration/work/group/project/delete', 'x-www-form-urlencoded', params, function(res) {
           if (res.code == '0') {
-
+            var thattt = that;
+            var params1 = {'groupId': thatt.groupTag};
+            thatt.httpPost.dataAjax('GET', '/mtx/administration/work/group/project/list', 'x-www-form-urlencoded', params1, function(res1) {
+              if (res.code == '0') {
+                thattt.projectList = res1.result;
+              }
+            });
           }
         });
       },
       cancel: function(){
       }
     });
-  }
+  };
+  moveProject(project) {
+    console.log('project--', project);
+    var that = this;
+    var params = {
+      'projectId': project.projectId
+    };
+    this.httpPost.dataAjax('GET', '/mtx/administration/work/group/project/info', 'x-www-form-urlencoded', params, function(res) {
+      if (res.code == '0') {
+        console.log('res', res);
+        that.groupId = res.result.groupId;
+        that.projectId = res.result.projectId;
+        $('#moveProject').modal('show');
+      }
+    });
+  };
+  saveMove() {
+    var that = this;
+    var params = {
+      'groupId': this.groupId,
+      'projectId': this.projectId
+    };
+    this.httpPost.dataAjax('GET', '/mtx/administration/work/group/project/add', 'x-www-form-urlencoded', params, function(res) {
+      if (res.code == '0') {
+        console.log('moveProject', res);
+        var params1 = {'groupId': that.groupTag};
+        var thatt = that;
+        that.httpPost.dataAjax('GET', '/mtx/administration/work/group/project/list', 'x-www-form-urlencoded', params1, function(res1) {
+          if (res.code == '0') {
+            thatt.projectList = res1.result;
+          }
+        });
+        $('#moveProject').modal('hide');
+        alert('修改分组成功！');
+      }
+    });
+  };
+  showDeveloper(project) {
+    console.log('project--', project);
+    var that = this;
+    var params = {
+      'projectId': project.projectId
+    };
+    this.httpPost.dataAjax('GET', '/mtx/administration/work/group/project/developer/list', 'x-www-form-urlencoded', params, function(res) {
+      if (res.code == '0') {
+        console.log('developer/list', res);
+      }
+    });
+  };
+  // refresh
+  sandboxGroupList() {
+    var that = this;
+    this.httpPost.dataAjax('GET', '/mtx/administration/work/group/list', 'x-www-form-urlencoded', {}, function(res) {
+      if (res.code == '0') {
+        that.groupList = res.result;
+        console.log('/mtx/administration/work/group/list',  that.groupList);
+      }
+    });
+  };
 }
