@@ -268,6 +268,7 @@ export class ProjectComponent implements OnInit {
     this.httpPost.dataAjax('GET', '/mtx/administration/work/group/project/developer/list', 'x-www-form-urlencoded', params, function(res) {
       if (res.code == '0') {
         console.log('developer/list', res);
+        that.projectDeveloper = res.result;
       }
     });
   };
