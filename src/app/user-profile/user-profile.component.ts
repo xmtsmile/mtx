@@ -68,14 +68,21 @@ export class UserProfileComponent implements OnInit {
     myReader.onloadend = function (loadEvent: any) {
       image.src = loadEvent.target.result;
       that.cropper.setImage(image);
-      console.log('image.src',  image.src);
-      var params = {
-        'file': image.src
-      }
-      that.httpPost.dataAjax('POST', '/mtx/user/avatar/upload', 'x-www-form-urlencoded', params, function(res) {
+      var formdata = new FormData();
+      formdata.append("file", file);
+      $.ajax({
+        type: 'POST',
+        url: '/mtx/user/avatar/upload',
+        cache: false,
+        data: formdata,
+        processData: false,
+        contentType: false
+      }).done(function (res) {
         if (res.code == '0') {
           console.log('result', res);
         }
+      }).fail(function(){
+        // warn me please !!!
       });
     };
 
