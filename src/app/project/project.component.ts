@@ -16,6 +16,9 @@ export class ProjectComponent implements OnInit {
   groupId: any;
   projectName: any;
   repositoryUrl: any;
+  userPass: any;
+  projectTag: any;
+  userName: any;
   gitName: any;
   gitEmail: any;
   passKey: any = '0';
@@ -25,6 +28,11 @@ export class ProjectComponent implements OnInit {
   description: any;
   groupTag: any;
   projectId: any;
+  projectGroupList: any;
+  avatarPath: any;
+  isAdmin: any;
+  developerId: any;
+  userId: any;
   constructor(public httpPost: HttpPost) { }
 
   ngOnInit() {
@@ -39,12 +47,6 @@ export class ProjectComponent implements OnInit {
       if (res.code == '0') {
         that.groupList = res.result;
         console.log('/mtx/administration/work/group/list',  that.groupList);
-      }
-    });
-    this.httpPost.dataAjax('GET', '/mtx/administration/work/developers', 'x-www-form-urlencoded', {}, function(res) {
-      if (res.code == '0') {
-        console.log('developers', res);
-        that.developerAll = res.result;
       }
     });
   };
@@ -260,6 +262,7 @@ export class ProjectComponent implements OnInit {
     });
   };
   showDeveloper(project) {
+    this.projectTag = project.projectId;
     console.log('project--', project);
     var that = this;
     var params = {
@@ -282,4 +285,128 @@ export class ProjectComponent implements OnInit {
       }
     });
   };
+  showprojectGroup(event) {
+    console.log('event', event);
+    var that = this;
+    this.groupTag = event;
+    var params = {'groupId': this.groupTag};
+    this.httpPost.dataAjax('GET', '/mtx/administration/work/group/project/list', 'x-www-form-urlencoded', params, function(res) {
+      if (res.code == '0') {
+        that.projectGroupList = res.result;
+      }
+    });
+  };
+  // 创建
+  newDeveloper() {
+    var that = this;
+    var params = {
+      'groupId': this.groupId,
+      'projectId': this.projectId,
+      'userName': this.userName,
+      'userPass': this.userPass,
+      'avatarPath': this.avatarPath,
+      'gitName': this.gitName,
+      'gitEmail': this.gitEmail,
+      'isAdmin': this.isAdmin,
+    };
+    this.httpPost.dataAjax('POST', '/mtx/administration/work/group/project/developer/create', 'application/json;charset=UTF-8', JSON.stringify(params), function(res) {
+      if (res.code == '0') {
+        alert('创建新开发人员成功！')
+        $('#newDeveloperForm')[0].reset();
+        $('#newDeveloper').modal('hide');
+        console.log('developwer', res);
+      }
+    });
+  }
+  // 已有开发人员分配
+  allot() {
+    var that = this;
+    this.httpPost.dataAjax('GET', '/mtx/administration/work/developers', 'x-www-form-urlencoded', {}, function(res) {
+      if (res.code == '0') {
+        console.log('developers', res);
+        that.developerAll = res.result;
+      }
+    });
+    $('#moveDeveloper').modal('show');
+  }
+  saveAllot() {
+    var that = this;
+    var params = {
+      'projectId': this.projectId,
+      'developerId': this.developerId,
+    };
+    this.httpPost.dataAjax('GET', '/mtx/administration/work/group/project/developer/add', 'x-www-form-urlencoded', params, function(res) {
+      if (res.code == '0') {
+        alert('人员重新分配成功！');
+        $('#moveDeveloperForm')[0].reset();
+        $('#moveDeveloper').modal('hide');
+      }
+    });
+  }
+  // 修改用户信息
+  editDeveloper(developerProject) {
+    var that = this;
+    this.developerId = developerProject.userId;
+    var params = {'developerId': this.developerId};
+    this.httpPost.dataAjax('GET', '/mtx/administration/work/group/project/developer/info', 'x-www-form-urlencoded', params, function(res) {
+      if (res.code == '0') {
+        console.log('developer', res.result);
+          that.groupId =  res.result.groupId;
+          that.projectId = res.result.projectId;
+          that.userName = res.result.userName;
+          that.userPass = res.result.userPass;
+          that.avatarPath = res.result.avatarPath;
+          that.gitName = res.result.gitName;
+          that.gitEmail = res.result.gitEmail;
+          that.isAdmin = res.result.isAdmin;
+        $('#editDeveloper').modal('show');
+      }
+    });
+  }
+  // 确认修改
+  saveEditDeveloper() {
+    var that = this;
+    var params = {
+      'groupId': this.groupId,
+      'projectId': this.projectId,
+      'userId': this.userId,
+      'userName': this.userName,
+      'userPass': this.userPass,
+      'avatarPath': this.avatarPath,
+      'gitName': this.gitName,
+      'gitEmail': this.gitEmail,
+      'isAdmin': this.isAdmin,
+    };
+    this.httpPost.dataAjax('POST', '/mtx/administration/work/group/project/developer/update', 'application/json;charset=UTF-8', JSON.stringify(params), function(res) {
+      if (res.code == '0') {
+        alert('修改开发人员信息成功！')
+        $('#editDeveloperForm')[0].reset();
+        $('#editDeveloper').modal('hide');
+      }
+    });
+  }
+  // 删除
+  deleteDeveloper(developerProject) {
+    console.log('developerProject', developerProject);
+    var that = this;
+    $.confirm({
+      title: '确认!',
+      content: '确认从此项目下删除该开发人员!',
+      confirm: function(){
+        var thatt = that;
+        var developerId = developerProject.userId;
+        var projectId = thatt.projectTag;
+        var params = {'developerId': developerId, 'projectId': projectId
+                     };
+        thatt.httpPost.dataAjax('GET', '/mtx/administration/work/group/project/developer/delete', 'x-www-form-urlencoded', params, function(res) {
+          if (res.code == '0') {
+            var thattt = that;
+            thatt.showDeveloper(thatt.projectTag);
+          }
+        });
+      },
+      cancel: function(){
+      }
+    });
+ }
 }

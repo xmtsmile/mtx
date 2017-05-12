@@ -41,7 +41,7 @@
           <span class=" fa fa-angle-down"></span>
         </a>
         <ul class="dropdown-menu dropdown-usermenu pull-right">
-          <li><a routerLink="userProfile">User Profile</a></li>
+          <li (click)="getUser()"><a routerLink="userProfile">User Profile</a></li>
           <li class="divider"></li>
           <li (click)="logOut()">
             <a href="javascript:;"> <i class="fa fa-sign-out pull-right"></i> Log Out</a>

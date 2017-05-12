@@ -134,4 +134,13 @@ export class TopNavComponent implements OnInit {
     });
   }
 
+  getUser() {
+    var that = this;
+    this.httpPost.dataAjax('GET', '/mtx/user/info', 'x-www-form-urlencoded', {}, function (res) {
+      if (res.code == '0') {
+       sessionStorage.setItem('userInfo', JSON.stringify(res.result));
+      }
+    });
+  }
+
 }

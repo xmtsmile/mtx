@@ -20,3 +20,7 @@
 .noTopBorder td{
   border-right: 1px solid #ddd;
 }
+.rightTop{
+  height:auto;
+  overflow-y: scroll;
+}

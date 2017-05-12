@@ -41,13 +41,13 @@
   </div>
   <div class="col-md-10 nopadding" style="border-left: solid #eeeeee 2px; ">
     <div class="rightTop">
-      <div class="panel panel-default">
+      <div class="panel panel-default" style="margin-bottom:0px;">
         <div class="panel-heading">
-          <h3 class="panel-title">Task</h3>
+          <h3 class="panel-title">当前项目下所有分配的任务</h3>
         </div>
       </div>
       <div>
-        <table class="table table-bordered">
+        <table class="table table-bordered" style="height:auto;">
           <thead>
           <tr>
             <th class="col-md-1">taskId</th>
@@ -84,6 +84,55 @@
                       <li>
                         <div class="col-md-6">branchMsg:{{task.branchMsg}}</div>
                         <div class="col-md-6">createTime:{{task.createTime}}</div>
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="panel panel-default" style="margin-bottom:0px;">
+        <div class="panel-heading">
+          <h3 class="panel-title">当前项目下所有正在开发的任务</h3>
+        </div>
+      </div>
+      <div>
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th class="col-md-1">taskId</th>
+            <th class="col-md-2">assignerId</th>
+            <th class="col-md-2">assigneeId</th>
+            <th class="col-md-2">branchName</th>
+            <th class="col-md-2">branchCommitter</th>
+            <th class="col-md-1">taskStatus</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let taskWorking of taskWorkingList" (click)="taskWorking.a = !taskWorking.a">
+            <td colspan="8" class="nopadding" >
+              <table class="table noTopBorder">
+                <tr>
+                  <td class="col-md-1">{{taskWorking.taskId}}</td>
+                  <td class="col-md-2">{{taskWorking.assignerId}}</td>
+                  <td class="col-md-2">{{taskWorking.assigneeId}}</td>
+                  <td class="col-md-2">{{taskWorking.branchName}}</td>
+                  <td class="col-md-2">{{taskWorking.branchCommitter}}</td>
+                  <td class="col-md-1">{{taskWorking.taskStatus}}</td>
+                </tr>
+                <tr [hidden]="!taskWorking.a">
+                  <td colspan="7">
+                    <ul>
+                      <li>
+                        <div class="col-md-6">projectId:{{taskWorking.projectId}}</div>
+                        <div class="col-md-6">branchDate:{{taskWorking.branchDate}}</div>
+                      </li>
+                      <li>
+                        <div class="col-md-6">branchMsg:{{taskWorking.branchMsg}}</div>
+                        <div class="col-md-6">createTime:{{taskWorking.createTime}}</div>
                       </li>
                     </ul>
                   </td>

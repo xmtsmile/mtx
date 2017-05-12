@@ -13,7 +13,23 @@
 
 
   var settings = {
-        content: '', //直接指定所有页面TABS内容
+        content: ' <div id="ops" style="position:relative; height: 20px; margin-bottom: 10px;">' +
+        ' <div id="radios">' +
+        '  <input type="radio" id="deploy-radio" name="mode" value="deploy" checked>' +
+        '<label for="deploy-radio">deploy</label>' +
+        '<input type="radio" id="revert-radio" name="mode" value="revert">' +
+        ' <label for="revert-radio">revert</label>' +
+        ' <input type="radio" id="verify-radio" name="mode" value="verify">' +
+        ' <label for="verify-radio">verify</label>' +
+        '</div>' +
+        ' <div id="buttons" style="position:relative; left: 20%; top: -20px;">' +
+        '<button id="generate-btn">generate</button>'+
+        ' <button id="verify-btn">verify</button>'+
+        ' <button id="save-btn">save</button>'+
+        '</div>'+
+        ' </div>'+
+        ' <div id="editor" style="width: 100%; height: 800px;"></div>'+
+        '</div>', //直接指定所有页面TABS内容
         close: true, //是否可以关闭
         monitor: 'body', //监视的区域
         iframe: true, //使用iframe还是ajax

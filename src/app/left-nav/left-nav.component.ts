@@ -12,9 +12,11 @@ export class LeftNavComponent implements OnInit {
   projectList: any = [];
   projectInfo: any = [];
   taskList: any = [];
+  taskWorkingList: any = [];
   sandboxesList: any = [];
   projectinfoTag: boolean;
   checkoutTag: boolean;
+  projectCheck: any;
   constructor(public httpPost: HttpPost) { }
 
   ngOnInit() {
@@ -28,15 +30,9 @@ export class LeftNavComponent implements OnInit {
     });
     var that = this;
     // ProjectList
-    this.httpPost.dataAjax('POST', '/mtx/main/groups', 'x-www-form-urlencoded', {}, function(res) {
+    this.httpPost.dataAjax('POST', '/mtx/main/groups', 'x-www-form-urlencoded', {'projectId': this.projectCheck}, function(res) {
       if (res.code == '0') {
         that.groupList = res.result;
-      }
-    });
-    // TaskInfo
-    this.httpPost.dataAjax('GET', '/mtx/main/tasks', 'x-www-form-urlencoded', {}, function(res){
-      if (res.code == '0') {
-        that.taskList = res.result;
       }
     });
     // SandboxesInfo
@@ -59,6 +55,7 @@ export class LeftNavComponent implements OnInit {
   showProjectInfo(project) {
     var that = this;
     const params = {'projectId': this.projectList[0].projectId};
+    sessionStorage.setItem('projectCheck', params.projectId)
     // 项目基本信息
     this.httpPost.dataAjax('GET', '/mtx/main/group/project/info', 'x-www-form-urlencoded', params, function(res){
       if (res.code == '0') {
@@ -71,6 +68,18 @@ export class LeftNavComponent implements OnInit {
       if (res.code == '0') {
         that.checkoutTag = true;
         console.log('ttttttttt', res);
+      }
+    });
+    // TaskInfo
+    this.httpPost.dataAjax('GET', '/mtx/main/group/project/tasks/assgined', 'x-www-form-urlencoded', params, function(res){
+      if (res.code == '0') {
+        that.taskList = res.result;
+      }
+    });
+    // taskWorkingList
+    this.httpPost.dataAjax('GET', '/mtx/main/group/project/tasks/working', 'x-www-form-urlencoded', params, function(res){
+      if (res.code == '0') {
+        that.taskWorkingList = res.result;
       }
     });
   };

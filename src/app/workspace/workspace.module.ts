@@ -19,6 +19,7 @@ import { AssignmentComponent } from '../assignment/assignment.component';
 import { SandBoxesComponent } from '../sand-boxes/sand-boxes.component';
 import { UserProfileComponent } from '../user-profile/user-profile.component';
 import { FormsModule} from '@angular/forms';
+import {ImageCropperComponent, CropperSettings, Bounds} from 'ng2-img-cropper';
 
 // provider
 import { HttpPost} from '../../providers/httpPost';
@@ -44,7 +45,8 @@ import { HttpPost} from '../../providers/httpPost';
     ProjectComponent,
     AssignmentComponent,
     SandBoxesComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    ImageCropperComponent
   ],
   providers: [
     HttpPost,

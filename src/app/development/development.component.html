@@ -8,14 +8,18 @@
               <!--<a *ngFor="let revisionlist of revision" data-addtab="{{revisionlist.group}}" data-url="../project/project.component.html" class="list-group-item">-->
               <!--{{revisionlist.group}}-->
               <!--</a>-->
-              <a data-addtab="item1" data-url="./ajax/mailbox.txt" class="list-group-item">group1</a>
-              <a data-addtab="item2" data-url="./ajax/mailbox.txt" class="list-group-item">group2</a>
-              <a data-addtab="item3" data-url="./ajax/mailbox.txt" class="list-group-item">group3</a>
-              <a data-addtab="item4" data-url="./ajax/mailbox.txt" class="list-group-item">group4</a>
-              <a data-addtab="item5" data-url="./ajax/mailbox.txt" class="list-group-item">group5</a>
+              <a data-addtab="item1"  class="list-group-item">group1</a>
+              <a data-addtab="item2"  class="list-group-item">group2</a>
+              <a data-addtab="item3"  class="list-group-item">group3</a>
+              <a data-addtab="item4"  class="list-group-item">group4</a>
+              <a data-addtab="item5"  class="list-group-item">group5</a>
             </ul>
           </div>
           <div class="leftBottom">
+            <div class="pull-right">
+              <i class="fa fa-gear"></i>
+              <i class="fa fa-amazon"></i>
+            </div>
             <!--<ul class="list-group">-->
             <!--<a *ngFor="let revision of revision" data-addtab="{{revisionlist.group}}" data-url="../project/project.component.html" class="list-group-item">-->
             <!--{{revision.group}}-->
@@ -34,22 +38,6 @@
             <!-- Tab panes -->
             <div class="tab-content">
               <div role="tabpanel" class="tab-pane"></div>
-              <div id="ops" style="position:relative; height: 20px; margin-bottom: 10px;">
-                <div id="radios">
-                  <input type="radio" id="deploy-radio" name="mode" value="deploy" checked>
-                  <label for="deploy-radio">deploy</label>
-                  <input type="radio" id="revert-radio" name="mode" value="revert">
-                  <label for="revert-radio">revert</label>
-                  <input type="radio" id="verify-radio" name="mode" value="verify">
-                  <label for="verify-radio">verify</label>
-                </div>
-                <div id="buttons" style="position:relative; left: 20%; top: -20px;">
-                  <button id="generate-btn">generate</button>
-                  <button id="verify-btn">verify</button>
-                  <button id="save-btn">save</button>
-                </div>
-              </div>
-              <div id="editor" style="width: 100%; height: 800px;"></div>
             </div>
           </div>
         </div>
