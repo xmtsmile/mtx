@@ -65,7 +65,7 @@
           </thead>
           <tbody>
           <tr *ngFor="let task of taskList" (click)="task.a = !task.a">
-            <td colspan="8" class="nopadding" >
+            <td colspan="4" class="nopadding" >
               <table class="table noTopBorder">
                 <tr>
                   <td class="col-md-3">{{task.branchName}}</td>
@@ -76,7 +76,7 @@
                   </td>
                 </tr>
                 <tr [hidden]="!task.a">
-                  <td colspan="7">
+                  <td colspan="4">
                     <ul>
                       <li>
                         <div class="col-md-6">Project Id:{{task.projectId}}</div>
@@ -111,7 +111,7 @@
           </thead>
           <tbody>
           <tr *ngFor="let taskWorking of taskWorkingList" (click)="taskWorking.a = !taskWorking.a">
-            <td colspan="8" class="nopadding" >
+            <td colspan="3" class="nopadding" >
               <table class="table noTopBorder">
                 <tr>
                   <td class="col-md-4">{{taskWorking.branchName}}</td>
@@ -119,15 +119,15 @@
                   <td class="col-md-4">{{taskWorking.taskStatus}}</td>
                 </tr>
                 <tr [hidden]="!taskWorking.a">
-                  <td colspan="7">
+                  <td colspan="3">
                     <ul>
                       <li>
-                        <div class="col-md-6">projectId:{{taskWorking.projectId}}</div>
-                        <div class="col-md-6">branchDate:{{taskWorking.branchDate}}</div>
+                        <div class="col-md-12">projectId:{{taskWorking.projectId}}</div>
+                        <div class="col-md-12">branchDate:{{taskWorking.branchDate}}</div>
                       </li>
                       <li>
-                        <div class="col-md-6">branchMsg:{{taskWorking.branchMsg}}</div>
-                        <div class="col-md-6">createTime:{{taskWorking.createTime}}</div>
+                        <div class="col-md-12">branchMsg:{{taskWorking.branchMsg}}</div>
+                        <div class="col-md-12">createTime:{{taskWorking.createTime}}</div>
                       </li>
                     </ul>
                   </td>
@@ -142,7 +142,7 @@
     <div class="rightBottom">
       <div class="panel panel-default" style="margin-bottom: 0;">
         <div class="panel-heading">
-          <h3 class="panel-title">SandBoxes</h3>
+          <h3 class="panel-title">Sandboxes</h3>
         </div>
       </div>
       <div>
@@ -159,7 +159,7 @@
           </thead>
           <tbody>
           <tr *ngFor="let sandboxes of sandboxesList" (click)="sandboxes.a = !sandboxes.a">
-            <td colspan="8" class="nopadding" >
+            <td colspan="6" class="nopadding" >
               <table class="table noTopBorder">
                 <tr>
                   <td class="col-md-2">{{sandboxes.sandboxName}}</td>
@@ -170,7 +170,7 @@
                   <td class="col-md-1">{{sandboxes.available}}</td>
                 </tr>
                 <tr [hidden]="!sandboxes.a">
-                  <td colspan="7">
+                  <td colspan="6">
                     <ul>
                       <li>
                         <div class="col-md-12">OccupiedReason:{{sandboxes.occupiedReason}}</div>
