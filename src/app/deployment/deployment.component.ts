@@ -14,8 +14,8 @@ export class DeploymentComponent implements OnInit {
   bundleHistoryList: any = [];
   sandboxId: any;
   description: any;
-  verifySkipped: boolean;
-  bundleType: any;
+  verifySkipped: boolean = true;
+  bundleType: any = 1;
   showTag: boolean = false;
   formerBundleId: any;
 
