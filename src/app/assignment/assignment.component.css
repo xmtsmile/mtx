@@ -21,4 +21,13 @@
 .noTopBorder td{
   border-right: 1px solid #ddd;
 }
+.assignTableStyle tr:hover{
+  background-color: #94A6B0;
+}
+.assignListStyle li{
+  border-bottom: 1px solid #eee;
+}
+.assignListStyle li:hover{
+  background-color: #eee;
+}
 

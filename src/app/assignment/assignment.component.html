@@ -1,30 +1,26 @@
 <div class="col-md-2 borderRight noPadding">
-  <div class="panel panel-default">
+  <div class="panel panel-default" style="margin-bottom:0px;">
     <div class="panel-heading">
       <h3 class="panel-title" style="display: inline-block;margin-right:20px;">有任务的项目组</h3>
     </div>
-    <div class="panel-body">
-      <ul>
-        <li class="col-md-12"  style="height:25px;" *ngFor="let taskGroup of taskGroupList" style="line-height: 15px;">
-          <div class="col-md-5" (click)="showTaskProject(taskGroup)">{{taskGroup.groupName}}</div>
-        </li>
-      </ul>
-    </div>
   </div>
+  <ul class="assignListStyle">
+    <li class="col-md-12"  style="height:35px; line-height:35px;" *ngFor="let taskGroup of taskGroupList">
+      <div class="col-md-5" (click)="showTaskProject(taskGroup)">{{taskGroup.groupName}}</div>
+    </li>
+  </ul>
 </div>
 <div class="col-md-2 borderRight noPadding">
-  <div class="panel panel-default">
+  <div class="panel panel-default" style="margin-bottom:0px;">
     <div class="panel-heading">
       <h3 class="panel-title" style="display: inline-block;margin-right:20px;">指定项目组下的项目</h3>
     </div>
-    <div class="panel-body">
-      <ul>
-        <li class="col-md-12" *ngFor="let taskProject of taskProjectList" style="line-height: 15px;">
-          <div class="col-md-5" (click)="showTask(taskProject)">{{taskProject.projectName}}</div>
-        </li>
-      </ul>
-    </div>
   </div>
+  <ul class="assignListStyle">
+    <li class="col-md-12" *ngFor="let taskProject of taskProjectList" style="height:35px; line-height:35px;">
+      <div class="col-md-5" (click)="showTask(taskProject)">{{taskProject.projectName}}</div>
+    </li>
+  </ul>
 </div>
 
 <div class="col-md-8 borderRight noPadding">
@@ -50,7 +46,7 @@
         <tbody>
         <tr *ngFor="let unassignedtask of unassignedtaskList" (click)="unassignedtask.a = !unassignedtask.a">
           <td colspan="8" class="noPadding" >
-            <table class="table noTopBorder">
+            <table class="table noTopBorder assignTableStyle">
               <tr>
                 <td class="col-md-1">{{unassignedtask.taskId}}</td>
                 <td class="col-md-1">{{unassignedtask.assignerId}}</td>
@@ -102,7 +98,7 @@
         <tbody>
         <tr *ngFor="let assignedtask of assignedtaskList" (click)="assignedtask.a = !assignedtask.a">
           <td colspan="8" class="noPadding" >
-            <table class="table noTopBorder">
+            <table class="table noTopBorder assignTableStyle">
               <tr>
                 <td class="col-md-1">{{assignedtask.taskId}}</td>
                 <td class="col-md-1">{{assignedtask.assignerId}}</td>

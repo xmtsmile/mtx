@@ -1,43 +1,39 @@
 <div class="col-md-2 borderRight noPadding">
-  <div class="panel panel-default">
+  <div class="panel panel-default" style="margin-bottom:0px;">
     <div class="panel-heading">
       <h3 class="panel-title" style="display: inline-block;margin-right:20px;">groupList</h3>
       <i class="fa fa-plus" data-toggle="modal" data-target="#newGroup" aria-hidden="true"></i>
     </div>
-    <div class="panel-body">
-      <ul>
-        <li class="col-md-12" style="height:25px;" *ngFor="let group of groupList">
-          <div class="col-md-5" (click)="showProject(group)">{{group.groupName}}</div>
-          <div class="col-md-7"  *ngIf="group.groupName=='default'?false:true">
-            <i class="fa fa-lg fa-pencil-square-o" style="margin-right:10px;"
-               (click)="getGroupInfo(group)" aria-hidden="true">
-            </i>
-            <i class="fa fa-trash fa-lg"  aria-hidden="true" (click)="delete(group)"></i>
-          </div>
-        </li>
-      </ul>
-    </div>
   </div>
+    <ul class="projectListStyle">
+      <li class="col-md-12" style="height:35px; line-height:35px;" *ngFor="let group of groupList">
+        <div class="col-md-5" (click)="showProject(group)">{{group.groupName}}</div>
+        <div class="col-md-7"  *ngIf="group.groupName=='default'?false:true">
+          <i class="fa fa-lg fa-pencil-square-o" style="margin-right:10px;"
+             (click)="getGroupInfo(group)" aria-hidden="true">
+          </i>
+          <i class="fa fa-trash fa-lg"  aria-hidden="true" (click)="delete(group)"></i>
+        </div>
+      </li>
+    </ul>
 </div>
 
 <div class="col-md-2 borderRight noPadding">
-  <div class="panel panel-default">
+  <div class="panel panel-default" style="margin-bottom:0px;">
     <div class="panel-heading">
       <h3 class="panel-title" style="display: inline-block;margin-right:20px;">projectList</h3>
       <i class="fa fa-plus"  data-toggle="modal" data-target="#newProject" aria-hidden="true"></i>
     </div>
-    <div class="panel-body">
-      <ul>
-        <li class="col-md-12" style="height:25px;padding-left:5px;" *ngFor="let project of projectList">
-          <div class="col-md-4" (click)="showDeveloper(project)">{{project.projectName}}</div>
-          <div class="col-md-8">
-            <i class="fa fa-lg fa-pencil-square-o" style="margin-right:10px;" aria-hidden="true" (click)="editProject(project)"></i>
-            <i class="fa fa-lg fa-external-link" style="margin-right:10px;" aria-hidden="true" (click)="moveProject(project)"></i>
-            <i class="fa fa-trash fa-lg"  aria-hidden="true" (click)="deleteProject(project)"></i>
-          </div>
-        </li>
-      </ul>
-    </div>
+    <ul class="projectListStyle">
+      <li class="col-md-12" style="height:35px;line-height:35px;padding-left:5px;" *ngFor="let project of projectList">
+        <div class="col-md-4" (click)="showDeveloper(project)">{{project.projectName}}</div>
+        <div class="col-md-8">
+          <i class="fa fa-lg fa-pencil-square-o" style="margin-right:10px;" aria-hidden="true" (click)="editProject(project)"></i>
+          <i class="fa fa-lg fa-external-link" style="margin-right:10px;" aria-hidden="true" (click)="moveProject(project)"></i>
+          <i class="fa fa-trash fa-lg"  aria-hidden="true" (click)="deleteProject(project)"></i>
+        </div>
+      </li>
+    </ul>
   </div>
 </div>
 
@@ -54,17 +50,15 @@
       <div class="panel-heading">
         <h3 class="panel-title" style="display: inline-block;margin-right:20px;">指定项目下的开发人员</h3>
       </div>
-      <div class="panel-body">
-        <ul>
-          <li class="col-md-12" style="height:25px;" *ngFor="let developerProject of projectDeveloper">
-            <div class="col-md-4">{{developerProject.userName}}</div>
-            <div class="col-md-8">
-              <i class="fa fa-lg fa-pencil-square-o" style="margin-right:10px;" aria-hidden="true" (click)="editDeveloper(developerProject)"></i>
-              <i class="fa fa-trash fa-lg"  aria-hidden="true" (click)="deleteDeveloper(developerProject)"></i>
-            </div>
-          </li>
-        </ul>
-      </div>
+      <ul class="projectListStyle">
+        <li class="col-md-12" style="height:35px;line-height:35px;" *ngFor="let developerProject of projectDeveloper">
+          <div class="col-md-4">{{developerProject.userName}}</div>
+          <div class="col-md-8">
+            <i class="fa fa-lg fa-pencil-square-o" style="margin-right:10px;" aria-hidden="true" (click)="editDeveloper(developerProject)"></i>
+            <i class="fa fa-trash fa-lg"  aria-hidden="true" (click)="deleteDeveloper(developerProject)"></i>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
   <!--<div class="col-md-12 rightBottom noPadding">-->
@@ -206,7 +200,7 @@
               </select>
             </div>
             <div class="col-md-6 col-md-push-3" *ngIf="passKey==0">
-              <input type="text"  [(ngModel)]="gitPass" name="gitPass" class="form-control" placeholder="请输入gitPass"/>
+              <input type="password"  [(ngModel)]="gitPass" name="gitPass" class="form-control" placeholder="请输入gitPass"/>
             </div>
             <div class="col-md-6 col-md-push-3" *ngIf="passKey==1">
               <textarea class="form-control" [(ngModel)]="gitPrivateKey" name="gitPrivateKey" rows="4"></textarea>
@@ -489,7 +483,7 @@
       </div>
     </div>
   </div>
-</div>   //developerDetail
+</div>
 
 <!--editDeveloper-->
 <div class="modal fade" id="editDeveloper" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -527,12 +521,12 @@
               <input type="text"  [(ngModel)]="userId" name="userId" class="form-control"/>
             </div>
           </div>
-          <div class="form-group">
-            <label class="col-md-3 control-label">密码</label>
-            <div class="col-md-5">
-              <input type="password"  [(ngModel)]="userPass" name="userPass" class="form-control"/>
-            </div>
-          </div>
+          <!--<div class="form-group">-->
+            <!--<label class="col-md-3 control-label">密码</label>-->
+            <!--<div class="col-md-5">-->
+              <!--<input type="password"  [(ngModel)]="userPass" name="userPass" class="form-control"/>-->
+            <!--</div>-->
+          <!--</div>-->
           <!--<div class="form-group">-->
             <!--<label class="col-md-3 control-label">头像路径</label>-->
             <!--<div class="col-md-5">-->

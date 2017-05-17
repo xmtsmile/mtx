@@ -16,6 +16,7 @@ export class SandBoxesComponent implements OnInit{
   sandboxName: any;
   port: any;
   address: any;
+  databaseName: any;
   username: any;
   password: any;
   description: any;
@@ -117,11 +118,12 @@ export class SandBoxesComponent implements OnInit{
     'sandboxName': this.sandboxName,
     'address': this.address,
     'port': this.port,
+    'databaseName': this.databaseName,
     'username': this.username,
     'password': this.password,
     'description': this.description
     };
-    this.httpPost.dataAjax('GET', '/mtx/administration/resource/group/sandbox/create', 'x-www-form-urlencoded', params, function(res) {
+    this.httpPost.dataAjax('POST', '/mtx/administration/resource/group/sandbox/create', 'application/json;charset=UTF-8', JSON.stringify(params), function(res) {
       if (res.code == '0') {
         console.log('/mtx/administration/resource/group/create', res);
         $('#newSandBoxes').modal('hide');
@@ -160,6 +162,7 @@ export class SandBoxesComponent implements OnInit{
         that.sandboxName = res.result.sandboxName;
         that.address = res.result.address;
         that.port = res.result.port;
+        that.databaseName = res.result.databaseName;
         that.username = res.result.username;
         that.password = res.result.password;
         that.description = res.result.description;
@@ -173,6 +176,7 @@ export class SandBoxesComponent implements OnInit{
       'sandboxName': this.sandboxName,
       'address': this.address,
       'port': this.port,
+      'databaseName': this.databaseName,
       'username': this.username,
       'password': this.password,
       'description': this.description

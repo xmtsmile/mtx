@@ -16,3 +16,6 @@
 .noPadding{
   padding:0px;
 }
+.projectListStyle li{
+  border-bottom: 1px solid #eee;
+}

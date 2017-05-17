@@ -1,45 +1,57 @@
 <div class="col-md-12 nopadding">
-<div class="col-md-1 nopadding divHeight" style="border-right:2px solid #eeeeee;">
+<div class="col-md-3 nopadding divHeight" style="border-right:2px solid #eeeeee;">
   <div class="leftNavTop">
-    <h4>GroupList</h4>
-    <ul class="leftNavList">
-      <li *ngFor="let group of groupList" (click)="showProject(group)">{{group.groupName}}</li>
-    </ul>
-  </div>
-  <div class="leftNavBottom">
-    <h4>ProjectList</h4>
-    <ul>
-      <li class="leftNavList" *ngFor="let project of projectList" (click)="showProjectInfo(project)" >
-        {{project.projectName}}
-        <div class="col-md-1 pull-right" *ngIf='checkoutTag'>
-          <i class="fa fa-hand-o-left" aria-hidden="true"></i>
-        </div>
-      </li>
-    </ul>
-  </div>
-</div>
-<div class="col-md-11 nopadding">
-  <div class="col-md-2 nopadding">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">项目详细信息</h3>
-      </div>
-      <div class="panel-body" *ngIf='projectinfoTag'>
-        <div class="col-md-12 nopadding">
-          <p>projectName： {{projectInfo.projectName}}</p>
-          <p>creatorId： {{projectInfo.creatorId}}</p>
-          <p>gitName： {{projectInfo.gitName}}</p>
-          <p>gitPass： {{projectInfo.gitPass}}</p>
-          <p>gitEmail： {{projectInfo.gitEmail}}</p>
-          <p>gitKeyPath： {{projectInfo.gitKeyPath}}</p>
-          <p>scriptPath： {{projectInfo.scriptPath}}</p>
-          <p>repositoryUrl： {{projectInfo.repositoryUrl}}</p>
-          <p>description： {{projectInfo.description}}</p>
+    <div class="col-md-6 nopadding leftNavTop" style="border-right:2px solid #e1edf7;">
+      <div class="panel panel-default" style="margin-bottom:0px;">
+        <div class="panel-heading">
+          <h3 class="panel-title">GroupList</h3>
         </div>
       </div>
+      <ul class="leftNavList">
+        <li *ngFor="let group of groupList" (click)="showProject(group)">{{group.groupName}}</li>
+      </ul>
+    </div>
+    <div class="col-md-6 nopadding">
+      <div class="panel panel-default" style="margin-bottom: 0px;">
+        <div class="panel-heading">
+          <h3 class="panel-title">ProjectList</h3>
+        </div>
+      </div>
+      <ul class="leftNavList">
+        <li *ngFor="let project of projectList" (click)="showProjectInfo(project)" >
+          {{project.projectName}}
+          <div class="col-md-1 pull-right" *ngIf='checkoutTag'>
+            <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
-  <div class="col-md-10 nopadding" style="border-left: solid #eeeeee 2px; ">
+  <div class="leftNavBottom">
+    <div class="col-md-12 nopadding">
+    <div class="panel panel-default">
+    <div class="panel-heading">
+    <h3 class="panel-title">项目详细信息</h3>
+    </div>
+    <div class="leftNavBottom" *ngIf='projectinfoTag'>
+    <div class="col-md-12" style="padding-top:10px;">
+    <p>projectName： {{projectInfo.projectName}}</p>
+    <p>creatorId： {{projectInfo.creatorId}}</p>
+    <p>gitName： {{projectInfo.gitName}}</p>
+    <p>gitPass： {{projectInfo.gitPass}}</p>
+    <p>gitEmail： {{projectInfo.gitEmail}}</p>
+    <p>gitKeyPath： {{projectInfo.gitKeyPath}}</p>
+    <p>scriptPath： {{projectInfo.scriptPath}}</p>
+    <p>repositoryUrl： {{projectInfo.repositoryUrl}}</p>
+    <p>description： {{projectInfo.description}}</p>
+    </div>
+    </div>
+    </div>
+    </div>
+  </div>
+</div>
+<div class="col-md-9 nopadding">
+  <div class="col-md-12 nopadding" style="border-left: solid #eeeeee 2px; ">
     <div class="rightTop">
       <div class="panel panel-default" style="margin-bottom:0px;">
         <div class="panel-heading">
@@ -62,7 +74,7 @@
           <tbody>
           <tr *ngFor="let task of taskList" (click)="task.a = !task.a">
             <td colspan="8" class="nopadding" >
-              <table class="table noTopBorder">
+              <table class="table noTopBorder taskStyle">
                 <tr>
                   <td class="col-md-1">{{task.taskId}}</td>
                   <td class="col-md-2">{{task.assignerId}}</td>
@@ -114,7 +126,7 @@
           <tbody>
           <tr *ngFor="let taskWorking of taskWorkingList" (click)="taskWorking.a = !taskWorking.a">
             <td colspan="8" class="nopadding" >
-              <table class="table noTopBorder">
+              <table class="table noTopBorder taskStyle">
                 <tr>
                   <td class="col-md-1">{{taskWorking.taskId}}</td>
                   <td class="col-md-2">{{taskWorking.assignerId}}</td>
@@ -165,7 +177,7 @@
           <tbody>
           <tr *ngFor="let sandboxes of sandboxesList" (click)="sandboxes.a = !sandboxes.a">
             <td colspan="8" class="nopadding" >
-              <table class="table noTopBorder">
+              <table class="table noTopBorder taskStyle">
                 <tr>
                   <td class="col-md-1">{{sandboxes.sandboxName}}</td>
                   <td class="col-md-2">{{sandboxes.username}}</td>

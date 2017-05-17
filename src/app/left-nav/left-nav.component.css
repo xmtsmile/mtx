@@ -12,15 +12,26 @@
   margin-bottom:0px;
 }
 .leftNavList{
-  padding: 12px 5px 12px 15px;
   display: block;
   font-size: 14px;
-  background: #F5F5F5;
 }
+.leftNavList li{
+  padding: 12px 5px 12px 15px;
+  border-bottom:1px solid #eee;
+}
+.leftNavList li:hover{
+  background-color:#eee;
+}
+.leftNavList li:link{
+   background-color:#eee;
+ }
 .noTopBorder td{
   border-right: 1px solid #ddd;
 }
 .rightTop{
   height:auto;
   overflow-y: scroll;
+}
+.taskStyle tr:hover{
+  background-color: #94A6B0;
 }
