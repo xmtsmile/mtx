@@ -106,7 +106,7 @@ export class UserProfileComponent implements OnInit {
           };
           that.httpPost.dataAjax('POST', '/mtx/user/update', 'application/json;charset=UTF-8', JSON.stringify(params), function (res) {
             if (res.code == '0') {
-              alert('修改成功！');
+              alert('Succeed modify the user info');
             }
           });
         }
@@ -123,7 +123,7 @@ export class UserProfileComponent implements OnInit {
       };
       that.httpPost.dataAjax('POST', '/mtx/user/update', 'application/json;charset=UTF-8', JSON.stringify(params), function (res) {
         if (res.code == '0') {
-          alert('修改成功！');
+          alert('Succeed modify the user info');
         }
       });
     }

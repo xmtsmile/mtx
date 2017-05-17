@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild, Inject } from '@angular/core';
-import { Router, NavigationEnd, RoutesRecognized } from '@angular/router';
-import { PageCacheService } from '../page-cache.service';
-import { TopNavComponent } from '../top-nav/top-nav.component';
+import {Component, OnInit, ViewChild, Inject} from '@angular/core';
+import {Router, NavigationEnd, RoutesRecognized} from '@angular/router';
+import {PageCacheService} from '../page-cache.service';
+import {TopNavComponent} from '../top-nav/top-nav.component';
 
 declare var $: any;
 
@@ -12,24 +12,24 @@ declare var $: any;
   providers: [PageCacheService]
 })
 export class WorkspaceComponent implements OnInit {
-
+  
   @ViewChild(TopNavComponent)
   topNavComponent: TopNavComponent;
-
+  
   private pageCacheKeys: string[] = [
     "/workspace/repository",
     "/workspace/development",
     "/workspace/operations",
     "/workspace/workhome"
   ];
-
+  
   constructor(private router: Router, @Inject("windowObject") window: Window,
-    private pageCacheService: PageCacheService) {
-
+              private pageCacheService: PageCacheService) {
+    
     router.events.forEach((event) => {
       // NavigationStart -> RoutesRecognized -> NavigationEnd
       if (event instanceof NavigationEnd) {
-
+        
         switch (event.url) {
           case this.pageCacheKeys[0]:
             var repo = this.pageCacheService.get(this.pageCacheKeys[0]);
@@ -42,7 +42,7 @@ export class WorkspaceComponent implements OnInit {
             var screenHeight = $(window).height() - 61;
             $("#page-repository").find("#global-container").css("height", screenHeight + "px");
             break;
-
+          
           case this.pageCacheKeys[1]:
             var devel = this.pageCacheService.get(this.pageCacheKeys[1]);
             if (devel && devel.length > 0) {
@@ -50,7 +50,7 @@ export class WorkspaceComponent implements OnInit {
               $.addtabs();
             }
             break;
-
+          
           case this.pageCacheKeys[2]:
             // console.log("end: " + this.pageCacheService.get(this.pageCacheKeys[2]));
             this.topNavComponent.fetchPage(
@@ -58,7 +58,7 @@ export class WorkspaceComponent implements OnInit {
               this.topNavComponent.currentSandboxId
             );
             break;
-
+          
           case this.pageCacheKeys[3]:
             var whome = this.pageCacheService.get(this.pageCacheKeys[3]);
             if (whome && whome.length > 0) {
@@ -67,7 +67,7 @@ export class WorkspaceComponent implements OnInit {
             break;
         }
       } else if (event instanceof RoutesRecognized) {
-
+        
         var current: any;
         if ((current = $('#page-repository')).length > 0) {
           this.pageCacheService.put(this.pageCacheKeys[0], $("#page-repository").children());
@@ -78,13 +78,13 @@ export class WorkspaceComponent implements OnInit {
           var href = document.location.href;
           var title = document.title;
           // console.log("reco: " + document.location.href);
-
+          
           var sandboxes = this.pageCacheService.get(this.pageCacheKeys[2]);
           if (!sandboxes) {
             sandboxes = new Map();
             this.pageCacheService.put(this.pageCacheKeys[2], sandboxes);
           }
-
+          
           sandboxes.set(this.topNavComponent.currentSandboxId, {
             "index": title == "" || title == "phpMyAdmin",
             "url": href && href != "about:blank" ? href : undefined
@@ -94,10 +94,10 @@ export class WorkspaceComponent implements OnInit {
         }
       }
     });
-
+    
   };
-
+  
   ngOnInit() {
   }
-
+  
 }

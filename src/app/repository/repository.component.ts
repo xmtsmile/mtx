@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
+import {Component, OnInit, OnDestroy, Inject} from '@angular/core';
 
 declare var $: any;
 
@@ -8,14 +8,14 @@ declare var $: any;
   styleUrls: ['./repository.component.css'],
 })
 export class RepositoryComponent implements OnInit, OnDestroy {
-
+  
   constructor() {
   }
-
+  
   ngOnInit() {
   }
-
+  
   ngOnDestroy() {
   }
-
+  
 }

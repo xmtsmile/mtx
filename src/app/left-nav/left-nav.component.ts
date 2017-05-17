@@ -101,7 +101,7 @@ export class LeftNavComponent implements OnInit {
     console.log('params---', params);
     this.httpPost.dataAjax('GET', '/mtx/main/group/project/task/accept', 'x-www-form-urlencoded', params, function (res) {
       if (res.code == '0') {
-        alert('接受任务成功！');
+        alert('Succeed accept the task');
         that.httpPost.dataAjax('GET', '/mtx/main/group/project/tasks/assgined', 'x-www-form-urlencoded', {'projectId': that.projectTag}, function (res1) {
           if (res1.code == '0') {
             that.taskList = res1.result;

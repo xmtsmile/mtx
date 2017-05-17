@@ -1,5 +1,5 @@
-import { Component, OnInit, NgModule } from '@angular/core';
-import { HttpPost} from '../../providers/httpPost';
+import {Component, OnInit, NgModule} from '@angular/core';
+import {HttpPost} from '../../providers/httpPost';
 declare var $: any;
 
 @Component({
@@ -18,20 +18,21 @@ export class DeploymentComponent implements OnInit {
   bundleType: any = 1;
   showTag: boolean = false;
   formerBundleId: any;
-
-  constructor(public httpPost: HttpPost) { }
-
+  
+  constructor(public httpPost: HttpPost) {
+  }
+  
   ngOnInit() {
     var that = this;
-    $(function (){
+    $(function () {
       const screenHeight = $(window).height() - 61;
       $('.divHeight').css('height', screenHeight + 'px');
-      that.httpPost.dataAjax('POST', '/mtx/deployment/sandbox/available/list', 'x-www-form-urlencoded', {}, function(res) {
-          if (res.code == '0') {
-            that.availableList = res.result;
-          }
-        });
-      that.httpPost.dataAjax('GET', '/mtx/deployment/sandbox/list', 'x-www-form-urlencoded', {}, function(res) {
+      that.httpPost.dataAjax('POST', '/mtx/deployment/sandbox/available/list', 'x-www-form-urlencoded', {}, function (res) {
+        if (res.code == '0') {
+          that.availableList = res.result;
+        }
+      });
+      that.httpPost.dataAjax('GET', '/mtx/deployment/sandbox/list', 'x-www-form-urlencoded', {}, function (res) {
         if (res.code == '0') {
           console.log('mtx/deployment/sandbox/list', res);
           that.sandboxList = res.result;
@@ -39,23 +40,24 @@ export class DeploymentComponent implements OnInit {
       });
     });
   }
+  
   applySandbox() {
     var that = this;
     if (this.sandboxId == null || this.sandboxId == '') {
-      alert('请选择沙盒名称！');
-    }else if (this.description == null || this.description == '') {
-      alert('请填写沙盒描述！');
-    }else {
+      alert('Please select the sandbox name');
+    } else if (this.description == null || this.description == '') {
+      alert('Please write the sandbox description');
+    } else {
       var params = {
         'sandboxId': this.sandboxId,
         'description': this.description
       };
       this.httpPost.dataAjax('POST', '/mtx/deployment/sandbox/acquire', 'application/json;charset=UTF-8',
-        JSON.stringify(params), function(res) {
+        JSON.stringify(params), function (res) {
           if (res.code == '0') {
             alert(res.msg);
             that.sandboxlist();
-            that.httpPost.dataAjax('POST', '/mtx/deployment/sandbox/available/list', 'x-www-form-urlencoded', {}, function(res2) {
+            that.httpPost.dataAjax('POST', '/mtx/deployment/sandbox/available/list', 'x-www-form-urlencoded', {}, function (res2) {
               if (res2.code == '0') {
                 that.availableList = res2.result;
               }
@@ -65,21 +67,23 @@ export class DeploymentComponent implements OnInit {
         });
     }
   }
-  deploymentInfo(){
-    this.httpPost.dataAjax('GET', '/mtx/deployment/sandbox/list', 'x-www-form-urlencoded', {}, function(res) {
+  
+  deploymentInfo() {
+    this.httpPost.dataAjax('GET', '/mtx/deployment/sandbox/list', 'x-www-form-urlencoded', {}, function (res) {
       if (res.code == '0') {
         console.log('/mtx/deployment/sandbox/list', res.result);
       }
     });
   };
+  
   deletesandBox(available) {
     var sandId = available.sandboxId;
     var that = this;
     const params = {'sandboxId': sandId};
-    this.httpPost.dataAjax('GET', '/mtx/deployment/sandbox/release', 'x-www-form-urlencoded', params, function(res) {
+    this.httpPost.dataAjax('GET', '/mtx/deployment/sandbox/release', 'x-www-form-urlencoded', params, function (res) {
       if (res.code == '0') {
         that.sandboxlist();
-        that.httpPost.dataAjax('POST', '/mtx/deployment/sandbox/available/list', 'x-www-form-urlencoded', {}, function(res1) {
+        that.httpPost.dataAjax('POST', '/mtx/deployment/sandbox/available/list', 'x-www-form-urlencoded', {}, function (res1) {
           if (res1.code == '0') {
             that.availableList = res1.result;
           }
@@ -87,19 +91,21 @@ export class DeploymentComponent implements OnInit {
         console.log('/mtx/deployment/sandbox/release', res);
       }
     });
- };
+  };
+  
   showdeployHistory() {
     const that = this;
-    this.httpPost.dataAjax('GET', '/mtx/deployment/history/deploy', 'x-www-form-urlencoded', {}, function(res) {
+    this.httpPost.dataAjax('GET', '/mtx/deployment/history/deploy', 'x-www-form-urlencoded', {}, function (res) {
       if (res.code == '0') {
         console.log('/mtx/deployment/history/deploy', res);
         that.deployHistoryList = res.result;
       }
     });
   };
+  
   showbundleHistory() {
     const that = this;
-    this.httpPost.dataAjax('GET', '/mtx/deployment/history/bundle', 'x-www-form-urlencoded', {}, function(res) {
+    this.httpPost.dataAjax('GET', '/mtx/deployment/history/bundle', 'x-www-form-urlencoded', {}, function (res) {
       if (res.code == '0') {
         console.log('/mtx/deployment/history/bundle', res);
         that.bundleHistoryList = res.result;
@@ -109,13 +115,15 @@ export class DeploymentComponent implements OnInit {
       }
     });
   };
-  showTagFunction (event) {
+  
+  showTagFunction(event) {
     if (event == '0') {
       this.showTag = true;
-    }else {
+    } else {
       this.showTag = false;
     }
   };
+  
   deploy() {
     var params = {
       'sandboxId': this.sandboxId,
@@ -123,43 +131,45 @@ export class DeploymentComponent implements OnInit {
       'verifySkipped': this.verifySkipped
     };
     this.httpPost.dataAjax('POST', '/mtx/deployment/action/deploy', 'application/json;charset=UTF-8',
-      JSON.stringify(params), function(res) {
+      JSON.stringify(params), function (res) {
         if (res.code == '0') {
           alert(res.msg);
           $('#applysandBox')[0].reset();
         }
       });
   };
+  
   bundle() {
     if (this.showTag == false) {
       var params = {
         'description': this.description
       };
       this.httpPost.dataAjax('POST', '/mtx/deployment/action/bundle', 'application/json;charset=UTF-8',
-        JSON.stringify(params), function(res) {
+        JSON.stringify(params), function (res) {
           if (res.code == '0') {
             alert(res.msg);
             $('#bundleForm')[0].reset();
           }
         });
-    }else {
+    } else {
       var params1 = {
         'formerBundleId': this.formerBundleId,
         'description': this.description,
       };
     }
     this.httpPost.dataAjax('POST', '/mtx/deployment/action/bundle', 'application/json;charset=UTF-8',
-      JSON.stringify(params1), function(res) {
+      JSON.stringify(params1), function (res) {
         if (res.code == '0') {
           alert(res.msg);
           $('#bundleForm')[0].reset();
         }
       });
   };
+  
   // sandboxlist
   sandboxlist() {
     var that = this;
-    that.httpPost.dataAjax('GET', '/mtx/deployment/sandbox/list', 'x-www-form-urlencoded', {}, function(res) {
+    that.httpPost.dataAjax('GET', '/mtx/deployment/sandbox/list', 'x-www-form-urlencoded', {}, function (res) {
       if (res.code == '0') {
         console.log('mtx/deployment/sandbox/list', res);
         that.sandboxList = res.result;
