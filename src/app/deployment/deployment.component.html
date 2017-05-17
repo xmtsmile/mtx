@@ -1,24 +1,24 @@
 <ul id="myTab" class="nav nav-tabs">
-  <li class="active"><a href="#sandBoxes" data-toggle="tab">SandBoxes</a></li>
-  <li (click)="deploymentInfo()"><a href="#deploymentDetails" data-toggle="tab">部署详情</a></li>
-  <li (click)="showdeployHistory()"><a href="#deploymentHistory" data-toggle="tab">部署历史</a></li>
-  <li><a href="#packDetail" data-toggle="tab">打包详情</a></li>
-  <li (click)="showbundleHistory()"><a href="#packHistory" data-toggle="tab">打包历史</a></li>
+  <li class="active"><a href="#sandBoxes" data-toggle="tab">Sandboxes</a></li>
+  <li (click)="deploymentInfo()"><a href="#deploymentDetails" data-toggle="tab">Deploy Details</a></li>
+  <li (click)="showdeployHistory()"><a href="#deploymentHistory" data-toggle="tab">Deploy History</a></li>
+  <li><a href="#packDetail" data-toggle="tab">Bundle Details</a></li>
+  <li (click)="showbundleHistory()"><a href="#packHistory" data-toggle="tab">Bundle History</a></li>
 </ul>
 <div id="myTabContent" class="tab-content">
   <div class="tab-pane fade in active" id="sandBoxes">
     <!--sandBoxes-->
-    <div class="col-md-3 nopadding" >
+    <div class="col-md-4 nopadding">
       <div class="left-top">
         <ol class="breadcrumb">
-          <li><a href="#">sandBoxes</a></li>
-          <li class="active"><a href="#">申请新的沙盒资源</a></li>
+          <li><span>Sandboxes</span></li>
+          <li class="active"><span>Accquire Sandbox</span></li>
         </ol>
         <form id="applysandBox" class="form-horizontal" role="form" style="padding-left:20px;">
           <div class="form-group">
-            <label class="col-md-3 control-label">沙盒名称</label>
-            <div class="col-md-7">
-              <select class="col-md-12" style="height:34px;" [(ngModel)]="sandboxId" name="sandboxId">
+            <label class="col-md-3 control-label">Sandbox Name</label>
+            <div class="col-md-8">
+              <select class="col-md-12 form-control" style="height:34px;" [(ngModel)]="sandboxId" name="sandboxId">
                 <option *ngFor="let available of availableList" value="{{available.sandboxId}}">
                   {{available.sandboxName}}
                 </option>
@@ -26,47 +26,49 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-3 control-label">沙盒描述</label>
-            <div class="col-md-7">
-              <textarea class="form-control col-md-7" [(ngModel)]="description" name="description" row="5"></textarea>
+            <label class="col-md-3 control-label">Accquire Description</label>
+            <div class="col-md-8">
+              <textarea class="form-control" [(ngModel)]="description" name="description" rows="5"
+                        style="resize: vertical;"></textarea>
             </div>
           </div>
           <div class="form-group">
-            <div class="col-sm-offset-4 col-sm-10">
-              <button class="btn btn-default" (click)="applySandbox()">申请</button>
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-8">
+              <button class="btn btn-default col-md-12" (click)="applySandbox()">Accquire</button>
             </div>
           </div>
         </form>
       </div>
     </div>
-    <div class="col-md-9 nopadding divHeight" style="border-left: 2px solid #eeeeee;">
-      <ol class="breadcrumb">
-        <li><a href="#">sandBoxes</a></li>
-        <li class="active"><a href="#">当前项目下的所有沙盒资源</a></li>
+    <div class="col-md-8 nopadding divHeight" style="border-left: 1px solid #eeeeee;">
+      <ol class="breadcrumb" style="margin-bottom: 0;">
+        <li><span>Sandboxes</span></li>
+        <li class="active"><span>Current Relate Sandboxes</span></li>
       </ol>
-      <div style="padding-right:20px;">
+      <div>
         <table class="table table-bordered">
           <thead>
           <tr>
-            <th class="col-md-2">sandboxName</th>
-            <th class="col-md-1">username</th>
-            <th class="col-md-1">password</th>
-            <!--<th class="col-md-2">occupied</th>-->
-            <!--<th class="col-md-2">developerId</th>-->
-            <th class="col-md-1">available</th>
-            <th class="col-md-1">操作</th>
+            <th class="col-md-2">Sandbox Name</th>
+            <th class="col-md-4">Address</th>
+            <th class="col-md-1">Port</th>
+            <th class="col-md-2">Username</th>
+            <th class="col-md-1">Password</th>
+            <th class="col-md-1">Available</th>
+            <th class="col-md-1">Operations</th>
           </tr>
           </thead>
           <tbody>
           <tr *ngFor="let available of sandboxList" (click)="available.a = !available.a">
-            <td colspan="8" class="nopadding" >
+            <td colspan="8" class="nopadding">
               <table class="table noTopBorder">
                 <tr>
                   <td class="col-md-2">{{available.sandboxName}}</td>
-                  <td class="col-md-1">{{available.username}}</td>
-                  <td class="col-md-2">{{available.password}}</td>
-                  <!--<td class="col-md-2">{{available.occupied}}</td>-->
-                  <!--<td class="col-md-2">{{available.developerId}}</td>-->
+                  <td class="col-md-4">{{available.address}}</td>
+                  <td class="col-md-1">{{available.port}}</td>
+                  <td class="col-md-2">{{available.username}}</td>
+                  <td class="col-md-1">{{available.password}}</td>
                   <td class="col-md-1">{{available.available}}</td>
                   <td class="col-md-1">
                     <i class="fa fa-lg fa-trash" aria-hidden="true" (click)="deletesandBox(available)"></i>
@@ -93,49 +95,51 @@
   <div class="tab-pane fade" id="deploymentDetails" style="margin-top:20px;">
     <!--bushuxiangqing-->
     <form class="form-horizontal" role="form">
-      <div class="form-group">
-        <label class="col-md-2 control-label">沙盒名称</label>
-        <select class="col-md-3" [(ngModel)]="sandboxId" name="sandboxId"  style="height:34px;margin-left: 15px;">
-          <option *ngFor="let available of availableList" value="{{available.sandboxId}}">
-            {{available.sandboxName}}
-          </option>
-        </select>
-        <div class="checkbox" style="display: inline-block;margin-left:30px;">
+      <div class="form-group col-md-12">
+        <label class="col-md-2 control-label">Sandbox Name</label>
+        <div class="col-md-4">
+          <select class="form-control" [(ngModel)]="sandboxId" name="sandboxId" style="height:34px;">
+            <option *ngFor="let available of availableList" value="{{available.sandboxId}}">
+              {{available.sandboxName}}
+            </option>
+          </select>
+        </div>
+        <div class="checkbox col-md-offset-1 col-md-2" style="display: inline-block">
           <label>
-            <input [(ngModel)]="verifySkipped" name="verifySkipped" type="checkbox"> 是否跳过测试
+            <input [(ngModel)]="verifySkipped" name="verifySkipped" type="checkbox"> SKIP Verification
           </label>
         </div>
-        <button class="btn btn-default" (click)="deploy()">部署</button>
+        <div class="col-md-1" style="display: inline-block">
+          <button class="btn btn-default" (click)="deploy()">Deploy</button>
+        </div>
       </div>
-      <div class="form-group">
-        <label class="col-md-2 control-label">部署描述</label>
-        <div class="col-md-5">
-          <textarea class="form-control col-md-7"  [(ngModel)]="description" name="description" rows="3"></textarea>
+      <div class="form-group col-md-12">
+        <label class="col-md-2 control-label">Deploy Description</label>
+        <div class="col-md-8">
+          <textarea class="form-control" [(ngModel)]="description" name="description" rows="8"
+                    style="resize: vertical;"></textarea>
         </div>
       </div>
     </form>
   </div>
-  <div class="tab-pane fade" id="deploymentHistory" style="margin-top:20px;">
+  <div class="tab-pane fade" id="deploymentHistory">
     <!--bushulishi-->
-    <table class="table table-bordered">
-      <caption>部署历史</caption>
+    <table class="table table-bordered table-striped">
       <thead>
       <tr>
-        <th>部署ID</th>
-        <th>发起部署用户</th>
-        <th>项目ID</th>
-        <th>Commit的ID</th>
-        <th>沙盒名称</th>
-        <th>部署描述</th>
-        <th>部署状态</th>
-        <th>部署结果描述</th>
+        <th>Deploy ID</th>
+        <th>Deployer Name</th>
+        <th>Commit ID</th>
+        <th>Sandbox Name</th>
+        <th>Deploy Description</th>
+        <th>Deploy Status</th>
+        <th>Deploy Result</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let deployHistory of deployHistoryList">
         <td>{{deployHistory.deployId}}</td>
         <td>{{deployHistory.deployerName}}</td>
-        <td>{{deployHistory.projectId}}</td>
         <td>{{deployHistory.commitId}}</td>
         <td>{{deployHistory.sandboxName}}</td>
         <td>{{deployHistory.description}}</td>
@@ -149,47 +153,47 @@
   <div class="tab-pane fade" id="packDetail" style="margin-top:20px;">
     <!--dabaoxiangqing-->
     <form class="form-horizontal" role="form" id="bundleForm">
-      <div class="form-group">
-        <label class="col-md-2 control-label">打包类型</label>
-        <div class="col-md-2">
-        <select class="col-md-12" style="height:34px;" [ngModel]="bundleType" (ngModelChange)="showTagFunction($event)" name="bundleType">
-          <option value="0">全量打包</option>
-          <option value="1">增量打包</option>
-        </select>
+      <div class="form-group col-md-12">
+        <label class="col-md-2 control-label">Bundle Type</label>
+        <div class="col-md-3">
+          <select class="col-md-12 form-control" style="height:34px;" [ngModel]="bundleType"
+                  (ngModelChange)="showTagFunction($event)" name="bundleType">
+            <option value="0">Fullly Bundle</option>
+            <option value="1" selected>Increamental Bundle</option>
+          </select>
         </div>
-        <div [hidden]='showTag' class="col-md-4">
-        <label class="col-md-3 control-label">基础包ID</label>
-        <div class="col-md-5">
-          <input type="text"  [(ngModel)]="formerBundleId" name="formerBundleId" class="form-control" placeholder="请输入基础包ID"/>
+        <div [hidden]='showTag'>
+          <label class="col-md-1 control-label">Base Bundle</label>
+          <div class="col-md-2">
+            <input type="text" [(ngModel)]="formerBundleId" name="formerBundleId" class="form-control"/>
+          </div>
         </div>
+        <div class="col-md-1">
+          <button class="btn btn-default" (click)="bundle()">Bundle</button>
         </div>
-        <button class="btn btn-default col-md-1" (click)="bundle()">打包</button>
-        <div class="col-md-3"></div>
       </div>
-      <div class="form-group">
-        <label class="col-md-2 control-label">打包描述</label>
-        <div class="col-md-5">
-          <textarea class="form-control col-md-5" [(ngModel)]="description" name="description" rows="3"></textarea>
+      <div class="form-group col-md-12">
+        <label class="col-md-2 control-label">Bundle Description</label>
+        <div class="col-md-8">
+          <textarea class="form-control" [(ngModel)]="description" name="description" rows="8"
+                    style="resize: vertical;"></textarea>
         </div>
       </div>
     </form>
   </div>
-  <div class="tab-pane fade" id="packHistory" style="margin-top:20px;">
+  <div class="tab-pane fade" id="packHistory">
     <!--dabaolishi-->
     <table class="table table-bordered">
-      <caption>打包历史</caption>
       <thead>
       <tr>
-        <th>打包ID</th>
-        <th>打包发起用户</th>
-        <th>基础包ID</th>
-        <th>项目ID</th>
-        <th>Commit的ID</th>
-        <th>打包描述</th>
-        <!--<th>包路径</th>-->
-        <th>打包状态</th>
-        <th>打包结果描述</th>
-        <th>操作</th>
+        <th>Bundle ID</th>
+        <th>Bundler Name</th>
+        <th>Base Bundle ID</th>
+        <th>Commit ID</th>
+        <th>Bundle Description</th>
+        <th>Bundle Status</th>
+        <th>Download</th>
+        <th>Bundle Result</th>
       </tr>
       </thead>
       <tbody>
@@ -197,11 +201,10 @@
         <td>{{bundleHistory.bundleId}}</td>
         <td>{{bundleHistory.bundlerName}}</td>
         <td>{{bundleHistory.formerBundleId}}</td>
-        <td>{{bundleHistory.projectId}}</td>
         <td>{{bundleHistory.commitId}}</td>
         <td>{{bundleHistory.description}}</td>
-        <!--<td>{{bundleHistory.bundlePath}}</td>-->
         <td>{{bundleHistory.status}}</td>
+        <td>{{bundleHistory.bundlePath}}</td>
         <td>{{bundleHistory.statusMsg}}</td>
         <td><i class="fa fa-arrow-down" aria-hidden="true"></i></td>
       </tr>

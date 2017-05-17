@@ -1,84 +1,83 @@
-<div class="col-md-2 borderRight noPadding">
-  <div class="panel panel-default" style="margin-bottom:0px;">
+<div class="col-md-3 borderRight noPadding">
+  <div class="panel panel-default" style="margin-bottom:0;">
     <div class="panel-heading">
-      <h3 class="panel-title" style="display: inline-block;margin-right:20px;">groupList</h3>
+      <h3 class="panel-title" style="display: inline-block;margin-right:20px;">Groups</h3>
       <i class="fa fa-plus" data-toggle="modal" data-target="#newGroup" aria-hidden="true"></i>
     </div>
-  </div>
     <ul class="projectListStyle">
-      <li class="col-md-12" style="height:35px; line-height:35px;" *ngFor="let group of groupList">
+      <li class="col-md-12 " style="height:35px;line-height:35px;padding-left:5px;" *ngFor="let group of groupList">
         <div class="col-md-5" (click)="showProject(group)">{{group.groupName}}</div>
-        <div class="col-md-7"  *ngIf="group.groupName=='default'?false:true">
+        <div class="col-md-7" *ngIf="group.groupName!='default'">
           <i class="fa fa-lg fa-pencil-square-o" style="margin-right:10px;"
              (click)="getGroupInfo(group)" aria-hidden="true">
           </i>
-          <i class="fa fa-trash fa-lg"  aria-hidden="true" (click)="delete(group)"></i>
+          <i class="fa fa-trash fa-lg" aria-hidden="true" (click)="delete(group)"></i>
         </div>
       </li>
     </ul>
+  </div>
 </div>
-
-<div class="col-md-2 borderRight noPadding">
+<div class="col-md-3 borderRight noPadding">
   <div class="panel panel-default" style="margin-bottom:0px;">
     <div class="panel-heading">
-      <h3 class="panel-title" style="display: inline-block;margin-right:20px;">projectList</h3>
-      <i class="fa fa-plus"  data-toggle="modal" data-target="#newProject" aria-hidden="true"></i>
+      <h3 class="panel-title" style="display: inline-block;margin-right:20px;">Projects</h3>
+      <i class="fa fa-plus" data-toggle="modal" data-target="#newProject" aria-hidden="true"></i>
     </div>
     <ul class="projectListStyle">
       <li class="col-md-12" style="height:35px;line-height:35px;padding-left:5px;" *ngFor="let project of projectList">
         <div class="col-md-4" (click)="showDeveloper(project)">{{project.projectName}}</div>
         <div class="col-md-8">
-          <i class="fa fa-lg fa-pencil-square-o" style="margin-right:10px;" aria-hidden="true" (click)="editProject(project)"></i>
-          <i class="fa fa-lg fa-external-link" style="margin-right:10px;" aria-hidden="true" (click)="moveProject(project)"></i>
-          <i class="fa fa-trash fa-lg"  aria-hidden="true" (click)="deleteProject(project)"></i>
+          <i class="fa fa-lg fa-pencil-square-o" style="margin-right:10px;" aria-hidden="true"
+             (click)="editProject(project)"></i>
+          <i class="fa fa-lg fa-external-link" style="margin-right:10px;" aria-hidden="true"
+             (click)="moveProject(project)"></i>
+          <i class="fa fa-trash fa-lg" aria-hidden="true" (click)="deleteProject(project)"></i>
         </div>
       </li>
     </ul>
   </div>
 </div>
-
-<div class="col-md-8 borderRight noPadding">
-  <div class="panel panel-default"  style="margin-bottom:0px;">
+<div class="col-md-6 borderRight noPadding">
+  <div class="panel panel-default" style="margin-bottom:0px;">
     <div class="panel-heading">
-      <h3 class="panel-title" style="display: inline-block;margin-right:20px;">developerList</h3>
-      <i class="fa fa-plus" style="margin-right:5px;" data-toggle="modal" data-target="#newDeveloper" aria-hidden="true"></i>
+      <h3 class="panel-title" style="display: inline-block;margin-right:20px;">Developers</h3>
+      <i class="fa fa-plus" style="margin-right:5px;" data-toggle="modal" data-target="#newDeveloper"
+         aria-hidden="true"></i>
       <i class="fa fa-reply-all" aria-hidden="true" (click)="allot()"></i>
     </div>
   </div>
   <div class="col-md-12 rightTop noPadding">
-    <div class="panel panel-default"  style="margin-bottom:0px;">
-      <div class="panel-heading">
-        <h3 class="panel-title" style="display: inline-block;margin-right:20px;">指定项目下的开发人员</h3>
-      </div>
-      <ul class="projectListStyle">
-        <li class="col-md-12" style="height:35px;line-height:35px;" *ngFor="let developerProject of projectDeveloper">
+    <div class="panel panel-default" style="margin-bottom:0px;">
+      <ul>
+        <li class="col-md-12" style="height:35px;line-height:35px;padding-left:5px;" *ngFor="let developerProject of projectDeveloper">
           <div class="col-md-4">{{developerProject.userName}}</div>
           <div class="col-md-8">
-            <i class="fa fa-lg fa-pencil-square-o" style="margin-right:10px;" aria-hidden="true" (click)="editDeveloper(developerProject)"></i>
-            <i class="fa fa-trash fa-lg"  aria-hidden="true" (click)="deleteDeveloper(developerProject)"></i>
+            <i class="fa fa-lg fa-pencil-square-o" style="margin-right:10px;" aria-hidden="true"
+               (click)="editDeveloper(developerProject)"></i>
+            <i class="fa fa-trash fa-lg" aria-hidden="true" (click)="deleteDeveloper(developerProject)"></i>
           </div>
         </li>
       </ul>
     </div>
   </div>
   <!--<div class="col-md-12 rightBottom noPadding">-->
-    <!--<div class="panel panel-default">-->
-      <!--<div class="panel-heading">-->
-        <!--<h3 class="panel-title" style="display: inline-block;margin-right:20px;">显示所有用户/管理员</h3>-->
-      <!--</div>-->
-      <!--<div class="panel-body">-->
-        <!--<ul>-->
-          <!--<li class="col-md-12" style="height:25px;" *ngFor="let developer of developerAll">-->
-            <!--<div class="col-md-4">{{developer.userName}}</div>-->
-            <!--<div class="col-md-8">-->
-              <!--<i class="fa fa-lg fa-pencil-square-o" style="margin-right:10px;" aria-hidden="true"></i>-->
-              <!--<i class="fa fa-lg fa-external-link" style="margin-right:10px;" aria-hidden="true"></i>-->
-              <!--<i class="fa fa-trash fa-lg"  aria-hidden="true"></i>-->
-            <!--</div>-->
-          <!--</li>-->
-        <!--</ul>-->
-      <!--</div>-->
-    <!--</div>-->
+  <!--<div class="panel panel-default">-->
+  <!--<div class="panel-heading">-->
+  <!--<h3 class="panel-title" style="display: inline-block;margin-right:20px;">显示所有用户/管理员</h3>-->
+  <!--</div>-->
+  <!--<div class="panel-body">-->
+  <!--<ul>-->
+  <!--<li class="col-md-12" style="height:25px;" *ngFor="let developer of developerAll">-->
+  <!--<div class="col-md-4">{{developer.userName}}</div>-->
+  <!--<div class="col-md-8">-->
+  <!--<i class="fa fa-lg fa-pencil-square-o" style="margin-right:10px;" aria-hidden="true"></i>-->
+  <!--<i class="fa fa-lg fa-external-link" style="margin-right:10px;" aria-hidden="true"></i>-->
+  <!--<i class="fa fa-trash fa-lg"  aria-hidden="true"></i>-->
+  <!--</div>-->
+  <!--</li>-->
+  <!--</ul>-->
+  <!--</div>-->
+  <!--</div>-->
   <!--</div>-->
 </div>
 
@@ -91,25 +90,28 @@
           &times;
         </button>
         <h4 class="modal-title" id="editLabel1">
-          EditGroup
+          Edit Project Group
         </h4>
       </div>
       <div class="modal-body">
-        <div class="form-group">
-          <label class="col-md-3 control-label">项目组名称</label>
-          <div class="col-md-6">
-            <input type="text"  [(ngModel)]="groupName" name="groupName" class="form-control" placeholder="请输入项目组的名称"/>
+        <form class="form-horizontal" role="form">
+          <div class="form-group">
+            <label class="col-md-3 control-label">Group Name</label>
+            <div class="col-md-8">
+              <input type="text" [(ngModel)]="groupName" name="groupName" class="col-md-12 form-control"
+                     placeholder="project group name"/>
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <div class="col-md-6">
-            <input type="hidden"  [(ngModel)]="groupId" name="groupId" class="form-control" />
+          <div class="form-group" style="display: none;">
+            <div class="col-md-6">
+              <input type="hidden" [(ngModel)]="groupId" name="groupId" class="form-control"/>
+            </div>
           </div>
-        </div>
+        </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary" (click)="saveGroupName()">保存</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="saveGroupName()">Save</button>
       </div>
     </div>
   </div>
@@ -124,20 +126,23 @@
           &times;
         </button>
         <h4 class="modal-title" id="editLabel">
-          newGroup
+          Create Project Group
         </h4>
       </div>
       <div class="modal-body">
-        <div class="form-group">
-          <label class="col-md-3 control-label">项目组名称</label>
-          <div class="col-md-6">
-            <input type="text"  [(ngModel)]="groupName" name="groupName" class="form-control" placeholder="请输入项目组的名称"/>
+        <form class="form-horizontal" role="form">
+          <div class="form-group">
+            <label class="col-md-3 control-label">Group Name</label>
+            <div class="col-md-8">
+              <input type="text" [(ngModel)]="groupName" name="groupName" class="col-md-12 form-control"
+                     placeholder="project group name"/>
+            </div>
           </div>
-        </div>
+        </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary" (click)="createGroup()">新建</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="createGroup()">Save</button>
       </div>
     </div>
   </div>
@@ -152,15 +157,15 @@
           &times;
         </button>
         <h4 class="modal-title" id="editLabel2">
-          newProject
+          Create New Project
         </h4>
       </div>
       <div class="modal-body">
         <form class="form-horizontal" role="form">
           <div class="form-group">
-            <label class="col-md-3 control-label">项目所在组</label>
-            <div class="col-md-6">
-              <select class="col-md-12" style="height:34px;" [(ngModel)]="groupId" name="groupId">
+            <label class="col-md-3 control-label">Group</label>
+            <div class="col-md-8">
+              <select class="col-md-12 form-control" style="height:34px;" [(ngModel)]="groupId" name="groupId">
                 <option *ngFor="let group of groupList" value="{{group.groupId}}">
                   {{group.groupName}}
                 </option>
@@ -168,61 +173,67 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-3 control-label">项目名称</label>
-            <div class="col-md-6">
-              <input type="text"  [(ngModel)]="projectName" name="projectName" class="form-control" placeholder="请输入项目的名称"/>
+            <label class="col-md-3 control-label">Name</label>
+            <div class="col-md-8">
+              <input type="text" [(ngModel)]="projectName" name="projectName" class="form-control"
+                     placeholder="project name"/>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-3 control-label">仓库地址</label>
-            <div class="col-md-6">
-              <input type="text"  [(ngModel)]="repositoryUrl" name="repositoryUrl" class="form-control" placeholder="请输入仓库的地址"/>
+            <label class="col-md-3 control-label">Repository</label>
+            <div class="col-md-8">
+              <input type="text" [(ngModel)]="repositoryUrl" name="repositoryUrl" class="form-control"
+                     placeholder="repository url"/>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-3 control-label">git名称</label>
-            <div class="col-md-6">
-              <input type="text"  [(ngModel)]="gitName" name="gitName" class="form-control" placeholder="请输入gitName"/>
+            <label class="col-md-3 control-label">Git Name</label>
+            <div class="col-md-8">
+              <input type="text" [(ngModel)]="gitName" name="gitName" class="form-control" placeholder="git name"/>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-3 control-label">git邮箱</label>
-            <div class="col-md-6">
-              <input type="text"  [(ngModel)]="gitEmail" name="gitEmail" class="form-control" placeholder="请输入gitEmail"/>
+            <label class="col-md-3 control-label">Git Email</label>
+            <div class="col-md-8">
+              <input type="text" [(ngModel)]="gitEmail" name="gitEmail" class="form-control" placeholder="git email"/>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-3 control-label">gitPass&Key</label>
-            <div class="col-md-6">
-              <select class="col-md-12" style="height:34px; margin-bottom:10px;" [(ngModel)]="passKey" name="passKey">
-                <option value="0" selected>gitPass</option>
-                <option value="1">gitPrivateKey</option>
+            <label class="col-md-3 control-label">Git Pass or Key</label>
+            <div class="col-md-8">
+              <select class="col-md-12 form-control" style="height:34px; margin-bottom:10px;" [(ngModel)]="passKey"
+                      name="passKey">
+                <option value="0" selected>Git Pass</option>
+                <option value="1">Git PrivateKey</option>
               </select>
             </div>
-            <div class="col-md-6 col-md-push-3" *ngIf="passKey==0">
-              <input type="password"  [(ngModel)]="gitPass" name="gitPass" class="form-control" placeholder="请输入gitPass"/>
+            <div class="col-md-8 col-md-push-3" *ngIf="passKey==0">
+              <input type="password" [(ngModel)]="gitPass" name="gitPass" class="form-control" placeholder="git pass"/>
             </div>
-            <div class="col-md-6 col-md-push-3" *ngIf="passKey==1">
-              <textarea class="form-control" [(ngModel)]="gitPrivateKey" name="gitPrivateKey" rows="4"></textarea>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-md-3 control-label">脚本路径</label>
-            <div class="col-md-6">
-              <input type="text"  [(ngModel)]="scriptPath" name="scriptPath" class="form-control" placeholder="请输入脚本路径"/>
+            <div class="col-md-8 col-md-push-3" *ngIf="passKey==1">
+              <textarea class="form-control" [(ngModel)]="gitPrivateKey" name="gitPrivateKey" rows="4"
+                        style="resize: vertical;"></textarea>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-3 control-label">描述</label>
-            <div class="col-md-6">
-              <textarea class="form-control"  [(ngModel)]="description" name="description" rows="4"></textarea>
+            <label class="col-md-3 control-label">Script Path</label>
+            <div class="col-md-8">
+              <input type="text" [(ngModel)]="scriptPath" name="scriptPath" class="form-control"
+                     placeholder="script path"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Description</label>
+            <div class="col-md-8">
+              <textarea class="form-control" [(ngModel)]="description" name="description" rows="4"
+                        style="resize: vertical;"></textarea>
             </div>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary" (click)="createProject()">新建</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="createProject()">Save</button>
       </div>
     </div>
   </div>
@@ -237,15 +248,15 @@
           &times;
         </button>
         <h4 class="modal-title" id="editLabel3">
-          editProject
+          Edit Project Info
         </h4>
       </div>
       <div class="modal-body">
         <form class="form-horizontal" role="form">
           <div class="form-group">
-            <label class="col-md-3 control-label">项目所在组</label>
-            <div class="col-md-6">
-              <select class="col-md-12" style="height:34px;" [(ngModel)]="groupId" name="groupId">
+            <label class="col-md-3 control-label">Group</label>
+            <div class="col-md-8">
+              <select class="col-md-12 form-control" style="height:34px;" [(ngModel)]="groupId" name="groupId">
                 <option *ngFor="let group of groupList" value="{{group.groupId}}">
                   {{group.groupName}}
                 </option>
@@ -253,67 +264,73 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-3 control-label">项目名称</label>
-            <div class="col-md-6">
-              <input type="text"  [disabled]='true' [(ngModel)]="projectName" name="projectName" class="form-control" placeholder="请输入项目的名称"/>
+            <label class="col-md-3 control-label">Name</label>
+            <div class="col-md-8">
+              <input type="text" [disabled]='true' [(ngModel)]="projectName" name="projectName" class="form-control"
+                     placeholder="project name"/>
             </div>
           </div>
           <div class="form-group" [hidden]="true">
-            <label class="col-md-3 control-label">项目Id</label>
-            <div class="col-md-6">
-              <input type="text"  [disabled]='true' [(ngModel)]="projectId" name="projectId" class="form-control"/>
+            <label class="col-md-3 control-label">Project ID</label>
+            <div class="col-md-8">
+              <input type="text" [disabled]='true' [(ngModel)]="projectId" name="projectId" class="form-control"/>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-3 control-label">仓库地址</label>
-            <div class="col-md-6">
-              <input type="text"  [disabled]='true' [(ngModel)]="repositoryUrl" name="repositoryUrl" class="form-control" placeholder="请输入仓库的地址"/>
+            <label class="col-md-3 control-label">Repository</label>
+            <div class="col-md-8">
+              <input type="text" [disabled]='true' [(ngModel)]="repositoryUrl" name="repositoryUrl" class="form-control"
+                     placeholder="repository url"/>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-3 control-label">git名称</label>
-            <div class="col-md-6">
-              <input type="text"  [(ngModel)]="gitName" name="gitName" class="form-control" placeholder="请输入gitName"/>
+            <label class="col-md-3 control-label">Git Name</label>
+            <div class="col-md-8">
+              <input type="text" [(ngModel)]="gitName" name="gitName" class="form-control" placeholder="git name"/>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-3 control-label">git邮箱</label>
-            <div class="col-md-6">
-              <input type="text"  [(ngModel)]="gitEmail" name="gitEmail" class="form-control" placeholder="请输入gitEmail"/>
+            <label class="col-md-3 control-label">Git Email</label>
+            <div class="col-md-8">
+              <input type="text" [(ngModel)]="gitEmail" name="gitEmail" class="form-control" placeholder="git emiail"/>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-3 control-label">gitPass&Key</label>
-            <div class="col-md-6">
-              <select class="col-md-12" style="height:34px; margin-bottom:10px;" [(ngModel)]="passKey" name="passKey">
-                <option value="0" selected>gitPass</option>
-                <option value="1">gitPrivateKey</option>
+            <label class="col-md-3 control-label">Git Pass or Key</label>
+            <div class="col-md-8">
+              <select class="col-md-12 form-control" style="height:34px; margin-bottom:10px;" [(ngModel)]="passKey"
+                      name="passKey">
+                <option value="0" selected>Git Pass</option>
+                <option value="1">Git PrivateKey</option>
               </select>
             </div>
-            <div class="col-md-6 col-md-push-3" *ngIf="passKey==0">
-              <input type="text"  [(ngModel)]="gitPass" name="gitPass" class="form-control" placeholder="请输入gitPass"/>
+            <div class="col-md-8 col-md-push-3" *ngIf="passKey==0">
+              <input type="password" [(ngModel)]="gitPass" name="gitPass" class="form-control" placeholder="git pass"/>
             </div>
-            <div class="col-md-6 col-md-push-3" *ngIf="passKey==1">
-              <textarea class="form-control" [(ngModel)]="gitPrivateKey" name="gitPrivateKey" rows="4"></textarea>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-md-3 control-label">脚本路径</label>
-            <div class="col-md-6">
-              <input type="text"  [disabled]='true' [(ngModel)]="scriptPath" name="scriptPath" class="form-control" placeholder="请输入脚本路径"/>
+            <div class="col-md-8 col-md-push-3" *ngIf="passKey==1">
+              <textarea class="form-control" [(ngModel)]="gitPrivateKey" name="gitPrivateKey" rows="4"
+                        style="resize: vertical;"></textarea>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-3 control-label">描述</label>
-            <div class="col-md-6">
-              <textarea class="form-control"  [(ngModel)]="description" name="description" rows="4"></textarea>
+            <label class="col-md-3 control-label">Script Path</label>
+            <div class="col-md-8">
+              <input type="text" [disabled]='true' [(ngModel)]="scriptPath" name="scriptPath" class="form-control"
+                     placeholder="script path"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-3 control-label">Description</label>
+            <div class="col-md-8">
+              <textarea class="form-control" [(ngModel)]="description" name="description" rows="4"
+                        style="resize: vertical;"></textarea>
             </div>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary" (click)="saveProject()">保存</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="saveProject()">Save</button>
       </div>
     </div>
   </div>
@@ -328,15 +345,15 @@
           &times;
         </button>
         <h4 class="modal-title" id="newLabel4">
-          moveProject
+          Move Project
         </h4>
       </div>
       <div class="modal-body" id="editForm4">
         <form class="form-horizontal" role="form">
           <div class="form-group">
-            <label class="col-md-2 control-label">项目所在组</label>
-            <div class="col-md-3">
-              <select class="col-md-12" style="height:34px;" [(ngModel)]="groupId" name="groupId">
+            <label class="col-md-3 control-label">Group Name</label>
+            <div class="col-md-8">
+              <select class="col-md-12 form-control" style="height:34px;" [(ngModel)]="groupId" name="groupId">
                 <option *ngFor="let group of groupList" value="{{group.groupId}}">
                   {{group.groupName}}
                 </option>
@@ -344,16 +361,16 @@
             </div>
           </div>
           <div class="form-group" [hidden]='true'>
-            <label class="col-md-2 control-label">项目Id</label>
-            <div class="col-md-5">
-              <input type="text"  [(ngModel)]="projectId" name="projectId" class="form-control"/>
+            <label class="col-md-2 control-label">Project ID</label>
+            <div class="col-md-8">
+              <input type="text" [(ngModel)]="projectId" name="projectId" class="form-control"/>
             </div>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" (click)="saveMove()" class="btn btn-primary">保存</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" (click)="saveMove()" class="btn btn-primary">Save</button>
       </div>
     </div>
   </div>
@@ -368,15 +385,16 @@
           &times;
         </button>
         <h4 class="modal-title" id="newLabel5">
-          newDeveloper
+          Create New Developer
         </h4>
       </div>
       <div class="modal-body" id="editForm5">
         <form class="form-horizontal" role="form" id="newDeveloperForm">
           <div class="form-group">
-            <label class="col-md-3 control-label">人员所在项目组</label>
-            <div class="col-md-5">
-              <select class="col-md-12" style="height:34px;" [(ngModel)]="groupId" name="groupId" (ngModelChange)="showprojectGroup($event)">
+            <label class="col-md-3 control-label">Group</label>
+            <div class="col-md-8">
+              <select class="col-md-12 form-control" style="height:34px;" [(ngModel)]="groupId" name="groupId"
+                      (ngModelChange)="showprojectGroup($event)">
                 <option *ngFor="let group of groupList" [value]="group.groupId">
                   {{group.groupName}}
                 </option>
@@ -384,9 +402,9 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-3 control-label">人员所在项目</label>
-            <div class="col-md-5">
-              <select class="col-md-12" style="height:34px;" [(ngModel)]="projectId" name="projectId">
+            <label class="col-md-3 control-label">Project</label>
+            <div class="col-md-8">
+              <select class="col-md-12 form-control" style="height:34px;" [(ngModel)]="projectId" name="projectId">
                 <option *ngFor="let projectGroup of projectGroupList" value="{{projectGroup.projectId}}">
                   {{projectGroup.projectName}}
                 </option>
@@ -394,55 +412,56 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-3 control-label">用户名</label>
-            <div class="col-md-5">
-              <input type="text"  [(ngModel)]="userName" name="userName" class="form-control"/>
+            <label class="col-md-3 control-label">Username</label>
+            <div class="col-md-8">
+              <input type="text" [(ngModel)]="userName" name="userName" class="form-control"/>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-3 control-label">密码</label>
-            <div class="col-md-5">
-              <input type="password"  [(ngModel)]="userPass" name="userPass" class="form-control"/>
+            <label class="col-md-3 control-label">Password</label>
+            <div class="col-md-8">
+              <input type="password" [(ngModel)]="userPass" name="userPass" class="form-control"/>
             </div>
           </div>
           <!--<div class="form-group">-->
-            <!--<label class="col-md-3 control-label">头像路径</label>-->
-            <!--<div class="col-md-5">-->
-              <!--<input type="text"  [(ngModel)]="avatarPath" name="avatarPath" class="form-control"/>-->
-            <!--</div>-->
+          <!--<label class="col-md-3 control-label">头像路径</label>-->
+          <!--<div class="col-md-8">-->
+          <!--<input type="text"  [(ngModel)]="avatarPath" name="avatarPath" class="form-control"/>-->
+          <!--</div>-->
           <!--</div>-->
           <div class="form-group">
-            <label class="col-md-3 control-label">git名称</label>
-            <div class="col-md-5">
-              <input type="text"  [(ngModel)]="gitName" name="gitName" class="form-control"/>
+            <label class="col-md-3 control-label">Git Name</label>
+            <div class="col-md-8">
+              <input type="text" [(ngModel)]="gitName" name="gitName" class="form-control"/>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-3 control-label">git邮箱</label>
-            <div class="col-md-5">
-              <input type="text"  [(ngModel)]="gitEmail" name="gitEmail" class="form-control"/>
+            <label class="col-md-3 control-label">Git Email</label>
+            <div class="col-md-8">
+              <input type="text" [(ngModel)]="gitEmail" name="gitEmail" class="form-control"/>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-3 control-label">用户角色</label>
-            <div class="col-md-5">
-              <select class="col-md-12" style="height:34px;" [(ngModel)]="isAdmin" name="isAdmin">
-                <option value="0">管理员</option>
-                <option value="1">普通用户</option>
+            <label class="col-md-3 control-label">Role</label>
+            <div class="col-md-8">
+              <select class="col-md-12 form-control" style="height:34px;" [(ngModel)]="isAdmin" name="isAdmin">
+                <option value="0">Administrator</option>
+                <option value="1">Developer</option>
               </select>
             </div>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary" (click)="newDeveloper()">创建</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="newDeveloper()">Save</button>
       </div>
     </div>
   </div>
 </div>
 <!--moveDeveloper-->
-<div class="modal fade" id="moveDeveloper" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="moveDeveloper" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -450,15 +469,15 @@
           &times;
         </button>
         <h4 class="modal-title" id="newLabel6">
-          newDeveloper
+          Move Developer
         </h4>
       </div>
       <div class="modal-body" id="editForm6">
         <form class="form-horizontal" role="form" id="moveDeveloperForm">
           <div class="form-group">
-            <label class="col-md-3 control-label">人员所要分配项目</label>
-            <div class="col-md-5">
-              <select class="col-md-12" style="height:34px;" [(ngModel)]="projectId" name="projectId">
+            <label class="col-md-3 control-label">Project</label>
+            <div class="col-md-8">
+              <select class="col-md-12 form-control" style="height:34px;" [(ngModel)]="projectId" name="projectId">
                 <option *ngFor="let project of projectList" value="{{project.projectId}}">
                   {{project.projectName}}
                 </option>
@@ -466,9 +485,9 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-3 control-label">所分配人员</label>
-            <div class="col-md-5">
-              <select class="col-md-12" style="height:34px;" [(ngModel)]="developerId" name="developerId">
+            <label class="col-md-3 control-label">Developer</label>
+            <div class="col-md-8">
+              <select class="col-md-12 form-control" style="height:34px;" [(ngModel)]="developerId" name="developerId">
                 <option *ngFor="let developer of developerAll" value="{{developer.userId}}">
                   {{developer.userName}}
                 </option>
@@ -478,15 +497,16 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary" (click)="saveAllot()">分配</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="saveAllot()">Save</button>
       </div>
     </div>
   </div>
 </div>
 
 <!--editDeveloper-->
-<div class="modal fade" id="editDeveloper" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="editDeveloper" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -494,15 +514,16 @@
           &times;
         </button>
         <h4 class="modal-title" id="newLabel7">
-          editDeveloper
+          Edit Developer Info
         </h4>
       </div>
       <div class="modal-body" id="editForm7">
         <form class="form-horizontal" role="form" id="editDeveloperForm">
           <div class="form-group">
-            <label class="col-md-3 control-label">人员所在项目组</label>
-            <div class="col-md-5">
-              <select class="col-md-12" style="height:34px;" [(ngModel)]="groupId" name="groupId" (ngModelChange)="showprojectGroup($event)">
+            <label class="col-md-3 control-label">Group</label>
+            <div class="col-md-8">
+              <select class="col-md-12 form-control" style="height:34px;" [(ngModel)]="groupId" name="groupId"
+                      (ngModelChange)="showprojectGroup($event)">
                 <option *ngFor="let group of groupList" value="{{group.groupId}}">
                   {{group.groupName}}
                 </option>
@@ -510,55 +531,55 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-3 control-label">用户名</label>
-            <div class="col-md-5">
-              <input type="text"  [(ngModel)]="userName" name="userName" class="form-control"/>
+            <label class="col-md-3 control-label">Username</label>
+            <div class="col-md-8">
+              <input type="text" [(ngModel)]="userName" name="userName" class="form-control"/>
             </div>
           </div>
           <div class="form-group" [hidden]="true">
-            <label class="col-md-3 control-label">用名</label>
-            <div class="col-md-5">
-              <input type="text"  [(ngModel)]="userId" name="userId" class="form-control"/>
+            <label class="col-md-3 control-label">UserID</label>
+            <div class="col-md-8">
+              <input type="text" [(ngModel)]="userId" name="userId" class="form-control"/>
             </div>
           </div>
           <!--<div class="form-group">-->
-            <!--<label class="col-md-3 control-label">密码</label>-->
-            <!--<div class="col-md-5">-->
-              <!--<input type="password"  [(ngModel)]="userPass" name="userPass" class="form-control"/>-->
-            <!--</div>-->
+          <!--<label class="col-md-3 control-label">Password</label>-->
+          <!--<div class="col-md-8">-->
+          <!--<input type="password"  [(ngModel)]="userPass" name="userPass" class="form-control"/>-->
+          <!--</div>-->
           <!--</div>-->
           <!--<div class="form-group">-->
-            <!--<label class="col-md-3 control-label">头像路径</label>-->
-            <!--<div class="col-md-5">-->
-              <!--<input type="text"  [(ngModel)]="avatarPath" name="avatarPath" class="form-control"/>-->
-            <!--</div>-->
+          <!--<label class="col-md-3 control-label">头像路径</label>-->
+          <!--<div class="col-md-8">-->
+          <!--<input type="text"  [(ngModel)]="avatarPath" name="avatarPath" class="form-control"/>-->
+          <!--</div>-->
           <!--</div>-->
           <div class="form-group">
-            <label class="col-md-3 control-label">git名称</label>
-            <div class="col-md-5">
-              <input type="text"  [(ngModel)]="gitName" name="gitName" class="form-control"/>
+            <label class="col-md-3 control-label">Git Name</label>
+            <div class="col-md-8">
+              <input type="text" [(ngModel)]="gitName" name="gitName" class="form-control"/>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-3 control-label">git邮箱</label>
-            <div class="col-md-5">
-              <input type="text"  [(ngModel)]="gitEmail" name="gitEmail" class="form-control"/>
+            <label class="col-md-3 control-label">Git Email</label>
+            <div class="col-md-8">
+              <input type="text" [(ngModel)]="gitEmail" name="gitEmail" class="form-control"/>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md-3 control-label">用户角色</label>
-            <div class="col-md-5">
-              <select class="col-md-12" style="height:34px;" [(ngModel)]="isAdmin" name="isAdmin">
-                <option value="0">管理员</option>
-                <option value="1">普通用户</option>
+            <label class="col-md-3 control-label">Role</label>
+            <div class="col-md-8">
+              <select class="col-md-12 form-control" style="height:34px;" [(ngModel)]="isAdmin" name="isAdmin">
+                <option value="0">Administrator</option>
+                <option value="1">Developer</option>
               </select>
             </div>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary" (click)="saveEditDeveloper()">修改</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="saveEditDeveloper()">Save</button>
       </div>
     </div>
   </div>

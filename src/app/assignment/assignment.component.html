@@ -1,24 +1,24 @@
 <div class="col-md-2 borderRight noPadding">
   <div class="panel panel-default" style="margin-bottom:0px;">
     <div class="panel-heading">
-      <h3 class="panel-title" style="display: inline-block;margin-right:20px;">有任务的项目组</h3>
+      <h3 class="panel-title" style="display: inline-block;margin-right:20px;">Groups</h3>
     </div>
   </div>
   <ul class="assignListStyle">
     <li class="col-md-12"  style="height:35px; line-height:35px;" *ngFor="let taskGroup of taskGroupList">
-      <div class="col-md-5" (click)="showTaskProject(taskGroup)">{{taskGroup.groupName}}</div>
+      <div class="col-md-12" (click)="showTaskProject(taskGroup)">{{taskGroup.groupName}}</div>
     </li>
   </ul>
 </div>
 <div class="col-md-2 borderRight noPadding">
   <div class="panel panel-default" style="margin-bottom:0px;">
     <div class="panel-heading">
-      <h3 class="panel-title" style="display: inline-block;margin-right:20px;">指定项目组下的项目</h3>
+      <h3 class="panel-title" style="display: inline-block;margin-right:20px;">Projects</h3>
     </div>
   </div>
   <ul class="assignListStyle">
     <li class="col-md-12" *ngFor="let taskProject of taskProjectList" style="height:35px; line-height:35px;">
-      <div class="col-md-5" (click)="showTask(taskProject)">{{taskProject.projectName}}</div>
+      <div class="col-md-12" (click)="showTask(taskProject)">{{taskProject.projectName}}</div>
     </li>
   </ul>
 </div>
@@ -27,20 +27,18 @@
   <div class="rightTop">
     <div class="panel panel-default"  style="margin-bottom:0px;">
       <div class="panel-heading">
-        <h3 class="panel-title" style="display: inline-block;margin-right:20px;">指定项目下的未分配任务</h3>
+        <h3 class="panel-title" style="display: inline-block;margin-right:20px;">Undealed Tasks</h3>
       </div>
     </div>
     <div>
       <table class="table table-bordered">
         <thead>
         <tr>
-          <th class="col-md-1">taskId</th>
-          <th class="col-md-1">assignerId</th>
-          <th class="col-md-1">assigneeId</th>
-          <th class="col-md-2">branchName</th>
-          <th class="col-md-2">branchCommitter</th>
-          <th class="col-md-2">taskStatus</th>
-          <th class="col-md-2">操作</th>
+          <th class="col-md-2">Branch Name</th>
+          <th class="col-md-2">Branch Committer</th>
+          <th class="col-md-2">Branch Date</th>
+          <th class="col-md-1">Status</th>
+          <th class="col-md-1">Operations</th>
         </tr>
         </thead>
         <tbody>
@@ -48,23 +46,20 @@
           <td colspan="8" class="noPadding" >
             <table class="table noTopBorder assignTableStyle">
               <tr>
-                <td class="col-md-1">{{unassignedtask.taskId}}</td>
-                <td class="col-md-1">{{unassignedtask.assignerId}}</td>
-                <td class="col-md-1">{{unassignedtask.assigneeId}}</td>
                 <td class="col-md-2">{{unassignedtask.branchName}}</td>
                 <td class="col-md-2">{{unassignedtask.branchCommitter}}</td>
-                <td class="col-md-2">{{unassignedtask.taskStatus}}</td>
-                <td class="col-md-2">
-                  <i style="margin-right:15px;" class="fa fa-lg fa-external-link" aria-hidden="true" (click)="assignTask(unassignedtask)"></i>
-                  <i class="fa fa-lg fa-shield" aria-hidden="true" (click)="ignore(unassignedtask)"></i>
+                <td class="col-md-2">{{unassignedtask.branchDate}}</td>
+                <td class="col-md-1">{{unassignedtask.taskStatus}}</td>
+                <td class="col-md-1">
+                  <i style="margin-right:15px;" class="fa fa-lg fa-check" aria-hidden="true" (click)="assignTask(unassignedtask)"></i>
+                  <i class="fa fa-lg fa-close" aria-hidden="true" (click)="ignore(unassignedtask)"></i>
                 </td>
               </tr>
               <tr [hidden]="!unassignedtask.a">
                 <td colspan="7">
                   <ul>
                     <li>
-                      <div class="col-md-12">branchMsg:{{unassignedtask.branchMsg}}</div>
-                      <div class="col-md-12">branchDate:{{unassignedtask.branchDate}}</div>
+                      <div class="col-md-12">Branch Message:{{unassignedtask.branchMsg}}</div>
                     </li>
                   </ul>
                 </td>
@@ -77,22 +72,21 @@
     </div>
   </div>
   <div class="rightBottom">
-    <div class="panel panel-default"  style="margin-bottom:0px;">
+    <div class="panel panel-default"  style="margin-bottom:0;">
       <div class="panel-heading">
-        <h3 class="panel-title" style="display: inline-block;margin-right:20px;">指定项目下的已分配任务</h3>
+        <h3 class="panel-title" style="display: inline-block;margin-right:20px;">Dealed Tasks</h3>
       </div>
     </div>
     <div>
       <table class="table table-bordered">
         <thead>
         <tr>
-          <th class="col-md-1">taskId</th>
-          <th class="col-md-1">assignerId</th>
-          <th class="col-md-1">assigneeId</th>
-          <th class="col-md-2">branchName</th>
-          <th class="col-md-2">branchCommitter</th>
-          <th class="col-md-2">taskStatus</th>
-          <th class="col-md-2">操作</th>
+          <th class="col-md-3">Assigner ID</th>
+          <th class="col-md-3">Assignee ID</th>
+          <th class="col-md-2">Branch Name</th>
+          <th class="col-md-2">Branch Committer</th>
+          <th class="col-md-1">Status</th>
+          <th class="col-md-1">Operations</th>
         </tr>
         </thead>
         <tbody>
@@ -100,22 +94,21 @@
           <td colspan="8" class="noPadding" >
             <table class="table noTopBorder assignTableStyle">
               <tr>
-                <td class="col-md-1">{{assignedtask.taskId}}</td>
-                <td class="col-md-1">{{assignedtask.assignerId}}</td>
-                <td class="col-md-1">{{assignedtask.assigneeId}}</td>
+                <td class="col-md-3">{{assignedtask.assignerId}}</td>
+                <td class="col-md-3">{{assignedtask.assigneeId}}</td>
                 <td class="col-md-2">{{assignedtask.branchName}}</td>
                 <td class="col-md-2">{{assignedtask.branchCommitter}}</td>
-                <td class="col-md-2">{{assignedtask.taskStatus}}</td>
-                <td class="col-md-2">
-                  <i class="fa fa-lg fa-gavel" aria-hidden="true" (click)="reassignTask(assignedtask)"></i>
+                <td class="col-md-1">{{assignedtask.taskStatus}}</td>
+                <td class="col-md-1">
+                  <i class="fa fa-lg fa-circle-o-notch" aria-hidden="true" (click)="reassignTask(assignedtask)"></i>
                 </td>
               </tr>
               <tr [hidden]="!assignedtask.a">
                 <td colspan="7">
                   <ul>
                     <li>
-                      <div class="col-md-12">branchMsg:{{assignedtask.branchMsg}}</div>
-                      <div class="col-md-12">branchDate:{{assignedtask.branchDate}}</div>
+                      <div class="col-md-12">Branch Message:{{assignedtask.branchMsg}}</div>
+                      <div class="col-md-12">Branch Date:{{assignedtask.branchDate}}</div>
                     </li>
                   </ul>
                 </td>
@@ -139,13 +132,13 @@
           &times;
         </button>
         <h4 class="modal-title" id="newLabel2">
-          AssignTask
+          Assign Task
         </h4>
       </div>
       <div class="modal-body" id="editForm2">
         <form id="" class="form-horizontal" role="form">
           <div class="form-group">
-            <label class="col-md-3 control-label">被分配任务者</label>
+            <label class="col-md-3 control-label">Developer</label>
             <div class="col-md-3">
               <select class="col-md-12" style="height:34px;" [(ngModel)]="developer" name="developer">
                 <option *ngFor="let developer of developersList" value="{{developer.userId}}">
@@ -157,8 +150,8 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" (click)="assignTaskByDeveloper()" class="btn btn-primary">分配</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" (click)="assignTaskByDeveloper()" class="btn btn-primary">Save</button>
       </div>
     </div>
   </div>
@@ -173,15 +166,15 @@
           &times;
         </button>
         <h4 class="modal-title" id="newLabel3">
-          ReassignTask
+          Reassign Task
         </h4>
       </div>
       <div class="modal-body" id="editForm3">
         <form id="" class="form-horizontal" role="form">
           <div class="form-group">
-            <label class="col-md-3 control-label">被分配任务者</label>
-            <div class="col-md-3">
-              <select class="col-md-12" style="height:34px;" [(ngModel)]="developer" name="developer">
+            <label class="col-md-3 control-label">Developer</label>
+            <div class="col-md-8">
+              <select class="col-md-12 form-control" style="height:34px;" [(ngModel)]="developer" name="developer">
                 <option *ngFor="let developer of developersList" value="{{developer.userId}}">
                   {{developer.userName}}
                 </option>
@@ -191,8 +184,8 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" (click)="reassignTaskByDeveloper()" class="btn btn-primary">分配</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" (click)="reassignTaskByDeveloper()" class="btn btn-primary">Save</button>
       </div>
     </div>
   </div>

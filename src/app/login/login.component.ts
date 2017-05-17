@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpPost } from '../../providers/httpPost';
 declare var $: any;
@@ -7,12 +7,23 @@ declare var $: any;
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   name: any;
   pass: any;
   constructor(public router: Router, public httpPost: HttpPost) { }
 
   ngOnInit() {
+    $("body")
+    .css("background-image", "url('assets/images/dark.jpg')")
+    .css("background-size", "100% 100%")
+    .css("background-repeat", "no-repeat");
+  }
+  
+  ngOnDestroy() {
+    $("body")
+    .css("background-image", "")
+    .css("background-size", "")
+    .css("background-repeat", "");
   }
 
   login() {

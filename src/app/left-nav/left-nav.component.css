@@ -1,37 +1,47 @@
-.nopadding{
-  padding:0px;
+.nopadding {
+  padding: 0px;
 }
-.leftNavTop{
-  height:auto;
-  border-bottom:2px solid #eeeeee;
+
+.leftNavTop {
+  height: auto;
+  border-bottom: 1px solid #eeeeee;
 }
+
 .leftNavBottom {
   height: auto;
 }
-.table{
-  margin-bottom:0px;
+
+.table {
+  margin-bottom: 0px;
 }
-.leftNavList{
+
+.leftNavList {
   display: block;
   font-size: 14px;
 }
-.leftNavList li{
+
+.leftNavList li {
   padding: 12px 5px 12px 15px;
-  border-bottom:1px solid #eee;
+  border-bottom: 1px solid #eee;
 }
-.leftNavList li:hover{
-  background-color:#eee;
+
+.leftNavList li:hover {
+  background-color: #eee;
 }
-.leftNavList li:link{
-   background-color:#eee;
- }
-.noTopBorder td{
+
+.leftNavList li:link {
+  background-color: #eee;
+}
+
+.noTopBorder td {
   border-right: 1px solid #ddd;
 }
-.rightTop{
-  height:auto;
+
+.rightTop {
+  height: auto;
   overflow-y: scroll;
 }
-.taskStyle tr:hover{
-  background-color: #94A6B0;
+
+.taskStyle tr:hover {
+  background-color: rgb(238, 238, 238);
 }
