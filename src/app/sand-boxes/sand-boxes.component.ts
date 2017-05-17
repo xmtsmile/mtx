@@ -121,7 +121,7 @@ export class SandBoxesComponent implements OnInit{
     'password': this.password,
     'description': this.description
     };
-    this.httpPost.dataAjax('GET', '/mtx/administration/resource/group/sandbox/create', 'x-www-form-urlencoded', params, function(res) {
+    this.httpPost.dataAjax('POST', '/mtx/administration/resource/group/sandbox/create', 'application/json;charset=UTF-8', JSON.stringify(params), function(res) {
       if (res.code == '0') {
         console.log('/mtx/administration/resource/group/create', res);
         $('#newSandBoxes').modal('hide');

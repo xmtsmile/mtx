@@ -38,10 +38,9 @@
       <table class="table table-bordered">
         <thead>
         <tr>
-          <th class="col-md-3">Assigner ID</th>
-          <th class="col-md-3">Assignee ID</th>
           <th class="col-md-2">Branch Name</th>
           <th class="col-md-2">Branch Committer</th>
+          <th class="col-md-2">Branch Date</th>
           <th class="col-md-1">Status</th>
           <th class="col-md-1">Operations</th>
         </tr>
@@ -51,14 +50,13 @@
           <td colspan="8" class="noPadding" >
             <table class="table noTopBorder">
               <tr>
-                <td class="col-md-3">{{unassignedtask.assignerId}}</td>
-                <td class="col-md-3">{{unassignedtask.assigneeId}}</td>
                 <td class="col-md-2">{{unassignedtask.branchName}}</td>
                 <td class="col-md-2">{{unassignedtask.branchCommitter}}</td>
+                <td class="col-md-2">{{unassignedtask.branchDate}}</td>
                 <td class="col-md-1">{{unassignedtask.taskStatus}}</td>
                 <td class="col-md-1">
-                  <i style="margin-right:15px;" class="fa fa-lg fa-external-link" aria-hidden="true" (click)="assignTask(unassignedtask)"></i>
-                  <i class="fa fa-lg fa-shield" aria-hidden="true" (click)="ignore(unassignedtask)"></i>
+                  <i style="margin-right:15px;" class="fa fa-lg fa-check" aria-hidden="true" (click)="assignTask(unassignedtask)"></i>
+                  <i class="fa fa-lg fa-close" aria-hidden="true" (click)="ignore(unassignedtask)"></i>
                 </td>
               </tr>
               <tr [hidden]="!unassignedtask.a">
@@ -66,7 +64,6 @@
                   <ul>
                     <li>
                       <div class="col-md-12">Branch Message:{{unassignedtask.branchMsg}}</div>
-                      <div class="col-md-12">Branch Date:{{unassignedtask.branchDate}}</div>
                     </li>
                   </ul>
                 </td>
@@ -107,7 +104,7 @@
                 <td class="col-md-2">{{assignedtask.branchCommitter}}</td>
                 <td class="col-md-1">{{assignedtask.taskStatus}}</td>
                 <td class="col-md-1">
-                  <i class="fa fa-lg fa-gavel" aria-hidden="true" (click)="reassignTask(assignedtask)"></i>
+                  <i class="fa fa-lg fa-circle-o-notch" aria-hidden="true" (click)="reassignTask(assignedtask)"></i>
                 </td>
               </tr>
               <tr [hidden]="!assignedtask.a">

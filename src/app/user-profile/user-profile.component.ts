@@ -77,6 +77,10 @@ export class UserProfileComponent implements OnInit {
     myReader.readAsDataURL(this.file);
   }
   
+  cancel() {
+    this.file = null;
+  }
+  
   saveChangeInfo() {
     var formdata = new FormData();
     formdata.append("file", this.file);
