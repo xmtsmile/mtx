@@ -55,6 +55,11 @@ export class DeploymentComponent implements OnInit {
           if (res.code == '0') {
             alert(res.msg);
             that.sandboxlist();
+            that.httpPost.dataAjax('POST', '/mtx/deployment/sandbox/available/list', 'x-www-form-urlencoded', {}, function(res2) {
+              if (res2.code == '0') {
+                that.availableList = res2.result;
+              }
+            });
             $('#applysandBox')[0].reset();
           }
         });
@@ -74,6 +79,11 @@ export class DeploymentComponent implements OnInit {
     this.httpPost.dataAjax('GET', '/mtx/deployment/sandbox/release', 'x-www-form-urlencoded', params, function(res) {
       if (res.code == '0') {
         that.sandboxlist();
+        that.httpPost.dataAjax('POST', '/mtx/deployment/sandbox/available/list', 'x-www-form-urlencoded', {}, function(res1) {
+          if (res1.code == '0') {
+            that.availableList = res1.result;
+          }
+        });
         console.log('/mtx/deployment/sandbox/release', res);
       }
     });
@@ -93,6 +103,9 @@ export class DeploymentComponent implements OnInit {
       if (res.code == '0') {
         console.log('/mtx/deployment/history/bundle', res);
         that.bundleHistoryList = res.result;
+        if (that.bundleHistoryList.formerBundleId == null || that.bundleHistoryList.formerBundleId == '') {
+          that.bundleHistoryList.formerBundleId = '-';
+        }
       }
     });
   };

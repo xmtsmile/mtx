@@ -1,24 +1,42 @@
-.noPadding{
-  padding:0px;
+.noPadding {
+  padding: 0px;
 }
-.borderRight{
-  height:auto;
-  border:1px solid #eee;
+
+.borderRight {
+  height: auto;
+  border: 1px solid #eee;
 }
-.rightTop{
-  height:auto;
-  border-bottom:2px solid #eeeeee;
+
+.rightTop {
+  height: auto;
+  border-bottom: 1px solid #eeeeee;
 }
-.rightBottom{
-  height:auto;
+
+.rightBottom {
+  height: auto;
 }
-.iconColor{
-  color:#5cb85c;
+
+.iconColor {
+  color: #5cb85c;
 }
-.table{
-  margin-bottom:0px;
+
+.table {
+  margin-bottom: 0px;
 }
-.noTopBorder td{
+
+.noTopBorder td {
   border-right: 1px solid #ddd;
+}
+
+.assignTableStyle tr:hover {
+  background-color: rgb(238, 238, 238);
+}
+
+.assignListStyle li {
+  border-bottom: 1px solid #eee;
+}
+
+.assignListStyle li:hover {
+  background-color: #eee;
 }
 

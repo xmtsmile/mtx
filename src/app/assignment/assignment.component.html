@@ -1,30 +1,26 @@
 <div class="col-md-2 borderRight noPadding">
-  <div class="panel panel-default">
+  <div class="panel panel-default" style="margin-bottom:0px;">
     <div class="panel-heading">
       <h3 class="panel-title" style="display: inline-block;margin-right:20px;">Groups</h3>
     </div>
-    <div class="panel-body">
-      <ul>
-        <li class="col-md-12"  style="line-height: 15px;" *ngFor="let taskGroup of taskGroupList">
-          <div class="col-md-5" (click)="showTaskProject(taskGroup)">{{taskGroup.groupName}}</div>
-        </li>
-      </ul>
-    </div>
   </div>
+  <ul class="assignListStyle">
+    <li class="col-md-12"  style="height:35px; line-height:35px;" *ngFor="let taskGroup of taskGroupList">
+      <div class="col-md-12" (click)="showTaskProject(taskGroup)">{{taskGroup.groupName}}</div>
+    </li>
+  </ul>
 </div>
 <div class="col-md-2 borderRight noPadding">
-  <div class="panel panel-default">
+  <div class="panel panel-default" style="margin-bottom:0px;">
     <div class="panel-heading">
       <h3 class="panel-title" style="display: inline-block;margin-right:20px;">Projects</h3>
     </div>
-    <div class="panel-body">
-      <ul>
-        <li class="col-md-12" *ngFor="let taskProject of taskProjectList" style="line-height: 15px;">
-          <div class="col-md-5" (click)="showTask(taskProject)">{{taskProject.projectName}}</div>
-        </li>
-      </ul>
-    </div>
   </div>
+  <ul class="assignListStyle">
+    <li class="col-md-12" *ngFor="let taskProject of taskProjectList" style="height:35px; line-height:35px;">
+      <div class="col-md-12" (click)="showTask(taskProject)">{{taskProject.projectName}}</div>
+    </li>
+  </ul>
 </div>
 
 <div class="col-md-8 borderRight noPadding">
@@ -48,7 +44,7 @@
         <tbody>
         <tr *ngFor="let unassignedtask of unassignedtaskList" (click)="unassignedtask.a = !unassignedtask.a">
           <td colspan="8" class="noPadding" >
-            <table class="table noTopBorder">
+            <table class="table noTopBorder assignTableStyle">
               <tr>
                 <td class="col-md-2">{{unassignedtask.branchName}}</td>
                 <td class="col-md-2">{{unassignedtask.branchCommitter}}</td>
@@ -76,7 +72,7 @@
     </div>
   </div>
   <div class="rightBottom">
-    <div class="panel panel-default"  style="margin-bottom:0px;">
+    <div class="panel panel-default"  style="margin-bottom:0;">
       <div class="panel-heading">
         <h3 class="panel-title" style="display: inline-block;margin-right:20px;">Dealed Tasks</h3>
       </div>
@@ -96,7 +92,7 @@
         <tbody>
         <tr *ngFor="let assignedtask of assignedtaskList" (click)="assignedtask.a = !assignedtask.a">
           <td colspan="8" class="noPadding" >
-            <table class="table noTopBorder">
+            <table class="table noTopBorder assignTableStyle">
               <tr>
                 <td class="col-md-3">{{assignedtask.assignerId}}</td>
                 <td class="col-md-3">{{assignedtask.assigneeId}}</td>
@@ -177,8 +173,8 @@
         <form id="" class="form-horizontal" role="form">
           <div class="form-group">
             <label class="col-md-3 control-label">Developer</label>
-            <div class="col-md-3">
-              <select class="col-md-12" style="height:34px;" [(ngModel)]="developer" name="developer">
+            <div class="col-md-8">
+              <select class="col-md-12 form-control" style="height:34px;" [(ngModel)]="developer" name="developer">
                 <option *ngFor="let developer of developersList" value="{{developer.userId}}">
                   {{developer.userName}}
                 </option>

@@ -17,6 +17,7 @@ export class LeftNavComponent implements OnInit {
   projectinfoTag: boolean;
   checkoutTag: boolean;
   projectCheck: any;
+  projectTag: any;
   
   constructor(public httpPost: HttpPost) {
   }
@@ -27,8 +28,8 @@ export class LeftNavComponent implements OnInit {
       $('.divHeight').css('height', screenHeight + 'px');
       $('.rightTop').css('height', screenHeight / 2 + 'px');
       $('.rightBottom').css('height', screenHeight / 2 + 'px');
-      $('.leftNavTop').css('height', screenHeight / 2 + 'px');
-      $('.leftNavBottom').css('height', screenHeight / 2 + 'px');
+      $('.leftNavTop').css('height', ((screenHeight / 2) + 100) + 'px');
+      $('.leftNavBottom').css('height', ((screenHeight / 2) - 100) + 'px');
     });
     var that = this;
     // ProjectList
@@ -57,9 +58,11 @@ export class LeftNavComponent implements OnInit {
   };
   
   showProjectInfo(project) {
+    console.log('project------', project);
+    this.projectTag = project.projectId;
     var that = this;
-    const params = {'projectId': this.projectList[0].projectId};
-    sessionStorage.setItem('projectCheck', params.projectId)
+    const params = {'projectId': this.projectTag};
+    sessionStorage.setItem('projectCheck', params.projectId);
     // 项目基本信息
     this.httpPost.dataAjax('GET', '/mtx/main/group/project/info', 'x-www-form-urlencoded', params, function (res) {
       if (res.code == '0') {
@@ -99,14 +102,19 @@ export class LeftNavComponent implements OnInit {
     this.httpPost.dataAjax('GET', '/mtx/main/group/project/task/accept', 'x-www-form-urlencoded', params, function (res) {
       if (res.code == '0') {
         alert('接受任务成功！');
-        that.httpPost.dataAjax('GET', '/mtx/main/tasks', 'x-www-form-urlencoded', {}, function (res) {
-          if (res.code == '0') {
-            console.log('aaaaaaaaaaaaaaaaaaaaaaataskInfo', res.result);
-            that.taskList = res.result;
+        that.httpPost.dataAjax('GET', '/mtx/main/group/project/tasks/assgined', 'x-www-form-urlencoded', {'projectId': that.projectTag}, function (res1) {
+          if (res1.code == '0') {
+            that.taskList = res1.result;
+          }
+        });
+        that.httpPost.dataAjax('GET', '/mtx/main/group/project/tasks/working', 'x-www-form-urlencoded', {'projectId': that.projectTag}, function (res2) {
+          if (res2.code == '0') {
+            that.taskWorkingList = res2.result;
           }
         });
       }
     });
   }
 }
+
 

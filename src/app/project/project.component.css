@@ -1,18 +1,30 @@
-.btnDisplay{
-   display:block;
+.btnDisplay {
+  display: block;
 }
-.btnNodisplay{
-  display:none;
+
+.btnNodisplay {
+  display: none;
 }
-.titleClass{
-  height:50px;
-  line-height:50px;
+
+.titleClass {
+  height: 50px;
+  line-height: 50px;
   border-bottom: 2px solid #eee;
 }
-.borderRight{
-  height:auto;
-  border:1px solid #eee;
+
+.borderRight {
+  height: auto;
+  border: 1px solid #eee;
 }
-.noPadding{
-  padding:0px;
+
+.noPadding {
+  padding: 0;
+}
+
+.projectListStyle li {
+  border-bottom: 1px solid #eee;
+}
+
+li:hover {
+  background-color: #eee;
 }
