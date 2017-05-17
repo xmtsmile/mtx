@@ -4,17 +4,18 @@
       <h3 class="panel-title" style="display: inline-block;margin-right:20px;">Groups</h3>
       <i class="fa fa-plus" data-toggle="modal" data-target="#newGroup" aria-hidden="true"></i>
     </div>
-      <ul>
-        <li class="col-md-12" style="height:35px;line-height:35px;padding-left:5px;" *ngFor="let sandBoxsGroup of sandBoxsGroupList">
-          <div class="col-md-8" (click)="showsandBoxList(sandBoxsGroup)">{{sandBoxsGroup.groupName}}</div>
-          <div class="col-md-4" *ngIf="sandBoxsGroup.groupName!='default'">
-            <i class="fa fa-lg fa-pencil-square-o" style="margin-right:10px;"
-               aria-hidden="true" (click)="showGroup(sandBoxsGroup)">
-            </i>
-            <i class="fa fa-trash fa-lg" aria-hidden="true" (click)="delete(sandBoxsGroup)"></i>
-          </div>
-        </li>
-      </ul>
+    <ul>
+      <li class="col-md-12" style="height:35px;line-height:35px;padding-left:5px;"
+          *ngFor="let sandBoxsGroup of sandBoxsGroupList">
+        <div class="col-md-8" (click)="showsandBoxList(sandBoxsGroup)">{{sandBoxsGroup.groupName}}</div>
+        <div class="col-md-4" *ngIf="sandBoxsGroup.groupName!='default'">
+          <i class="fa fa-lg fa-pencil-square-o" style="margin-right:10px;"
+             aria-hidden="true" (click)="showGroup(sandBoxsGroup)">
+          </i>
+          <i class="fa fa-trash fa-lg" aria-hidden="true" (click)="delete(sandBoxsGroup)"></i>
+        </div>
+      </li>
+    </ul>
   </div>
 </div>
 
@@ -98,7 +99,7 @@
             <div class="form-group">
               <label class="col-md-3 control-label">Group Name</label>
               <div class="col-md-8">
-                <input type="text" [(ngModel)]="groupName" name="groupName" class="form-control"
+                <input type="text" [(ngModel)]="groupName" name="groupName" class="col-md-12 form-control"
                        placeholder="sandbox group name"/>
               </div>
             </div>
@@ -126,18 +127,20 @@
           </h4>
         </div>
         <div class="modal-body" id="editForm">
-          <div class="form-group">
-            <label class="col-md-3 control-label">Group Name</label>
-            <div class="col-md-8">
-              <input type="text" [(ngModel)]="groupName" name="groupName" class="form-control"
-                     placeholder="sandbox group name"/>
+          <form class="form-horizontal" role="form">
+            <div class="form-group">
+              <label class="col-md-3 control-label">Group Name</label>
+              <div class="col-md-8">
+                <input type="text" [(ngModel)]="groupName" name="groupName" class="form-control"
+                       placeholder="sandbox group name"/>
+              </div>
             </div>
-          </div>
-          <div class="form-group">
-            <div class="col-md-6">
-              <input type="hidden" [(ngModel)]="groupId" name="groupId" class="form-control"/>
+            <div class="form-group">
+              <div class="col-md-6">
+                <input type="hidden" [(ngModel)]="groupId" name="groupId" class="form-control"/>
+              </div>
             </div>
-          </div>
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
