@@ -1,13 +1,19 @@
-.nopadding{
-  padding:0px;
+.nopadding {
+  padding: 0;
 }
-.left-top{
-  height:auto;
+
+.left-top {
+  height: auto;
 }
-.table{
-  margin-bottom:0px;
+
+.table {
+  margin-bottom: 0;
 }
-.noTopBorder td{
+
+.noTopBorder td {
   border-right: 1px solid #ddd;
 }
 
+#myTab > li > a {
+  color: rgb(84, 84, 84);
+}

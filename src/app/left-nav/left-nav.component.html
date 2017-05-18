@@ -1,212 +1,196 @@
 <div class="col-md-12 nopadding">
-<div class="col-md-3 nopadding divHeight" style="border-right:2px solid #eeeeee;">
-  <div class="leftNavTop">
-    <div class="col-md-6 nopadding leftNavTop" style="border-right:2px solid #e1edf7;">
-      <div class="panel panel-default" style="margin-bottom:0px;">
-        <div class="panel-heading">
-          <h3 class="panel-title">GroupList</h3>
-        </div>
-      </div>
-      <ul class="leftNavList">
-        <li *ngFor="let group of groupList" (click)="showProject(group)">{{group.groupName}}</li>
-      </ul>
-    </div>
-    <div class="col-md-6 nopadding">
-      <div class="panel panel-default" style="margin-bottom: 0px;">
-        <div class="panel-heading">
-          <h3 class="panel-title">ProjectList</h3>
-        </div>
-      </div>
-      <ul class="leftNavList">
-        <li *ngFor="let project of projectList" (click)="showProjectInfo(project)" >
-          {{project.projectName}}
-          <div class="col-md-1 pull-right" *ngIf='checkoutTag'>
-            <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+  <div class="col-md-5 nopadding divHeight" style="border-right:1px solid #eeeeee;">
+    <div class="leftNavTop">
+      <div class="col-md-6 nopadding leftNavTop" style="border-right:1px solid #e1edf7;">
+        <div class="panel panel-default" style="margin-bottom:0px;">
+          <div class="panel-heading">
+            <h3 class="panel-title">Groups</h3>
           </div>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <div class="leftNavBottom">
-    <div class="col-md-12 nopadding">
-    <div class="panel panel-default">
-    <div class="panel-heading">
-    <h3 class="panel-title">项目详细信息</h3>
-    </div>
-    <div class="leftNavBottom" *ngIf='projectinfoTag'>
-    <div class="col-md-12" style="padding-top:10px;">
-    <p>projectName： {{projectInfo.projectName}}</p>
-    <p>creatorId： {{projectInfo.creatorId}}</p>
-    <p>gitName： {{projectInfo.gitName}}</p>
-    <p>gitPass： {{projectInfo.gitPass}}</p>
-    <p>gitEmail： {{projectInfo.gitEmail}}</p>
-    <p>gitKeyPath： {{projectInfo.gitKeyPath}}</p>
-    <p>scriptPath： {{projectInfo.scriptPath}}</p>
-    <p>repositoryUrl： {{projectInfo.repositoryUrl}}</p>
-    <p>description： {{projectInfo.description}}</p>
-    </div>
-    </div>
-    </div>
-    </div>
-  </div>
-</div>
-<div class="col-md-9 nopadding">
-  <div class="col-md-12 nopadding" style="border-left: solid #eeeeee 2px; ">
-    <div class="rightTop">
-      <div class="panel panel-default" style="margin-bottom:0px;">
-        <div class="panel-heading">
-          <h3 class="panel-title">当前项目下所有分配的任务</h3>
         </div>
+        <ul class="leftNavList">
+          <li *ngFor="let group of groupList" (click)="showProject(group)">{{group.groupName}}</li>
+        </ul>
       </div>
-      <div>
-        <table class="table table-bordered" style="height:auto;">
-          <thead>
-          <tr>
-            <th class="col-md-1">taskId</th>
-            <th class="col-md-2">assignerId</th>
-            <th class="col-md-2">assigneeId</th>
-            <th class="col-md-2">branchName</th>
-            <th class="col-md-2">branchCommitter</th>
-            <th class="col-md-1">taskStatus</th>
-            <th class="col-md-1">操作</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let task of taskList" (click)="task.a = !task.a">
-            <td colspan="8" class="nopadding" >
-              <table class="table noTopBorder taskStyle">
-                <tr>
-                  <td class="col-md-1">{{task.taskId}}</td>
-                  <td class="col-md-2">{{task.assignerId}}</td>
-                  <td class="col-md-2">{{task.assigneeId}}</td>
-                  <td class="col-md-2">{{task.branchName}}</td>
-                  <td class="col-md-2">{{task.branchCommitter}}</td>
-                  <td class="col-md-1">{{task.taskStatus}}</td>
-                  <td class="col-md-1">
-                    <i class="fa fa-lg fa fa-gavel" aria-hidden="true" (click)="sureAccept(task)"></i>
-                  </td>
-                </tr>
-                <tr [hidden]="!task.a">
-                  <td colspan="7">
-                    <ul>
-                      <li>
-                        <div class="col-md-6">projectId:{{task.projectId}}</div>
-                        <div class="col-md-6">branchDate:{{task.branchDate}}</div>
-                      </li>
-                      <li>
-                        <div class="col-md-6">branchMsg:{{task.branchMsg}}</div>
-                        <div class="col-md-6">createTime:{{task.createTime}}</div>
-                      </li>
-                    </ul>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="panel panel-default" style="margin-bottom:0px;">
-        <div class="panel-heading">
-          <h3 class="panel-title">当前项目下所有正在开发的任务</h3>
+      <div class="col-md-6 nopadding">
+        <div class="panel panel-default" style="margin-bottom: 0px;">
+          <div class="panel-heading">
+            <h3 class="panel-title">Projects</h3>
+          </div>
         </div>
-      </div>
-      <div>
-        <table class="table table-bordered">
-          <thead>
-          <tr>
-            <th class="col-md-1">taskId</th>
-            <th class="col-md-2">assignerId</th>
-            <th class="col-md-2">assigneeId</th>
-            <th class="col-md-2">branchName</th>
-            <th class="col-md-2">branchCommitter</th>
-            <th class="col-md-1">taskStatus</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let taskWorking of taskWorkingList" (click)="taskWorking.a = !taskWorking.a">
-            <td colspan="8" class="nopadding" >
-              <table class="table noTopBorder taskStyle">
-                <tr>
-                  <td class="col-md-1">{{taskWorking.taskId}}</td>
-                  <td class="col-md-2">{{taskWorking.assignerId}}</td>
-                  <td class="col-md-2">{{taskWorking.assigneeId}}</td>
-                  <td class="col-md-2">{{taskWorking.branchName}}</td>
-                  <td class="col-md-2">{{taskWorking.branchCommitter}}</td>
-                  <td class="col-md-1">{{taskWorking.taskStatus}}</td>
-                </tr>
-                <tr [hidden]="!taskWorking.a">
-                  <td colspan="7">
-                    <ul>
-                      <li>
-                        <div class="col-md-6">projectId:{{taskWorking.projectId}}</div>
-                        <div class="col-md-6">branchDate:{{taskWorking.branchDate}}</div>
-                      </li>
-                      <li>
-                        <div class="col-md-6">branchMsg:{{taskWorking.branchMsg}}</div>
-                        <div class="col-md-6">createTime:{{taskWorking.createTime}}</div>
-                      </li>
-                    </ul>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-          </tbody>
-        </table>
+        <ul class="leftNavList">
+          <li *ngFor="let project of projectList" (click)="showProjectInfo(project)">
+            {{project.projectName}}
+            <div class="col-md-1 pull-right" *ngIf='checkoutTag'>
+              <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
-    <div class="rightBottom">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">SandBox</h3>
+    <div class="leftNavBottom">
+      <div class="col-md-12 nopadding">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Project Info</h3>
+          </div>
+          <div class="leftNavBottom" *ngIf='projectinfoTag'>
+            <div class="col-md-12" style="padding-top:10px;">
+              <p>projectName： {{projectInfo.projectName}}</p>
+              <p>creatorId： {{projectInfo.creatorId}}</p>
+              <p>gitName： {{projectInfo.gitName}}</p>
+              <p>gitPass： {{projectInfo.gitPass}}</p>
+              <p>gitEmail： {{projectInfo.gitEmail}}</p>
+              <p>gitKeyPath： {{projectInfo.gitKeyPath}}</p>
+              <p>scriptPath： {{projectInfo.scriptPath}}</p>
+              <p>repositoryUrl： {{projectInfo.repositoryUrl}}</p>
+              <p>description： {{projectInfo.description}}</p>
+            </div>
+          </div>
         </div>
-      </div>
-      <div>
-        <table class="table table-bordered">
-          <thead>
-          <tr>
-            <th class="col-md-1">sandboxName</th>
-            <th class="col-md-2">username</th>
-            <th class="col-md-2">port</th>
-            <th class="col-md-2">password</th>
-            <th class="col-md-2">developerId</th>
-            <th class="col-md-1">occupied</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let sandboxes of sandboxesList" (click)="sandboxes.a = !sandboxes.a">
-            <td colspan="8" class="nopadding" >
-              <table class="table noTopBorder taskStyle">
-                <tr>
-                  <td class="col-md-1">{{sandboxes.sandboxName}}</td>
-                  <td class="col-md-2">{{sandboxes.username}}</td>
-                  <td class="col-md-2">{{sandboxes.port}}</td>
-                  <td class="col-md-2">{{sandboxes.password}}</td>
-                  <td class="col-md-2">{{sandboxes.developerId}}</td>
-                  <td class="col-md-1">{{sandboxes.occupied}}</td>
-                </tr>
-                <tr [hidden]="!sandboxes.a">
-                  <td colspan="7">
-                    <ul>
-                      <li>
-                        <div class="col-md-6">address:{{sandboxes.address}}</div>
-                        <div class="col-md-6">available:{{sandboxes.available}}</div>
-                      </li>
-                      <li>
-                        <div class="col-md-12">occupiedReason:{{sandboxes.occupiedReason}}</div>
-                        <div class="col-md-12">description:{{sandboxes.description}}</div>
-                      </li>
-                    </ul>
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-          </tbody>
-        </table>
       </div>
     </div>
   </div>
-</div>
+  <div class="col-md-7 nopadding">
+    <div class="col-md-12 nopadding" style="border-left: solid #eeeeee 1px; ">
+      <div class="rightTop">
+        <div class="panel panel-default" style="margin-bottom:0px;">
+          <div class="panel-heading">
+            <h3 class="panel-title">Assigned Tasks</h3>
+          </div>
+        </div>
+        <div>
+          <table class="table table-bordered" style="height:auto;">
+            <thead>
+            <tr>
+              <th class="col-md-3">Branch Name</th>
+              <th class="col-md-3">Branch Committer</th>
+              <th class="col-md-3">Task Status</th>
+              <th class="col-md-3">Operations</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let task of taskList" (click)="task.a = !task.a">
+              <td colspan="4" class="nopadding">
+                <table class="table noTopBorder taskStyle">
+                  <tr>
+                    <td class="col-md-3">{{task.branchName}}</td>
+                    <td class="col-md-3">{{task.branchCommitter}}</td>
+                    <td class="col-md-3">{{task.taskStatus}}</td>
+                    <td class="col-md-3">
+                      <i class="fa fa-lg fa fa-check" aria-hidden="true" (click)="sureAccept(task)"></i>
+                    </td>
+                  </tr>
+                  <tr [hidden]="!task.a">
+                    <td colspan="4">
+                      <ul>
+                        <li>
+                          <div class="col-md-6">Project Id:{{task.projectId}}</div>
+                          <div class="col-md-6">Branch Date:{{task.branchDate}}</div>
+                        </li>
+                        <li>
+                          <div class="col-md-6">Branch Message:{{task.branchMsg}}</div>
+                          <div class="col-md-6">Create Time:{{task.createTime}}</div>
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="panel panel-default" style="margin-bottom:0px;">
+          <div class="panel-heading">
+            <h3 class="panel-title">Working Tasks</h3>
+          </div>
+        </div>
+        <div>
+          <table class="table table-bordered">
+            <thead>
+            <tr>
+              <th class="col-md-4">Branch Name</th>
+              <th class="col-md-4">Branch Committer</th>
+              <th class="col-md-4">Task Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let taskWorking of taskWorkingList" (click)="taskWorking.a = !taskWorking.a">
+              <td colspan="3" class="nopadding">
+                <table class="table noTopBorder taskStyle">
+                  <tr>
+                    <td class="col-md-4">{{taskWorking.branchName}}</td>
+                    <td class="col-md-4">{{taskWorking.branchCommitter}}</td>
+                    <td class="col-md-4">{{taskWorking.taskStatus}}</td>
+                  </tr>
+                  <tr [hidden]="!taskWorking.a">
+                    <td colspan="3">
+                      <ul>
+                        <li>
+                          <div class="col-md-12">projectId:{{taskWorking.projectId}}</div>
+                          <div class="col-md-12">branchDate:{{taskWorking.branchDate}}</div>
+                        </li>
+                        <li>
+                          <div class="col-md-12">branchMsg:{{taskWorking.branchMsg}}</div>
+                          <div class="col-md-12">createTime:{{taskWorking.createTime}}</div>
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="rightBottom">
+        <div class="panel panel-default" style="margin-bottom: 0;">
+          <div class="panel-heading">
+            <h3 class="panel-title">Sandboxes</h3>
+          </div>
+        </div>
+        <div>
+          <table class="table table-bordered">
+            <thead>
+            <tr>
+              <th class="col-md-2">Sandbox Name</th>
+              <th class="col-md-4">Address</th>
+              <th class="col-md-2">Username</th>
+              <th class="col-md-1">Port</th>
+              <th class="col-md-2">Password</th>
+              <th class="col-md-1">Available</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let sandboxes of sandboxesList" (click)="sandboxes.a = !sandboxes.a">
+              <td colspan="6" class="nopadding">
+                <table class="table noTopBorder taskStyle">
+                  <tr>
+                    <td class="col-md-2">{{sandboxes.sandboxName}}</td>
+                    <td class="col-md-4">{{sandboxes.address}}</td>
+                    <td class="col-md-2">{{sandboxes.username}}</td>
+                    <td class="col-md-1">{{sandboxes.port}}</td>
+                    <td class="col-md-2">{{sandboxes.password}}</td>
+                    <td class="col-md-1">{{sandboxes.available}}</td>
+                  </tr>
+                  <tr [hidden]="!sandboxes.a">
+                    <td colspan="6">
+                      <ul>
+                        <li>
+                          <div class="col-md-12">OccupiedReason:{{sandboxes.occupiedReason}}</div>
+                          <div class="col-md-12">Description:{{sandboxes.description}}</div>
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
