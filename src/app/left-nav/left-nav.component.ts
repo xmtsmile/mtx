@@ -75,7 +75,7 @@ export class LeftNavComponent implements OnInit {
       if (res.code == '0') {
         that.checkoutTag = true;
         console.log('ttttttttt', res);
-        sessionStorage.setItem("projectInfo", res.res);
+        sessionStorage.setItem("projectInfo", JSON.stringify(that.projectInfo));
       }
     });
     // TaskInfo
