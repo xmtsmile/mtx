@@ -70,6 +70,10 @@ export class DevelopmentComponent implements OnInit {
           // done
         });
       });
+      function tabCallback(this) {
+        // callback
+        console.log('this', this);
+      }
     });
-  }
+  };
 }

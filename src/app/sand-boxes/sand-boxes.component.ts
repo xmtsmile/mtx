@@ -159,6 +159,7 @@ export class SandBoxesComponent implements OnInit{
       if (res.code == '0') {
         console.log('/mtx/administration/resource/group/sandbox/info', res);
         that.groupId = res.result.groupId;
+        that.sandboxId = res.result.sandboxId;
         that.sandboxName = res.result.sandboxName;
         that.address = res.result.address;
         that.port = res.result.port;
@@ -173,6 +174,7 @@ export class SandBoxesComponent implements OnInit{
   saveSandBoxes() {
     var params = {
       'groupId': this.groupId,
+      'sandboxId': this.sandboxId,
       'sandboxName': this.sandboxName,
       'address': this.address,
       'port': this.port,
