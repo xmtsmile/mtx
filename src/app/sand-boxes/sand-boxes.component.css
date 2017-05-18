@@ -1,40 +1,22 @@
-.noPadding {
-  padding: 0px;
+.noPadding{
+  padding:0px;
 }
-
-.borderRight {
-  height: auto;
-  border: 1px solid #eee;
+.borderRight{
+  height:auto;
+  border:1px solid #eee;
 }
-
-.display {
-  display: block;
+.display{
+  display:block;
 }
-
-.displayNo {
-  display: none;
+.displayNo{
+  display:none;
 }
-
-.table {
-  margin-bottom: 0;
+.table{
+  margin-bottom:0px;
 }
-
-.noPadTop {
-  padding: 0;
+.noPadTop{
+  padding:0px;
 }
-
-.noTopBorder td {
+.noTopBorder td{
   border-right: 1px solid #ddd;
-}
-
-li {
-  border-bottom: 1px solid #eee;
-}
-
-li:hover {
-  background-color: #EEEEEE;
-}
-
-.sandboxTableStyle tr:hover {
-  background-color: rgb(238, 238, 238);
 }

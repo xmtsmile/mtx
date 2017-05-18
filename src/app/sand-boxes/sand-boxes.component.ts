@@ -55,8 +55,8 @@ export class SandBoxesComponent implements OnInit {
   delete(sandBoxsGroup) {
     var that = this;
     $.confirm({
-      title: 'WARNING!!!',
-      content: 'Are you sure delete the group',
+      title: '确认!',
+      content: '确认删除该分组!',
       confirm: function () {
         var thatt = that;
         var groupId = sandBoxsGroup.groupId;
@@ -97,7 +97,7 @@ export class SandBoxesComponent implements OnInit {
       if (res.code == '0') {
         that.sandboxgroup();
         $('#newGroup').modal('hide');
-        alert('Succeed create the group');
+        alert('创建成功！');
       }
     });
   }
@@ -112,7 +112,7 @@ export class SandBoxesComponent implements OnInit {
       if (res.code == '0') {
         that.sandboxgroup();
         $('#edit').modal('hide');
-        alert('Succeed modify the group');
+        alert('修改成功！');
       }
     });
   };
@@ -133,7 +133,7 @@ export class SandBoxesComponent implements OnInit {
       if (res.code == '0') {
         console.log('/mtx/administration/resource/group/create', res);
         $('#newSandBoxes').modal('hide');
-        alert('Succeed create the sandbox');
+        alert('创建成功！');
       }
     });
   };
@@ -141,8 +141,8 @@ export class SandBoxesComponent implements OnInit {
   deletesandBox(sandBox) {
     var that = this;
     $.confirm({
-      title: 'WARNING!!!',
-      content: 'Are you sure to delete the sandbox?',
+      title: '确认!',
+      content: '确认删除该sandbox!',
       confirm: function () {
         var thatt = that;
         var sandboxId = sandBox.sandboxId;
@@ -167,6 +167,7 @@ export class SandBoxesComponent implements OnInit {
       if (res.code == '0') {
         console.log('/mtx/administration/resource/group/sandbox/info', res);
         that.groupId = res.result.groupId;
+        that.sandboxId = res.result.sandboxId;
         that.sandboxName = res.result.sandboxName;
         that.address = res.result.address;
         that.port = res.result.port;
@@ -181,6 +182,7 @@ export class SandBoxesComponent implements OnInit {
   saveSandBoxes() {
     var params = {
       'groupId': this.groupId,
+      'sandboxId': this.sandboxId,
       'sandboxName': this.sandboxName,
       'address': this.address,
       'port': this.port,
@@ -192,7 +194,7 @@ export class SandBoxesComponent implements OnInit {
       if (res.code == '0') {
         console.log('editsandbox', res);
         $('#editSandBoxes').modal('hide');
-        alert('Succeed modify the sandbox info');
+        alert('修改成功！');
       }
     });
   };
@@ -220,7 +222,7 @@ export class SandBoxesComponent implements OnInit {
       if (res.code == '0') {
         console.log('movesandbox', res);
         $('#moveSandBoxes').modal('hide');
-        alert('Succeed move the sandbox');
+        alert('修改分组成功！');
       }
     });
   };
