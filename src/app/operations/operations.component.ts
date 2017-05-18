@@ -12,8 +12,10 @@ export class OperationsComponent implements OnInit {
 
   ngOnInit() {
     $(function () {
-      var screenHeight = $(window).height() - 61;
-      $(".phpIframe").css("height", screenHeight + "px");
+      // var screenHeight = $(window).height() - 61;
+      // $("#page-operations").css("height", screenHeight + "px");
+      
+      $("#page-operations").css("height", "635px");
     })
   }
 

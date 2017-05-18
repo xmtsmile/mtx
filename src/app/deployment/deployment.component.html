@@ -105,8 +105,8 @@
         <label class="col-md-2 control-label">Sandbox Name</label>
         <div class="col-md-4">
           <select class="form-control" [(ngModel)]="sandboxId" name="sandboxId" style="height:34px;">
-            <option *ngFor="let available of availableList" value="{{available.sandboxId}}">
-              {{available.sandboxName}}
+            <option *ngFor="let sandbox of sandboxList" value="{{sandbox.sandboxId}}">
+              {{sandbox.sandboxName}}
             </option>
           </select>
         </div>
