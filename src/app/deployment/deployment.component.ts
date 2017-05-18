@@ -13,11 +13,14 @@ export class DeploymentComponent implements OnInit {
   deployHistoryList: any = [];
   bundleHistoryList: any = [];
   sandboxId: any;
+  databaseName: string;
   description: any;
   verifySkipped: boolean = true;
   bundleType: any = 1;
   showTag: boolean = false;
   formerBundleId: any;
+  deployCommitId: string;
+  bundleCommitId: string;
   
   constructor(public httpPost: HttpPost) {
   }
@@ -43,13 +46,16 @@ export class DeploymentComponent implements OnInit {
   
   applySandbox() {
     var that = this;
-    if (this.sandboxId == null || this.sandboxId == '') {
+    if (!this.sandboxId) {
       alert('Please select the sandbox name');
-    } else if (this.description == null || this.description == '') {
+    } else if (!this.databaseName) {
+      alert('Please write the database name');
+    } else if (!this.description) {
       alert('Please write the sandbox description');
     } else {
       var params = {
         'sandboxId': this.sandboxId,
+        'databaseName': this.databaseName,
         'description': this.description
       };
       this.httpPost.dataAjax('POST', '/mtx/deployment/sandbox/acquire', 'application/json;charset=UTF-8',
@@ -128,7 +134,8 @@ export class DeploymentComponent implements OnInit {
     var params = {
       'sandboxId': this.sandboxId,
       'description': this.description,
-      'verifySkipped': this.verifySkipped
+      'verifySkipped': this.verifySkipped ? '1' : '0',
+      'commitId': 'fake_commit_id_1234'
     };
     this.httpPost.dataAjax('POST', '/mtx/deployment/action/deploy', 'application/json;charset=UTF-8',
       JSON.stringify(params), function (res) {
@@ -140,31 +147,29 @@ export class DeploymentComponent implements OnInit {
   };
   
   bundle() {
-    if (this.showTag == false) {
-      var params = {
-        'description': this.description
-      };
-      this.httpPost.dataAjax('POST', '/mtx/deployment/action/bundle', 'application/json;charset=UTF-8',
-        JSON.stringify(params), function (res) {
-          if (res.code == '0') {
-            alert(res.msg);
-            $('#bundleForm')[0].reset();
-          }
-        });
-    } else {
-      var params1 = {
-        'formerBundleId': this.formerBundleId,
-        'description': this.description,
-      };
-    }
+    var params = {
+      'commitId': 'fake-commint-id-1234',
+      'formerBundleId': !this.showTag ? '' : this.formerBundleId,
+      'description': this.description
+    };
+    
     this.httpPost.dataAjax('POST', '/mtx/deployment/action/bundle', 'application/json;charset=UTF-8',
-      JSON.stringify(params1), function (res) {
+      JSON.stringify(params), function (res) {
         if (res.code == '0') {
           alert(res.msg);
           $('#bundleForm')[0].reset();
         }
       });
   };
+  
+  download(bundleId: string): void {
+    var form = $("<form style='display: none;' target='bundle_download' method='post' " +
+      "action='/mtx/deployment/history/bundle/download'>" +
+        "<input type='hidden' name='bundleId' value='" + bundleId +
+      "'/></form>");
+    $('body').append(form);
+    form.submit();
+  }
   
   // sandboxlist
   sandboxlist() {

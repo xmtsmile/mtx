@@ -16,7 +16,6 @@ export class SandBoxesComponent implements OnInit {
   sandboxName: any;
   port: any;
   address: any;
-  databaseName: any;
   username: any;
   password: any;
   description: any;
@@ -126,7 +125,6 @@ export class SandBoxesComponent implements OnInit {
       'sandboxName': this.sandboxName,
       'address': this.address,
       'port': this.port,
-      'databaseName': this.databaseName,
       'username': this.username,
       'password': this.password,
       'description': this.description
@@ -172,7 +170,6 @@ export class SandBoxesComponent implements OnInit {
         that.sandboxName = res.result.sandboxName;
         that.address = res.result.address;
         that.port = res.result.port;
-        that.databaseName = res.result.databaseName;
         that.username = res.result.username;
         that.password = res.result.password;
         that.description = res.result.description;
@@ -187,7 +184,6 @@ export class SandBoxesComponent implements OnInit {
       'sandboxName': this.sandboxName,
       'address': this.address,
       'port': this.port,
-      'databaseName': this.databaseName,
       'username': this.username,
       'password': this.password,
       'description': this.description
