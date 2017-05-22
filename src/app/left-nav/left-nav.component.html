@@ -21,7 +21,7 @@
           <li *ngFor="let project of projectList" (click)="showProjectInfo(project)">
             {{project.projectName}}
             <div class="col-md-1 pull-right" *ngIf='checkoutTag'>
-              <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+              <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
             </div>
           </li>
         </ul>
@@ -35,15 +35,13 @@
           </div>
           <div class="leftNavBottom" *ngIf='projectinfoTag'>
             <div class="col-md-12" style="padding-top:10px;">
-              <p>projectName： {{projectInfo.projectName}}</p>
-              <p>creatorId： {{projectInfo.creatorId}}</p>
-              <p>gitName： {{projectInfo.gitName}}</p>
-              <p>gitPass： {{projectInfo.gitPass}}</p>
-              <p>gitEmail： {{projectInfo.gitEmail}}</p>
-              <p>gitKeyPath： {{projectInfo.gitKeyPath}}</p>
-              <p>scriptPath： {{projectInfo.scriptPath}}</p>
-              <p>repositoryUrl： {{projectInfo.repositoryUrl}}</p>
-              <p>description： {{projectInfo.description}}</p>
+              <p>Project Name： {{projectInfo.projectName}}</p>
+              <p>Creator ID： {{projectInfo.creatorId}}</p>
+              <p>Git Name： {{projectInfo.gitName}}</p>
+              <p>Git Email： {{projectInfo.gitEmail}}</p>
+              <p>Script Path： {{projectInfo.scriptPath}}</p>
+              <p>Repository URL： {{projectInfo.repositoryUrl}}</p>
+              <p>Description： {{projectInfo.description}}</p>
             </div>
           </div>
         </div>

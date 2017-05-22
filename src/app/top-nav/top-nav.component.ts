@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { HttpPost } from '../../providers/httpPost';
-import { Group } from '../models/group.model';
-import { Sandbox } from '../models/sandbox.model';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {HttpPost} from '../../providers/httpPost';
+import {Group} from '../models/group.model';
+import {Sandbox} from '../models/sandbox.model';
 
 declare var $: any;
 declare var _: any;
@@ -15,9 +15,10 @@ declare var _: any;
 export class TopNavComponent implements OnInit {
   adminTag = false;
   loginUser: any = {};
-
-  constructor(public router: Router, public httpPost: HttpPost) { }
-
+  
+  constructor(public router: Router, public httpPost: HttpPost) {
+  }
+  
   private phpMyAdminUrl = "/operations/index.php";
   private loginForm =
     '<form action="__url__" target="phpmyadmin" method="post">' +
@@ -27,25 +28,25 @@ export class TopNavComponent implements OnInit {
     '<input type="hidden" name="collation_connection" value="utf8mb4_unicode_ci">' +
     '</form>';
   private backForm = '<form action="__url__" target="phpmyadmin"></form>';
-
+  
   // mock data
   private groups: Group[] = [];
-
+  
   // current sandbox info
   currentGroupId: string;
   currentSandboxId: string;
-
+  
   ngOnInit() {
     var self = this;
     this.loginUser = JSON.parse(sessionStorage.getItem('loginUser'));
     console.log('loginUser--', this.loginUser)
-
+    
     if (this.loginUser.isAdmin == '0') {
       this.adminTag = false;
     } else {
       this.adminTag = true;
     }
-
+    
     // load data here and in the callback function, call submenupicker() to ensure the submenu worked
     this.httpPost.dataAjax('GET', '/mtx/user/recipe/sandboxes', 'x-www-form-urlencoded', {}, function (res) {
       if (res.code == '0') {
@@ -65,7 +66,7 @@ export class TopNavComponent implements OnInit {
           });
           self.groups.push(tmpGroup);
         });
-
+        
         // need a liitle to wait angular to init view
         setTimeout(function () {
           $('[data-submenu]').submenupicker();
@@ -73,7 +74,7 @@ export class TopNavComponent implements OnInit {
       }
     });
   }
-
+  
   /**
    * jump to the target phpmyadmin page
    * @param groupId
@@ -84,21 +85,21 @@ export class TopNavComponent implements OnInit {
     this.currentSandboxId = sandboxId;
     this.router.navigateByUrl("/workspace/operations");
   }
-
+  
   fetchPage(prevUrls: any, sid: string) {
     var self = this;
     if (!this.currentGroupId || !this.currentSandboxId) {
       // if directly enter in /workspace/operations then do nothing
       return;
     }
-
+    
     var group = _.filter(this.groups, function (group) {
       return group.id == self.currentGroupId;
     })[0];
     var sandbox = _.filter(group.sandboxes, function (sandbox) {
       return sandbox.id == self.currentSandboxId;
     })[0];
-
+    
     var str;
     var prevUrl;
     if (!prevUrls || !(prevUrl = prevUrls.get(sid)) || prevUrl.index) {
@@ -111,20 +112,20 @@ export class TopNavComponent implements OnInit {
     } else {
       str = this.backForm.replace("__url__", prevUrl.url);
     }
-
+    
     var post = $(str);
     $("body").append(post);
     post.submit();
     post.remove();
   }
-
-  private build(url:string, server: string, username: string, password: string): string {
+  
+  private build(url: string, server: string, username: string, password: string): string {
     return this.loginForm.replace("__url__", url)
-      .replace("__server__", server)
-      .replace("__username__", username)
-      .replace("__password__", password);
+    .replace("__server__", server)
+    .replace("__username__", username)
+    .replace("__password__", password);
   }
-
+  
   logOut() {
     var that = this;
     this.httpPost.dataAjax('GET', '/mtx/user/logout', 'x-www-form-urlencoded', {}, function (res) {
@@ -133,14 +134,13 @@ export class TopNavComponent implements OnInit {
       }
     });
   }
-
+  
   getUser() {
-    var that = this;
     this.httpPost.dataAjax('GET', '/mtx/user/info', 'x-www-form-urlencoded', {}, function (res) {
       if (res.code == '0') {
-       sessionStorage.setItem('userInfo', JSON.stringify(res.result));
+        sessionStorage.setItem('userInfo', JSON.stringify(res.result));
       }
     });
   }
-
+  
 }

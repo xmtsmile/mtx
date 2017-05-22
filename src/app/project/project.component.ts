@@ -424,7 +424,7 @@ export class ProjectComponent implements OnInit {
         };
         thatt.httpPost.dataAjax('GET', '/mtx/administration/work/group/project/developer/delete', 'x-www-form-urlencoded', params, function (res) {
           if (res.code == '0') {
-            thatt.showDeveloper({'projectId':thatt.projectTag});
+            thatt.showDeveloper({'projectId': thatt.projectTag});
           }
         });
       },

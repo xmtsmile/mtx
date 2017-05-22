@@ -26,6 +26,12 @@
             </div>
           </div>
           <div class="form-group">
+            <label class="col-md-3 control-label">Database Name</label>
+            <div class="col-md-8">
+              <input type="text" class="col-md-12 form-control" name="databaseName" [(ngModel)]="databaseName">
+            </div>
+          </div>
+          <div class="form-group">
             <label class="col-md-3 control-label">Accquire Description</label>
             <div class="col-md-8">
               <textarea class="form-control" [(ngModel)]="description" name="description" rows="5"
@@ -99,8 +105,8 @@
         <label class="col-md-2 control-label">Sandbox Name</label>
         <div class="col-md-4">
           <select class="form-control" [(ngModel)]="sandboxId" name="sandboxId" style="height:34px;">
-            <option *ngFor="let available of availableList" value="{{available.sandboxId}}">
-              {{available.sandboxName}}
+            <option *ngFor="let sandbox of sandboxList" value="{{sandbox.sandboxId}}">
+              {{sandbox.sandboxName}}
             </option>
           </select>
         </div>
@@ -111,6 +117,12 @@
         </div>
         <div class="col-md-1" style="display: inline-block">
           <button class="btn btn-default" (click)="deploy()">Deploy</button>
+        </div>
+      </div>
+      <div class="form-group col-md-12">
+        <label class="col-md-2 control-label">Commit ID</label>
+        <div class="col-md-8">
+          <input type="text" name="commitId" [(ngModel)]="deployCommitId" class="col-md-12 form-control">
         </div>
       </div>
       <div class="form-group col-md-12">
@@ -173,6 +185,12 @@
         </div>
       </div>
       <div class="form-group col-md-12">
+        <label class="col-md-2 control-label">Commit ID</label>
+        <div class="col-md-8">
+          <input type="text" name="commitId" [(ngModel)]="bundleCommitId" class="col-md-12 form-control">
+        </div>
+      </div>
+      <div class="form-group col-md-12">
         <label class="col-md-2 control-label">Bundle Description</label>
         <div class="col-md-8">
           <textarea class="form-control" [(ngModel)]="description" name="description" rows="8"
@@ -183,7 +201,7 @@
   </div>
   <div class="tab-pane fade" id="packHistory">
     <!--dabaolishi-->
-    <table class="table table-bordered">
+    <table class="table table-bordered table-striped">
       <thead>
       <tr>
         <th>Bundle ID</th>
@@ -192,8 +210,8 @@
         <th>Commit ID</th>
         <th>Bundle Description</th>
         <th>Bundle Status</th>
-        <th>Download</th>
         <th>Bundle Result</th>
+        <th>Download</th>
       </tr>
       </thead>
       <tbody>
@@ -204,11 +222,13 @@
         <td>{{bundleHistory.commitId}}</td>
         <td>{{bundleHistory.description}}</td>
         <td>{{bundleHistory.status}}</td>
-        <td>{{bundleHistory.bundlePath}}</td>
         <td>{{bundleHistory.statusMsg}}</td>
-        <td><i class="fa fa-arrow-down" aria-hidden="true"></i></td>
+        <td>
+          <i *ngIf="bundleHistory.status == 'success'" class="fa fa-arrow-down" aria-hidden="true" (click)="download(bundleHistory.bundleId)"></i>
+        </td>
       </tr>
       </tbody>
     </table>
   </div>
+  <iframe src="" frameborder="0" id="bundle_download" name="bundle_download" width="0" height="0"></iframe>
 </div>
